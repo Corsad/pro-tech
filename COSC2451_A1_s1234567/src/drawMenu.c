@@ -15,32 +15,7 @@ char *menuList[] = 	{"1. New Game",
                         "4. Exit",
                     	};
 
-static void drawMenu(){
-
-}
-
-static void finish(int sig) {
-    endwin();
-
-    /* do your non-curses wrapup here, like freeing the memory allocated */
-
-
-    exit(sig);
-}
-
-static void init_screen() {
-	(void) signal(SIGINT, finish);
-	initscr();
-	(void) nonl();         
-    (void) cbreak(); 
-    (void) noecho();      
-    keypad(stdscr, TRUE);   
-    timeout(-1);
-}
-
-int main(int argc, char *argv[])
-{
-	init_screen();
+static int drawMenu(){
 	int currentChoice = 1;
 	ITEM **items;
 	int c;				
@@ -78,12 +53,41 @@ int main(int argc, char *argv[])
 				break;
 		}
 	}	
+	
+	free_item(items[0]);
+	free_item(items[1]);
+	free_menu(menu);
+	
+	return currentChoice;
+}
+
+static void finish(int sig) {
+    endwin();
+
+    /* do your non-curses wrapup here, like freeing the memory allocated */
+
+
+    exit(sig);
+}
+
+static void init_screen() {
+	(void) signal(SIGINT, finish);
+	initscr();
+	(void) nonl();         
+    (void) cbreak(); 
+    (void) noecho();      
+    keypad(stdscr, TRUE);   
+    timeout(-1);
+}
+
+int main(int argc, char *argv[])
+{
+	init_screen();
+	int currentChoice = drawMenu();
+
 
 	switch(currentChoice){
-		case 4:
-			free_item(items[0]);
-			free_item(items[1]);
-			free_menu(menu);
+		case 4:			
 			finish(0);
 		break;
 	}
