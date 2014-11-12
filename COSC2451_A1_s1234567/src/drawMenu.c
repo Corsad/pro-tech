@@ -15,8 +15,7 @@ char *menuList[] = 	{"1. New Game",
                         "4. Exit",
                     	};
 
-static int drawMenu(){
-	int currentChoice = 1;
+static void drawMenu(int * currentChoice){
 	ITEM **items;
 	int c;				
 	MENU *menu;
@@ -34,22 +33,19 @@ static int drawMenu(){
 	post_menu(menu);
 	refresh();
 
-	while(((c = getch()) != 13) || (currentChoice != 4))
+	while(((c = getch()) != 13) || (*currentChoice != 4))
 	{   switch(c)
 	    {	case KEY_DOWN:
 		        menu_driver(menu, REQ_DOWN_ITEM);
-		        if(currentChoice < MENULENGTH){
-                        currentChoice++;
+		        if(*currentChoice < MENULENGTH){
+                        *currentChoice += 1;
                 }
 				break;
 			case KEY_UP:
 				menu_driver(menu, REQ_UP_ITEM);
-				if(currentChoice > 1){
-                        currentChoice--;
+				if(*currentChoice > 1){
+                        *currentChoice -= 1;
                 }
-				break;
-			default:
-				mvprintw(20, 1, "%i", currentChoice);
 				break;
 		}
 	}	
@@ -57,8 +53,6 @@ static int drawMenu(){
 	free_item(items[0]);
 	free_item(items[1]);
 	free_menu(menu);
-	
-	return currentChoice;
 }
 
 static void finish(int sig) {
@@ -83,8 +77,9 @@ static void init_screen() {
 int main(int argc, char *argv[])
 {
 	init_screen();
-	int currentChoice = drawMenu();
+	int currentChoice = 1;
 
+	drawMenu(&currentChoice);
 
 	switch(currentChoice){
 		case 4:			
