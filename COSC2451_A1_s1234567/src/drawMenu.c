@@ -15,6 +15,36 @@ char *menuList[] = 	{"1. New Game",
                         "4. Exit",
                     	};
 
+static void init_screen();
+static void doChoice(int * currentChoice);
+static void drawMenu(int * currentChoice);
+static void finish(int sig);
+
+int main(int argc, char *argv[])
+{
+	init_screen();
+	int currentChoice = 1;
+
+	drawMenu(&currentChoice);
+
+	
+	
+	endwin();
+}
+
+static void doChoice(int * currentChoice){
+	switch(*currentChoice){
+		case 3:
+			clear();
+			*currentChoice = 1;
+			drawMenu(currentChoice);
+		break;
+		case 4:			
+			finish(0);
+		break;
+	}
+}
+
 static void drawMenu(int * currentChoice){
 	ITEM **items;
 	int c;				
@@ -33,7 +63,7 @@ static void drawMenu(int * currentChoice){
 	post_menu(menu);
 	refresh();
 
-	while(((c = getch()) != 13) || (*currentChoice != 4))
+	while(((c = getch()) != 13) || (*currentChoice == 1) || (*currentChoice == 2))
 	{   switch(c)
 	    {	case KEY_DOWN:
 		        menu_driver(menu, REQ_DOWN_ITEM);
@@ -50,6 +80,7 @@ static void drawMenu(int * currentChoice){
 		}
 	}	
 	
+	doChoice(currentChoice);
 	free_item(items[0]);
 	free_item(items[1]);
 	free_menu(menu);
@@ -66,26 +97,10 @@ static void finish(int sig) {
 
 static void init_screen() {
 	(void) signal(SIGINT, finish);
-	initscr();
+	(void) initscr(); 
 	(void) nonl();         
     (void) cbreak(); 
     (void) noecho();      
     keypad(stdscr, TRUE);   
     timeout(-1);
-}
-
-int main(int argc, char *argv[])
-{
-	init_screen();
-	int currentChoice = 1;
-
-	drawMenu(&currentChoice);
-
-	switch(currentChoice){
-		case 4:			
-			finish(0);
-		break;
-	}
-	
-	endwin();
 }

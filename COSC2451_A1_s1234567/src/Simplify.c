@@ -1,27 +1,116 @@
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <curses.h>
+#include <signal.h>
+#include <time.h>
+#include <assert.h>
+#include <math.h>
+#define ROW 4
+#define COL 4
+#define CELLHEIGHT 4
+int getIntLength(int x);
+int getMaxLength(int **x);
+void printMap(int **x);
+void up(int **x);
+void down(int **x);
+void left(int **x);
+void right(int **x);
+void simplify(int **x, int dir);
+static void finish(int sig);
+static void init_screen();
 
-#define Row 4
-#define Col 4
+int main(){
+	init_screen();
+	int **x = malloc(sizeof(int *) * ROW);
 
-void printMap(int **x){
-	for(int i = 0; i < Row; i++){
-		for(int j = 0; j < Col;j++){
-			printf("%i ", x[i][j] );
+	// There are 2 map: map.txt and map2.txt
+	FILE *f = fopen("map.txt", "r");
+	for(int i = 0; i < ROW; i++){
+		x[i] = malloc(sizeof(int) *COL);
+	}
+
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL;j++){
+			// printf("x[%i][%i]: ",i,j);
+			// scanf("%i",&x[i][j]);
+			fscanf (f, "%i", &x[i][j]);   
 		}
-		printf("\n");
+	}
+	fclose (f);     
+
+	printMap(x);
+	int c;
+
+	// simplify(,x,,)
+	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
+
+	while(((c = getch()) != 'q')){
+		switch(c){
+			case KEY_UP:
+			clear();
+			simplify(x, 1);
+			printMap(x);
+			break;
+			case KEY_DOWN:
+			clear();
+			simplify(x, 2);
+			printMap(x);
+			break;
+			case KEY_LEFT:
+			clear();
+			simplify(x, 3);
+			printMap(x);
+			break;
+			case KEY_RIGHT:
+			clear();
+			simplify(x, 4);
+			printMap(x);
+			break;
+		}
+	}
+
+	finish(0);
+	return 0;
+}
+
+int getIntLength(int x){
+	if(x == 0){
+		return 1;
+	} else {
+		return (int)log10(x)+1;
 	}
 }
-void up(int **x, int row, int col){
-	// x[row][col] ==> x[j][i]
-	for(int i = 0; i < col; i++){
+
+int getMaxLength(int **x){
+	int temp = 0;
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL; j++){
+			if(temp < x[i][j])
+				temp = x[i][j];
+		}
+	}
+	return temp;
+}
+
+void printMap(int **x){
+	int cellLength = getMaxLength(x) + 1;
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL; j++){
+			mvprintw((CELLHEIGHT + i * CELLHEIGHT), (cellLength + (cellLength*j) - getIntLength(x[i][j])), "%i", x[i][j]);
+		}
+	}
+}
+
+void up(int **x){
+	// x[ROW][COL] ==> x[j][i]
+	for(int i = 0; i < COL; i++){
 		int stop = 0;
-		for (int j = 1; j < row; j++)
+		for (int j = 1; j < ROW; j++)
 		{			
 			int k = j;
 			while(k != stop){
 				if(x[k - 1][i] == x[k][i] && x[k][i] != 0){
-					x[k - 1][i] += x[i][i];
+					x[k - 1][i] += x[k][i];
 					x[k][i] = 0;
 					stop = k;
 					break;
@@ -35,11 +124,11 @@ void up(int **x, int row, int col){
 	}
 }
 
-void down(int **x, int row, int col){
-	// x[row][col] ==> x[j][i]
-	for(int i = 0; i < col ; i++){
-		int stop = row - 1;
-		for (int j = row - 2; j >= 0; j--)
+void down(int **x){
+	// x[ROW][COL] ==> x[j][i]
+	for(int i = 0; i < COL ; i++){
+		int stop = ROW - 1;
+		for (int j = ROW - 2; j >= 0; j--)
 		{
 			int k = j;
 			while(k != stop){
@@ -58,11 +147,11 @@ void down(int **x, int row, int col){
 	}
 }
 
-void left(int **x, int row, int col){
-	// x[row][col] ==> x[i][j]
-	for(int i = 0; i < row; i++){
+void left(int **x){
+	// x[ROW][COL] ==> x[i][j]
+	for(int i = 0; i < ROW; i++){
 		int stop = 0;
-		for (int j = 1; j < col; j++)
+		for (int j = 1; j < COL; j++)
 		{
 			int k = j;
 			while(k != stop){
@@ -83,11 +172,11 @@ void left(int **x, int row, int col){
 }
 
 
-void right(int **x, int row, int col){
-	// x[row][col] ==> x[i][j]
-	for(int i = 0; i < row; i++){
-		int stop = col -1;
-		for (int j = col -1; j >= 0; j--)
+void right(int **x){
+	// x[ROW][COL] ==> x[i][j]
+	for(int i = 0; i < ROW; i++){
+		int stop = COL -1;
+		for (int j = COL -1; j >= 0; j--)
 		{
 			int k = j;
 			while(k != stop){
@@ -106,60 +195,46 @@ void right(int **x, int row, int col){
 	}
 }
 
-void simplify(int **x, int dir, int row, int col)
+void simplify(int **x, int dir)
 {
 	printf("test\n");
 	switch(dir){
 		case 1:
 			printf("up method\n");
-			up(x, row, col);
+			up(x);
 			printf("up\n");
 			break;
 		case 2:
 			printf("down method\n");
-			down(x, row, col);
+			down(x);
 			printf("down\n");
 			break;
 		case 3:
-			left(x, row, col);
+			left(x);
 			printf("left\n");
 			break;
 		case 4:
-			right(x, row, col);
+			right(x);
 			printf("right\n");
 			break;
 	}
 }
 
-int main()
-{
-int **x = malloc(sizeof(int *) * Row);
+static void finish(int sig) {
+    endwin();
 
-// There are 2 map: map.txt and map2.txt
-FILE *f = fopen("map.txt", "r");
-	for(int i = 0; i < Row; i++){
-		x[i] = malloc(sizeof(int) *Col);
-	}
+    /* do your non-curses wrapup here, like freeing the memory allocated */
 
-	for(int i = 0; i < Row; i++){
-		for(int j = 0; j < Col;j++){
-			// printf("x[%i][%i]: ",i,j);
-			// scanf("%i",&x[i][j]);
-			fscanf (f, "%i", &x[i][j]);   
-		}
-	}
-	fclose (f);     
 
-	printMap(x);
+    exit(sig);
+}
 
-	// simplify(,x,,)
-	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
-	for (int i = 0; i < 2; i++)
-	{
-		simplify(x, 4, Row, Col);
-
-		printMap(x);
-	}
-	return 0;
-	return 0;
+static void init_screen() {
+	(void) signal(SIGINT, finish);
+	(void) initscr(); 
+	(void) nonl();         
+    (void) cbreak(); 
+    (void) noecho();      
+    keypad(stdscr, TRUE);   
+    timeout(-1);
 }
