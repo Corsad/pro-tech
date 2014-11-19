@@ -5,25 +5,15 @@
 #include <time.h>
 #include <assert.h>
 #include <math.h>
+#include "Simplify.h"
 
 #define ROW 4
 #define COL 4
 #define CELLHEIGHT 4
 
-int getIntLength(int x);
-int getMaxLength(int **x, int row, int col);
-void printMap(int **x, int row, int col);
-void up(int **x, int row, int col);
-void down(int **x, int row, int col);
-void left(int **x, int row, int col);
-void right(int **x, int row, int col);
-void simplify(void (* func)(int **, int, int), int **x, int row, int col);
-// void simplify(int **x, int dir, int row, int col);
-static void finish(int sig);
-static void init_screen();
+int playGame(){
+	clear();
 
-int main(){
-	init_screen();
 	int **x = malloc(sizeof(int *) * ROW);
 
 	for(int i = 0; i < ROW; i++){
@@ -76,8 +66,7 @@ int main(){
 	for(int i = 0; i < ROW; i++){
 		free(x[i]);
 	}
-	free(x);
-	finish(0);
+	free(x);	
 	return 0;
 }
 
@@ -91,25 +80,6 @@ int countEmpty(int **x, int row, int col){
 	}
 	return temp;
 }
-
-// int moveable(int **x, int row, int col){
-
-// 	// Make clone array and copy it
-// 	int **clone = malloc(sizeof(int *) * row);
-// 	for(int i = 0; i < row; i++){
-// 		clone[i] = malloc(sizeof(int) *col);
-// 		copy_int_array(x[i],clone[i], col);
-// 	}
-
-// 	for(int i = 0; i < 4; i++){
-
-// 	}
-
-// 	for(int i = 0; i < row; i++){
-// 		free(clone[i]);
-// 	}
-// 	free(clone);
-// }
 
 int getIntLength(int x){
 	if(x == 0){

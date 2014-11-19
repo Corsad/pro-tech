@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "pt_ultils.h"
-
-int moveable(int **x, int row, int col);
-int upTest(int **x, int row, int col);
-int downTest(int **x, int row, int col);
-int leftTest(int **x, int row, int col);
-int rightTest(int **x, int row, int col);
+#include "pt_utils.h"
+#include "moveable.h"
 
 int moveable(int **x, int row, int col){
 
@@ -23,8 +18,8 @@ int moveable(int **x, int row, int col){
 
 	int temp = 0;
 	for(int i = 0; i < 4; i++){
-		if(simplify(funcs[i], x , row, col) == 1){
-			temp == 1;
+		if(simplifyTest(funcs[i], x , row, col) == 1){
+			temp = 1;
 			break;
 		}
 	}
@@ -41,7 +36,7 @@ int upTest(int **x, int row, int col){
 	// x[ROW][COL] ==> x[j][i]
 	for(int i = 0; i < col; i++){
 		int stop = 0;
-		for (int j = 1; j < ROW; j++)
+		for (int j = 1; j < row; j++)
 		{			
 			int k = j;
 			while(k != stop){
@@ -60,8 +55,8 @@ int upTest(int **x, int row, int col){
 int downTest(int **x, int row, int col){
 	// x[ROW][COL] ==> x[j][i]
 	for(int i = 0; i < col ; i++){
-		int stop = ROW - 1;
-		for (int j = ROW - 2; j >= 0; j--)
+		int stop = row - 1;
+		for (int j = row - 2; j >= 0; j--)
 		{
 			int k = j;
 			while(k != stop){
@@ -103,8 +98,8 @@ int leftTest(int **x, int row, int col){
 int rightTest(int **x, int row, int col){
 	// x[ROW][COL] ==> x[i][j]
 	for(int i = 0; i < row; i++){
-		int stop = COL -1;
-		for (int j = COL -1; j >= 0; j--)
+		int stop = col -1;
+		for (int j = col -1; j >= 0; j--)
 		{
 			int k = j;
 			while(k != stop){
@@ -120,8 +115,6 @@ int rightTest(int **x, int row, int col){
 	return 0;
 }
 
-int simplify(int (* func)(int **, int, int), int **x, int row, int col) {
-    return (*func)(x, row, col));
-}
-
+int simplifyTest(int (* func)(int **, int, int), int **x, int row, int col) {
+    return (*func)(x, row, col);
 }
