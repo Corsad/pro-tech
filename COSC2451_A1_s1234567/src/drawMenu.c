@@ -31,6 +31,10 @@ static void doChoice(int * currentChoice){
 			clear();
 			playGame();
 		break;
+		case 2:
+			clear();
+			printHighscore();
+		break;
 		case 3:
 			clear();
 			*currentChoice = 1;
@@ -66,7 +70,7 @@ static void drawMenu(int * currentChoice){
 	post_menu(menu);
 	refresh();
 
-	while(((c = getch()) != 13) || (*currentChoice == 2))
+	while(((c = getch()) != 13))
 	{   switch(c)
 	    {	case KEY_DOWN:
 		        menu_driver(menu, REQ_DOWN_ITEM);
