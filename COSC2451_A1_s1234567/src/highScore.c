@@ -3,34 +3,26 @@
 #include <curses.h>
 
 #include "player.h"
+#include "highScore.h"
 
 #define NAMELENGTH 60
 #define LISTLENGTH 10
 
-void orderByRank(struct player *list, int currentLength);
+static int currentLength;
+
 void printHighscore(){
 	clear();
 
-	static const char filename[] = "playerScore.txt";
-	FILE *file = fopen ( filename, "r" );
-	char *name = malloc(sizeof(char) * NAMELENGTH);
-	int score, rank;
+	struct player *list;
 
-	struct player list[LISTLENGTH];
-
-	int currentLength = 0;
-	if ( file != NULL ){		
-		while (fscanf(file, "%s\t%i\t%i", name, &score, &rank) != EOF) {
-		  	list[currentLength] = *createPlayer(name, score, rank);
-		  	currentLength++;
-		}		
-	}
-
-	orderByRank(list, currentLength);
+	list = openFile();
+	orderByRank(list, 3);
 
 	for (int i = 0; i < currentLength; ++i)
 	{
-		mvprintw(list[i].rank - 1, 0, "%i %s\t%i", list[i].rank, list[i].name, list[i].score);
+		if(list[i].name != NULL){
+			mvprintw(i, 0, "%i %s\t%i", list[i].rank, list[i].name, list[i].score);
+		}
 	}
 
 	// for (int i = 0; i < LISTLENGTH; ++i)
@@ -43,7 +35,7 @@ void printHighscore(){
 
 	}
 	free(name);
-	fclose(file);	
+	free(list);
 }
 
 void orderByRank(struct player *list, int currentLength){
@@ -57,5 +49,80 @@ void orderByRank(struct player *list, int currentLength){
 			list[j] = temp;
 			}				
 		}
+	}
+}
+
+void writeToFile(struct player *list){
+	FILE *file = fopen ( "playerScore.txt", "w+" );
+
+	if ( file != NULL ){		
+		for (int i = 0; i < currentLength; ++i)
+		{
+			fprintf(file, "%s\t%i\t%i\n", list[i].name, list[i].score, list[i].rank);
+		}
+	}
+
+	fclose(file);	
+}
+
+struct player * openFile(){
+	static const char filename[] = "playerScore.txt";
+	char *name = malloc(sizeof(char) * NAMELENGTH);
+	int score, rank;
+
+	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
+
+	currentLength = 0;
+
+	FILE *file = fopen ( filename, "r" );
+	if ( file != NULL ){		
+		while (fscanf(file, "%s\t%i\t%i", name, &score, &rank) != EOF) {
+		  	list[currentLength] = *createPlayer(name, score, rank);
+		  	currentLength++;
+		}		
+	}
+
+	free(name);
+	fclose(file);	
+	return list;
+}
+
+void testHighScore(){
+	int score = 5000;
+	char * name = malloc(sizeof(char) * NAMELENGTH);
+	int rank = 5;
+
+
+	mvprintw(0, 0, "Score: %i", score);
+  	mvprintw(1, 0, "Enter Your Name: ");
+	(void) echo();
+	getstr(name);
+	(void) noecho();
+	mvprintw(4, 0, "Press 'q' to quit.");
+
+
+	struct player testPlayer = *createPlayer(name, score, rank);
+
+	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
+	list = openFile();
+
+
+	list[currentLength] = testPlayer;
+	currentLength++;
+
+	writeToFile(list);
+
+	int c;
+	while(((c = getch()) != 'q')){
+	}
+
+	free(name);
+	free(list);
+}
+
+void arrangeScore(struct player *list){
+	for (int i = 0; i < LISTLENGTH; ++i)
+	{
+		// if()
 	}
 }
