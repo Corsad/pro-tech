@@ -31,7 +31,7 @@ int randomVal(int **x, int row, int col) {
 				temp++;
 			if (temp==randomPlace) {
 				x[i][j] = randomVal;
-				break;
+				return 1;
 			}
 		}
 	}
