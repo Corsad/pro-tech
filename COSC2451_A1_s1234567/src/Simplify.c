@@ -18,6 +18,10 @@ int playGame(){
 
 	int **x = malloc(sizeof(int *) * ROW);
 
+	int *score = malloc(sizeof(int));
+
+	*score = 0;
+
 	for(int i = 0; i < ROW; i++){
 		x[i] = malloc(sizeof(int) *COL);
 	}
@@ -45,45 +49,50 @@ int playGame(){
 	randomVal(x,ROW, COL);
 
 	printMap(x, ROW, COL);
+	printScore(score,ROW);
 	int c;
 
 	// simplify(,x,,)
 	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
 
-	void (* funcs[4])(int **, int, int) = {&up, &down, &left, &right};
+	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
 	while(((c = getch()) != 'q')){
 		switch(c){
 			case KEY_UP:
 			clear();
 			if (upTest(x,ROW, COL)==1) {
-				simplify(funcs[0], x , ROW, COL);
+				simplify(funcs[0], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
+			printScore(score,ROW);
 			break;
 			case KEY_DOWN:
 			clear();
 			if (downTest(x,ROW, COL)==1) {
-				simplify(funcs[1], x , ROW, COL);
+				simplify(funcs[1], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
+			printScore(score,ROW);
 			break;
 			case KEY_LEFT:
 			clear();
 			if (leftTest(x,ROW, COL)==1) {
-				simplify(funcs[2], x , ROW, COL);
+				simplify(funcs[2], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
+			printScore(score,ROW);
 			break;
 			case KEY_RIGHT:
 			clear();
 			if (rightTest(x,ROW, COL)==1) {
-				simplify(funcs[3], x , ROW, COL);
+				simplify(funcs[3], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
+			printScore(score,ROW);
 			break;
 		}
 	}
@@ -125,7 +134,11 @@ void printMap(int **x, int row, int col){
 	}
 }
 
-void up(int **x, int row, int col){
+void printScore(int *score, int row) {
+	mvprintw(CELLHEIGHT + row * CELLHEIGHT + 2, 0, "Score: %i", *score);
+}
+
+void up(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[j][i]
 	for(int i = 0; i < col; i++){
 		int stop = 0;
@@ -135,6 +148,7 @@ void up(int **x, int row, int col){
 			while(k != stop){
 				if(x[k - 1][i] == x[k][i] && x[k][i] != 0){
 					x[k - 1][i] += x[k][i];
+					*score += x[i][k+1];
 					x[k][i] = 0;
 					stop = k;
 					break;
@@ -148,7 +162,7 @@ void up(int **x, int row, int col){
 	}
 }
 
-void down(int **x, int row, int col){
+void down(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[j][i]
 	for(int i = 0; i < col ; i++){
 		int stop = ROW - 1;
@@ -158,6 +172,7 @@ void down(int **x, int row, int col){
 			while(k != stop){
 				if(x[k + 1][i] == x[k][i] && x[k][i] != 0){
 					x[k + 1][i] += x[k][i];
+					*score += x[i][k+1];
 			 		x[k][i] = 0;
 					stop = k;
 					break;
@@ -171,7 +186,7 @@ void down(int **x, int row, int col){
 	}
 }
 
-void left(int **x, int row, int col){
+void left(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[i][j]
 	for(int i = 0; i < row; i++){
 		int stop = 0;
@@ -181,6 +196,7 @@ void left(int **x, int row, int col){
 			while(k != stop){
 				if(x[i][k-1] == x[i][k] && x[i][k] != 0){
 					x[i][k-1] += x[i][k];
+					*score += x[i][k+1];
 					x[i][k] = 0;
 					stop = k;
 					break;
@@ -196,7 +212,7 @@ void left(int **x, int row, int col){
 }
 
 
-void right(int **x, int row, int col){
+void right(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[i][j]
 	for(int i = 0; i < row; i++){
 		int stop = COL -1;
@@ -206,6 +222,7 @@ void right(int **x, int row, int col){
 			while(k != stop){
 				if(x[i][k+1] == x[i][k]  && x[i][k] != 0){
 					x[i][k+1] += x[i][k];
+					*score += x[i][k+1];
 					x[i][k] = 0;
 					stop = k;
 					break;
@@ -219,8 +236,8 @@ void right(int **x, int row, int col){
 	}
 }
 
-void simplify(void (* func)(int **, int, int), int **x, int row, int col) {
-    (*func)(x, row, col);
+void simplify(void (* func)(int **, int, int, int *), int **x, int row, int col, int *score) {
+    (*func)(x, row, col,score);
 }
 
 // void simplify(int **x, int dir, int row, int col)
