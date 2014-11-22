@@ -42,7 +42,7 @@ int upTest(int **x, int row, int col){
 			while(k != stop){
 				if(x[k - 1][i] == x[k][i] && x[k][i] != 0){
 					return 1;
-				}  else if (x[k - 1][i] == 0){
+				}  else if (x[k - 1][i] == 0 && x[k][i] != 0 ){
 					return 1;
 				}
 				k--;
@@ -63,7 +63,7 @@ int downTest(int **x, int row, int col){
 				if(x[k + 1][i] == x[k][i] && x[k][i] != 0){
 					return 1;
 					break;
-				}  else if (x[k + 1][i] == 0){
+				}  else if (x[k + 1][i] == 0 && x[k][i] != 0){
 					return 1;
 				}
 				k++;
@@ -83,7 +83,7 @@ int leftTest(int **x, int row, int col){
 			while(k != stop){
 				if(x[i][k-1] == x[i][k] && x[i][k] != 0){
 					return 1;
-				} else if (x[i][k-1] == 0){
+				} else if (x[i][k-1] == 0 && x[i][k] != 0){
 					return 1;
 				}
 
@@ -105,7 +105,7 @@ int rightTest(int **x, int row, int col){
 			while(k != stop){
 				if(x[i][k+1] == x[i][k]  && x[i][k] != 0){
 					return 1;
-				} else if(x[i][k+1] == 0){
+				} else if(x[i][k+1] == 0 && x[i][k] != 0){
 					return 1;
 				}
 				k++;	

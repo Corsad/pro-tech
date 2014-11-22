@@ -26,27 +26,27 @@ int playGame(){
 		x[i] = malloc(sizeof(int) *COL);
 	}
 
-	// // There are 2 map: map.txt and map2.txt
-	// FILE *f = fopen("map.txt", "r");
-	// for(int i = 0; i < ROW; i++){
-	// 	for(int j = 0; j < COL;j++){
-	// 		// printf("x[%i][%i]: ",i,j);
-	// 		// scanf("%i",&x[i][j]);
-	// 		fscanf (f, "%i", &x[i][j]);   
-	// 	}
-	// }
-	// fclose (f);     
-
+	// There are 2 map: map.txt and map2.txt
+	FILE *f = fopen("map3.txt", "r");
 	for(int i = 0; i < ROW; i++){
 		for(int j = 0; j < COL;j++){
 			// printf("x[%i][%i]: ",i,j);
 			// scanf("%i",&x[i][j]);
-			x[i][j]=0;   
+			fscanf (f, "%i", &x[i][j]);   
 		}
 	}
+	fclose (f);     
 
-	randomVal(x,ROW, COL);
-	randomVal(x,ROW, COL);
+	// for(int i = 0; i < ROW; i++){
+	// 	for(int j = 0; j < COL;j++){
+	// 		// printf("x[%i][%i]: ",i,j);
+	// 		// scanf("%i",&x[i][j]);
+	// 		x[i][j]=0;   
+	// 	}
+	// }
+
+	// randomVal(x,ROW, COL);
+	// randomVal(x,ROW, COL);
 
 	printMap(x, ROW, COL);
 	printScore(score,ROW);
@@ -60,9 +60,11 @@ int playGame(){
 		switch(c){
 			case KEY_UP:
 			clear();
+			mvprintw(20,20,"%i", upTest(x,ROW, COL));
 			if (upTest(x,ROW, COL)==1) {
 				simplify(funcs[0], x , ROW, COL,score);
-				randomVal(x,ROW, COL);	
+				randomVal(x,ROW, COL);
+
 			}
 			printMap(x, ROW, COL);
 			printScore(score,ROW);
