@@ -127,7 +127,7 @@ static void init_screen() {
 
 static void printCredit(){
 	mvprintw(0, 0, "DANG KIM KHANH\tS3372771");
-	mvprintw(1, 0, "LE THIEN HUY\tS");
+	mvprintw(1, 0, "LE THIEN HUY\tS3425476");
 
 	mvprintw(3, 0, "Press \'q\' to go back to menu.");
 

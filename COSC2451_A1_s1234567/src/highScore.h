@@ -2,10 +2,12 @@
 #define HIGHSCORE
 
 #include "player.h"
-void orderByRank(struct player *list, int currentLength);
+void orderByScore(struct player *list, int currentLength);
 void printHighscore();
 void testHighScore();
 struct player * openFile();
 void writeToFile(struct player *list);
+int getLowestScore(struct player *list);
+int getMaxNameLength(struct player* list);
 
 #endif

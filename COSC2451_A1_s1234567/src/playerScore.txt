@@ -1,4 +1,9 @@
-asdasd	123	1
-qweqwe	321	3
-gfhkgfjih	5432	2
-asdas	5000	5
+2	5432
+gfhkgfjih	5432
+5	5000
+asdas	5000
+3	321
+qweqwe	321
+asdasd	123
+1	123
+huy	123

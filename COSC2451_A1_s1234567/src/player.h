@@ -6,10 +6,9 @@
 struct player {
     char name[NAMELENGTH];
     int score;
-    int rank;
 };
 
-struct player * createPlayer(char *name, int score, int rank);
+struct player * createPlayer(char *name, int score);
 
 void player_free(struct player *player);
 
