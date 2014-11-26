@@ -10,7 +10,7 @@
 #include "Simplify.h"
 #include "highScore.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define MENULENGTH   4
+#define MENULENGTH   5
 
 int main(int argc, char *argv[])
 {
@@ -34,14 +34,26 @@ static void doChoice(int * currentChoice){
 		case 2:
 			clear();
 			printHighscore();
+			clear();
+			*currentChoice = 1;
+			drawMenu(currentChoice);
 		break;
 		case 3:
+			clear();
+			printCredit();
 			clear();
 			*currentChoice = 1;
 			drawMenu(currentChoice);
 		break;
 		case 4:			
 			finish(0);
+		break;
+		case 5:
+			clear();
+			testHighScore();
+			clear();
+			*currentChoice = 1;
+			drawMenu(currentChoice);
 		break;
 	}
 }
@@ -51,6 +63,7 @@ static void drawMenu(int * currentChoice){
                         "2. High Scores",
                         "3. Credits",
                         "4. Exit",
+                        "5. Test Game Over",
                     	};
 
 	ITEM **items;
@@ -110,4 +123,15 @@ static void init_screen() {
     (void) noecho();      
     keypad(stdscr, TRUE);   
     timeout(-1);
+}
+
+static void printCredit(){
+	mvprintw(0, 0, "DANG KIM KHANH\tS3372771");
+	mvprintw(1, 0, "LE THIEN HUY\tS");
+
+	mvprintw(3, 0, "Press \'q\' to go back to menu.");
+
+	int c;
+	while(((c = getch()) != 'q')){		
+	}
 }
