@@ -20,8 +20,11 @@ int countEmpty(int **x, int row, int col){
 
 int randomVal(int **x, int row, int col) {
 	int empty = countEmpty(x,row,col);
-	
+
+	srand(time(NULL));
 	int randomVal = rand()%10==0?4:2;
+	
+	srand(time(NULL));
 	int randomPlace = rand()%empty+1;
 
 	int temp = 0;

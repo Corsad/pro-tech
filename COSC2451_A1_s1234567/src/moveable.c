@@ -118,3 +118,13 @@ int rightTest(int **x, int row, int col){
 int simplifyTest(int (* func)(int **, int, int), int **x, int row, int col) {
     return (*func)(x, row, col);
 }
+
+int goalTest(int **x,int row, int col, int *goal) {
+	for(int i = 0; i < row; i++){
+		for(int j = 0; j < col; j++){
+			if(x[i][j] == *goal)
+				return 1;
+		}
+	}
+	return 0;
+}

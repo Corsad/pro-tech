@@ -11,98 +11,131 @@
 
 #define ROW 4
 #define COL 4
-#define CELLHEIGHT 4
+#define CELLHEIGHT 3
 
 int playGame(){
 	clear();
 
-	int **x = malloc(sizeof(int *) * ROW);
-
 	int *score = malloc(sizeof(int));
 
 	*score = 0;
+
+	int *goal = malloc(sizeof(int));
+
+	*goal = goalCal(ROW);
+
+	int *goalReached = malloc(sizeof(int));
+
+	*goalReached = 0;
+
+	int **x = malloc(sizeof(int *) * ROW);
 
 	for(int i = 0; i < ROW; i++){
 		x[i] = malloc(sizeof(int) *COL);
 	}
 
 	// There are 2 map: map.txt and map2.txt
-	FILE *f = fopen("map3.txt", "r");
-	for(int i = 0; i < ROW; i++){
-		for(int j = 0; j < COL;j++){
-			// printf("x[%i][%i]: ",i,j);
-			// scanf("%i",&x[i][j]);
-			fscanf (f, "%i", &x[i][j]);   
-		}
-	}
-	fclose (f);     
-
+	// FILE *f = fopen("map3.txt", "r");
 	// for(int i = 0; i < ROW; i++){
 	// 	for(int j = 0; j < COL;j++){
 	// 		// printf("x[%i][%i]: ",i,j);
 	// 		// scanf("%i",&x[i][j]);
-	// 		x[i][j]=0;   
+	// 		fscanf (f, "%i", &x[i][j]);   
 	// 	}
 	// }
+	// fclose (f);     
 
-	// randomVal(x,ROW, COL);
-	// randomVal(x,ROW, COL);
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL;j++){
+			// printf("x[%i][%i]: ",i,j);
+			// scanf("%i",&x[i][j]);
+			x[i][j]=0;   
+		}
+	}
+
+	randomVal(x,ROW, COL);
+	randomVal(x,ROW, COL);
 
 	printMap(x, ROW, COL);
 	printScore(score,ROW);
+	printGoal(ROW,goal);
 	int c;
 
 	// simplify(,x,,)
 	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
 
 	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
+	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
+
 	while(((c = getch()) != 'q')){
 		switch(c){
 			case KEY_UP:
 			clear();
-			mvprintw(20,20,"%i", upTest(x,ROW, COL));
-			if (upTest(x,ROW, COL)==1) {
+			if (simplifyTest(tests[0],x,ROW, COL)==1) {
 				simplify(funcs[0], x , ROW, COL,score);
 				randomVal(x,ROW, COL);
 
 			}
 			printMap(x, ROW, COL);
 			printScore(score,ROW);
+			printGoal(ROW,goal);
 			break;
 			case KEY_DOWN:
 			clear();
-			if (downTest(x,ROW, COL)==1) {
+			if (simplifyTest(tests[1],x,ROW, COL)==1) {
 				simplify(funcs[1], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
 			printScore(score,ROW);
+			printGoal(ROW,goal);
 			break;
 			case KEY_LEFT:
 			clear();
-			if (leftTest(x,ROW, COL)==1) {
+			if (simplifyTest(tests[2],x,ROW, COL)==1) {
 				simplify(funcs[2], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
 			printScore(score,ROW);
+			printGoal(ROW,goal);
 			break;
 			case KEY_RIGHT:
 			clear();
-			if (rightTest(x,ROW, COL)==1) {
+			if (simplifyTest(tests[3],x,ROW, COL)==1) {
 				simplify(funcs[3], x , ROW, COL,score);
 				randomVal(x,ROW, COL);	
 			}
 			printMap(x, ROW, COL);
 			printScore(score,ROW);
+			printGoal(ROW,goal);
 			break;
 		}
+
+		if (goalTest(x,ROW,COL,goal)==1 && *goalReached==0) {
+			*goalReached = 1;
+		}
+
+		if (moveable(x,ROW,COL)==0) {
+			printOver(ROW);
+		} else if (*goalReached==1) {
+			printGoalReached(ROW,goal);
+		}
+
 	}
 
 	for(int i = 0; i < ROW; i++){
 		free(x[i]);
 	}
 	free(x);	
+
+	free(goal);
+
+	free(score);
+
+	free(goalReached);
+
+
 	return 0;
 }
 
@@ -131,14 +164,29 @@ void printMap(int **x, int row, int col){
 	for(int i = 0; i < row; i++){
 		for(int j = 0; j < col; j++){
 			// mvprintw((CELLHEIGHT + i * CELLHEIGHT), (cellLength + (cellLength*j) - getIntLength(x[i][j])), "%i", x[i][j]);
+			if (x[i][j]!=0)
 			mvprintw((CELLHEIGHT + i * CELLHEIGHT), (5 + (5*j) - getIntLength(x[i][j])), "%i", x[i][j]);
 		}
 	}
 }
 
 void printScore(int *score, int row) {
-	mvprintw(CELLHEIGHT + row * CELLHEIGHT + 2, 0, "Score: %i", *score);
+	mvprintw(CELLHEIGHT + row * CELLHEIGHT, 0, "Score: %i", *score);
 }
+
+
+void printGoal(int row, int *goal) {
+	mvprintw(CELLHEIGHT + row * CELLHEIGHT + 1, 0, "Goal: get to the %i tile", *goal);
+}
+
+void printGoalReached(int row, int *goal) {
+	mvprintw(CELLHEIGHT + row * CELLHEIGHT + 2, 0, "Congratulations! You reached the %i tile. You can continue playing.", *goal);
+}
+
+void printOver(int row) {
+	mvprintw(CELLHEIGHT + row * CELLHEIGHT + 2, 0, "No more moves! Game over.");
+}
+
 
 void up(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[j][i]
@@ -150,7 +198,7 @@ void up(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[k - 1][i] == x[k][i] && x[k][i] != 0){
 					x[k - 1][i] += x[k][i];
-					*score += x[i][k+1];
+					*score += x[k - 1][i];
 					x[k][i] = 0;
 					stop = k;
 					break;
@@ -174,7 +222,7 @@ void down(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[k + 1][i] == x[k][i] && x[k][i] != 0){
 					x[k + 1][i] += x[k][i];
-					*score += x[i][k+1];
+					*score += x[k + 1][i];
 			 		x[k][i] = 0;
 					stop = k;
 					break;
@@ -198,7 +246,7 @@ void left(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[i][k-1] == x[i][k] && x[i][k] != 0){
 					x[i][k-1] += x[i][k];
-					*score += x[i][k+1];
+					*score += x[i][k-1];
 					x[i][k] = 0;
 					stop = k;
 					break;
@@ -238,8 +286,23 @@ void right(int **x, int row, int col, int *score){
 	}
 }
 
+    /* do your non-curses wrapup here, like freeing the memory allocated */
+
+
 void simplify(void (* func)(int **, int, int, int *), int **x, int row, int col, int *score) {
     (*func)(x, row, col,score);
+}
+
+int goalCal (int row) {
+	switch(row){
+		case 4:
+			return 2048;
+		case 6:
+			return 4096;
+		case 8:
+			return 8092;
+	}
+	return 0;
 }
 
 // void simplify(int **x, int dir, int row, int col)
