@@ -34,5 +34,5 @@ int * clone_int_array(int a[], int length);
   */
 void print_int_array(int a[], int length);
 
-
+int getIntLength(int x);
 #endif

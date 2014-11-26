@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 #include "pt_utils.h"
 
 int pt_rand(int nbits) {
@@ -47,4 +47,12 @@ void print_int_array(int a[], int length) {
         printf("%d ", a[i]);
     }
     printf("\n");
+}
+
+int getIntLength(int x){
+    if(x == 0){
+        return 1;
+    } else {
+        return (int)log10(x)+1;
+    }
 }

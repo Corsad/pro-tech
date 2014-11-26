@@ -3,12 +3,15 @@
 #include <string.h>
 #include "player.h"
 
-struct player * createPlayer(char *name, int score) {
+struct player * createPlayer(char *name, int score, int day, int month, int year) {
 
     struct player *newPlayer = malloc(sizeof(struct player));
     
     strcpy(newPlayer->name, name);
-    newPlayer->score = score;    
+    newPlayer->score = score;
+    newPlayer->day = day;
+    newPlayer->month = month;
+    newPlayer->year = year;    
     
     return newPlayer;
 }

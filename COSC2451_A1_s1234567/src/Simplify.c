@@ -8,6 +8,8 @@
 #include "Simplify.h"
 #include "random.h"
 #include "moveable.h"
+#include "highScore.h"
+#include "pt_utils.h"
 
 #define ROW 4
 #define COL 4
@@ -34,27 +36,29 @@ int playGame(){
 		x[i] = malloc(sizeof(int) *COL);
 	}
 
-	// There are 2 map: map.txt and map2.txt
-	// FILE *f = fopen("map3.txt", "r");
-	// for(int i = 0; i < ROW; i++){
-	// 	for(int j = 0; j < COL;j++){
-	// 		// printf("x[%i][%i]: ",i,j);
-	// 		// scanf("%i",&x[i][j]);
-	// 		fscanf (f, "%i", &x[i][j]);   
-	// 	}
-	// }
-	// fclose (f);     
-
+////////////////////////////////////
+	//There are 2 map: map.txt and map2.txt
+	FILE *f = fopen("map4.txt", "r");
 	for(int i = 0; i < ROW; i++){
 		for(int j = 0; j < COL;j++){
 			// printf("x[%i][%i]: ",i,j);
 			// scanf("%i",&x[i][j]);
-			x[i][j]=0;   
+			fscanf (f, "%i", &x[i][j]);   
 		}
 	}
+	fclose (f);     
+////////////////////////////////////
+	// for(int i = 0; i < ROW; i++){
+	// 	for(int j = 0; j < COL;j++){
+	// 		// printf("x[%i][%i]: ",i,j);
+	// 		// scanf("%i",&x[i][j]);
+	// 		x[i][j]=0;   
+	// 	}
+	// }
 
-	randomVal(x,ROW, COL);
-	randomVal(x,ROW, COL);
+	// randomVal(x,ROW, COL);
+	// randomVal(x,ROW, COL);
+////////////////////////////////////
 
 	printMap(x, ROW, COL);
 	printScore(score,ROW);
@@ -117,11 +121,12 @@ int playGame(){
 		}
 
 		if (moveable(x,ROW,COL)==0) {
-			printOver(ROW);
+			//printOver(ROW);
+			askHighScore(CELLHEIGHT + ROW * CELLHEIGHT + 2,*score);
+			break;
 		} else if (*goalReached==1) {
 			printGoalReached(ROW,goal);
 		}
-
 	}
 
 	for(int i = 0; i < ROW; i++){
@@ -137,15 +142,6 @@ int playGame(){
 
 
 	return 0;
-}
-
-
-int getIntLength(int x){
-	if(x == 0){
-		return 1;
-	} else {
-		return (int)log10(x)+1;
-	}
 }
 
 int getMaxLength(int **x, int row, int col){

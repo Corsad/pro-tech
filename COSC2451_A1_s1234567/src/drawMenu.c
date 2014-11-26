@@ -10,7 +10,7 @@
 #include "Simplify.h"
 #include "highScore.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define MENULENGTH   5
+#define MENULENGTH   4
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +30,9 @@ static void doChoice(int * currentChoice){
 		case 1:			
 			clear();
 			playGame();
+			clear();
+			*currentChoice = 1;
+			drawMenu(currentChoice);
 		break;
 		case 2:
 			clear();
@@ -63,7 +66,6 @@ static void drawMenu(int * currentChoice){
                         "2. High Scores",
                         "3. Credits",
                         "4. Exit",
-                        "5. Test Game Over",
                     	};
 
 	ITEM **items;
