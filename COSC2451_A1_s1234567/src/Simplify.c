@@ -131,7 +131,7 @@ int playGame(int ROW,int COL){
 	for(int i = 0; i < ROW; i++){
 		free(x[i]);
 	}
-	
+
 	free(x);	
 
 	free(goal);
@@ -139,7 +139,6 @@ int playGame(int ROW,int COL){
 	free(score);
 
 	free(goalReached);
-
 
 	return 0;
 }

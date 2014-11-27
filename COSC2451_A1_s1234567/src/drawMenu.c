@@ -11,7 +11,7 @@
 #include "highScore.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define MENULENGTH   4
+
 #define ROW1	4
 #define ROW2	6
 #define ROW3	8
@@ -67,7 +67,7 @@ static void drawMenu(int * currentChoice){
 	char *menuList[] = 	{"1. New Game",
                         "2. High Scores",
                         "3. Credits",
-                        "4. Exit",
+                        "4. Exit"
                     	};
 
 	ITEM **items;
@@ -92,7 +92,7 @@ static void drawMenu(int * currentChoice){
 	{   switch(c)
 	    {	case KEY_DOWN:
 		        menu_driver(menu, REQ_DOWN_ITEM);
-		        if(*currentChoice < MENULENGTH){
+		        if(*currentChoice < menu_choices){
                         *currentChoice += 1;
                 }
 				break;
@@ -106,15 +106,20 @@ static void drawMenu(int * currentChoice){
 	}	
 	
 	doChoice(currentChoice);
-	free_item(items[0]);
-	free_item(items[1]);
+
+	unpost_menu(menu);
 	free_menu(menu);
+	for(i = 0; i < menu_choices; ++i)
+	        free_item(items[i]);
+
+	free_item(cur_item);
+	free(items);
 }
 
-static void doBoardChoice(int currentBoardChoice){
-	mvprintw(20,20,"%i\n", currentBoardChoice);
+static void doBoardChoice(int boardChoice){
+	mvprintw(20,20,"%i\n", boardChoice);
 	clear();
-	switch(currentBoardChoice){
+	switch(boardChoice){
 		case 1:		
 			playGame(ROW1,ROW1);
 			break;
@@ -129,11 +134,11 @@ static void doBoardChoice(int currentBoardChoice){
 }
 
 static void drawBoardMenu(){	
-	int currentBoardChoice = 1 ;
+	int boardChoice = 1 ;
 	char *menuList[] = 	{"1.4x4",
                         "2.6x6",
                         "3.8x8",
-                        "4. Back to menu",
+                        "4. Back to menu"
                     	};
 
 	ITEM **items;
@@ -158,23 +163,29 @@ static void drawBoardMenu(){
 	{   switch(c)
 	    {	case KEY_DOWN:
 		        menu_driver(menu, REQ_DOWN_ITEM);
-		        if(currentBoardChoice < MENULENGTH){
-                        currentBoardChoice += 1;
+		        if(boardChoice <= menu_choices){
+                        boardChoice += 1;
                 }
 				break;
 			case KEY_UP:
 				menu_driver(menu, REQ_UP_ITEM);
-				if(currentBoardChoice > 1){
-                        currentBoardChoice -= 1;
+				if(boardChoice > 1){
+                        boardChoice -= 1;
                 }
 				break;
 		}
 	}	
-	
-	doBoardChoice(currentBoardChoice);
-	free_item(items[0]);
-	free_item(items[1]);
+
+	doBoardChoice(boardChoice);
+
+	unpost_menu(menu);
 	free_menu(menu);
+	for(i = 0; i < menu_choices; ++i)
+	        free_item(items[i]);
+
+	free_item(cur_item);
+	free(items);
+	
 }
 
 static void finish(int sig) {
