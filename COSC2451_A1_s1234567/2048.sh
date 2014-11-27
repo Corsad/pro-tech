@@ -1,4 +1,4 @@
 #!/bin/bash
 export XDG_CONFIG_HOME=$PWD/conf/
-xfce4-terminal --disable-server --command="./src/2048 $*"
+xfce4-terminal --disable-server --command="./src/drawMenu $*"
 

@@ -61,7 +61,7 @@ static void doChoice(int * currentChoice){
 	}
 }
 
-static void drawMenu(int * currentChoice){
+static void drawMenu(int * currentChoice){	
 	char *menuList[] = 	{"1. New Game",
                         "2. High Scores",
                         "3. Credits",
@@ -79,6 +79,7 @@ static void drawMenu(int * currentChoice){
 	for(i = 0; i < menu_choices; ++i)
 	        items[i] = new_item(" ", menuList[i]);
 	
+
 	items[menu_choices] = (ITEM *)NULL;
 
 	menu = new_menu((ITEM **)items);
@@ -125,6 +126,30 @@ static void init_screen() {
     (void) noecho();      
     keypad(stdscr, TRUE);   
     timeout(-1);
+    start_color();
+    defaultColor();
+    definePair();
+}
+
+void defaultColor(){
+	init_color(COLOR_RED, 1000, 0, 0);
+	init_color(COLOR_GREEN, 0, 1000, 0);
+	init_color(COLOR_YELLOW, 1000, 1000, 0);
+	init_color(COLOR_BLUE, 0, 0, 1000);
+	init_color(COLOR_MAGENTA, 1000, 0, 1000);
+	init_color(COLOR_CYAN, 0, 1000, 1000);
+	init_color(COLOR_WHITE, 0, 0, 0);
+	init_color(COLOR_BLACK, 1000, 1000, 1000);
+}
+
+void definePair(){
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+    init_pair(2, COLOR_RED, COLOR_BLACK);
+    init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(5, COLOR_BLUE, COLOR_BLACK);
+    init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(7, COLOR_CYAN, COLOR_BLACK);
 }
 
 static void printCredit(){

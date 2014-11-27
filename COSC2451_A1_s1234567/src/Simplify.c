@@ -10,6 +10,7 @@
 #include "moveable.h"
 #include "highScore.h"
 #include "pt_utils.h"
+#include "drawMenu.h"
 
 #define ROW 4
 #define COL 4
@@ -160,9 +161,57 @@ void printMap(int **x, int row, int col){
 	for(int i = 0; i < row; i++){
 		for(int j = 0; j < col; j++){
 			// mvprintw((CELLHEIGHT + i * CELLHEIGHT), (cellLength + (cellLength*j) - getIntLength(x[i][j])), "%i", x[i][j]);
-			if (x[i][j]!=0)
+			coloring(x[i][j]);
 			mvprintw((CELLHEIGHT + i * CELLHEIGHT), (5 + (5*j) - getIntLength(x[i][j])), "%i", x[i][j]);
 		}
+	}
+	coloring(0);
+}
+
+void coloring(int x){
+	switch(x){
+		case 2:
+			attron(COLOR_PAIR(2));
+		break;
+		case 4:
+			attron(COLOR_PAIR(3));
+		break;
+		case 8:
+			attron(COLOR_PAIR(4));
+		break;
+		case 16:
+			attron(COLOR_PAIR(5));
+		break;
+		case 32:
+			attron(COLOR_PAIR(6));
+		break;
+		case 64:
+			attron(COLOR_PAIR(7));
+		break;
+		case 128:
+			attron(COLOR_PAIR(8));
+		break;
+		case 256:
+			attron(COLOR_PAIR(1));
+		break;
+		case 512:
+			attron(COLOR_PAIR(2));
+		break;
+		case 1024:
+			attron(COLOR_PAIR(3));
+		break;
+		case 2048:
+			attron(COLOR_PAIR(4));
+		break;
+		case 4096:
+			attron(COLOR_PAIR(5));
+		break;
+		case 8192:
+			attron(COLOR_PAIR(6));
+		break;
+		default:
+			attron(COLOR_PAIR(1));
+		break;
 	}
 }
 

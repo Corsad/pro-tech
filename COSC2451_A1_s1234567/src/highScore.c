@@ -103,11 +103,15 @@ void askHighScore(int row, int score){
 	if(currentLength != 10){
 		(void) echo();
 		keypad(stdscr, FALSE);
-		mvprintw(row, 0, "Enter Your Name: ");
-		getstr(name);
+		do{
+			mvprintw(row, 0, "Enter Your Name: ");
+			getstr(name);
+		} while(strlen(name) == 0);
+		
 		keypad(stdscr, TRUE);
 		(void) noecho();
 		mvprintw(row + 2, 0, "Press \'q\' to go back to menu.");
+
 
 
 		time_t t = time(NULL);
@@ -130,8 +134,10 @@ void askHighScore(int row, int score){
 	} else if(score > getLowestScore(list)){
 		(void) echo();
 		keypad(stdscr, FALSE);
-		mvprintw(row, 0, "Enter Your Name: ");
-		getstr(name);
+		do{
+			mvprintw(row, 0, "Enter Your Name: ");
+			getstr(name);
+		} while(strlen(name) == 0);
 		keypad(stdscr, TRUE);
 		(void) noecho();
 		mvprintw(row + 2, 0, "Press \'q\' to go back to menu.");

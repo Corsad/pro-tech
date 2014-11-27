@@ -18,5 +18,6 @@ int goalCal (int row);
 // void simplify(int **x, int dir, int row, int col);
 static void finish(int sig);
 static void init_screen();
+void coloring(int x);
 
 #endif
