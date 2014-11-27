@@ -9,17 +9,19 @@
 #include "drawMenu.h"
 #include "Simplify.h"
 #include "highScore.h"
+
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define MENULENGTH   4
+#define ROW1	4
+#define ROW2	6
+#define ROW3	8
+
 
 int main(int argc, char *argv[])
 {
 	init_screen();
 	int currentChoice = 1;
-
 	drawMenu(&currentChoice);
-
-	
 	
 	endwin();
 }
@@ -29,7 +31,7 @@ static void doChoice(int * currentChoice){
 	switch(*currentChoice){
 		case 1:			
 			clear();
-			playGame();
+			drawBoardMenu();
 			clear();
 			*currentChoice = 1;
 			drawMenu(currentChoice);
@@ -104,6 +106,72 @@ static void drawMenu(int * currentChoice){
 	}	
 	
 	doChoice(currentChoice);
+	free_item(items[0]);
+	free_item(items[1]);
+	free_menu(menu);
+}
+
+static void doBoardChoice(int currentBoardChoice){
+	mvprintw(20,20,"%i\n", currentBoardChoice);
+	clear();
+	switch(currentBoardChoice){
+		case 1:		
+			playGame(ROW1,ROW1);
+			break;
+		case 2:
+			playGame(ROW2,ROW2);
+			break;
+		case 3:	
+			playGame(ROW3,ROW3);
+		break;
+	}
+	clear();
+}
+
+static void drawBoardMenu(){	
+	int currentBoardChoice = 1 ;
+	char *menuList[] = 	{"1.4x4",
+                        "2.6x6",
+                        "3.8x8",
+                        "4. Back to menu",
+                    	};
+
+	ITEM **items;
+	int c;				
+	MENU *menu;
+	int menu_choices, i;
+	ITEM *cur_item;
+	menu_choices = ARRAY_SIZE(menuList);
+	items = (ITEM **)calloc(menu_choices + 1, sizeof(ITEM *));
+
+	for(i = 0; i < menu_choices; ++i)
+	        items[i] = new_item(" ", menuList[i]);
+	
+
+	items[menu_choices] = (ITEM *)NULL;
+
+	menu = new_menu((ITEM **)items);
+	post_menu(menu);
+	refresh();
+
+	while(((c = getch()) != 13))
+	{   switch(c)
+	    {	case KEY_DOWN:
+		        menu_driver(menu, REQ_DOWN_ITEM);
+		        if(currentBoardChoice < MENULENGTH){
+                        currentBoardChoice += 1;
+                }
+				break;
+			case KEY_UP:
+				menu_driver(menu, REQ_UP_ITEM);
+				if(currentBoardChoice > 1){
+                        currentBoardChoice -= 1;
+                }
+				break;
+		}
+	}	
+	
+	doBoardChoice(currentBoardChoice);
 	free_item(items[0]);
 	free_item(items[1]);
 	free_menu(menu);

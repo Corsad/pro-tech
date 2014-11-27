@@ -1,7 +1,7 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
-int playGame();
+int playGame(int ROW, int COL);
 int getIntLength(int x);
 int getMaxLength(int **x, int row, int col);
 void printMap(int **x, int row, int col);

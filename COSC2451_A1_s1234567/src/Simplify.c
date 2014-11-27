@@ -12,11 +12,9 @@
 #include "pt_utils.h"
 #include "drawMenu.h"
 
-#define ROW 4
-#define COL 4
 #define CELLHEIGHT 3
 
-int playGame(){
+int playGame(int ROW,int COL){
 	clear();
 
 	int *score = malloc(sizeof(int));
@@ -38,27 +36,27 @@ int playGame(){
 	}
 
 ////////////////////////////////////
-	//There are 2 map: map.txt and map2.txt
-	FILE *f = fopen("map4.txt", "r");
-	for(int i = 0; i < ROW; i++){
-		for(int j = 0; j < COL;j++){
-			// printf("x[%i][%i]: ",i,j);
-			// scanf("%i",&x[i][j]);
-			fscanf (f, "%i", &x[i][j]);   
-		}
-	}
-	fclose (f);     
-////////////////////////////////////
+	// //There are 2 map: map.txt and map2.txt
+	// FILE *f = fopen("map4.txt", "r");
 	// for(int i = 0; i < ROW; i++){
 	// 	for(int j = 0; j < COL;j++){
 	// 		// printf("x[%i][%i]: ",i,j);
 	// 		// scanf("%i",&x[i][j]);
-	// 		x[i][j]=0;   
+	// 		fscanf (f, "%i", &x[i][j]);   
 	// 	}
 	// }
+	// fclose (f);     
+////////////////////////////////////
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL;j++){
+			// printf("x[%i][%i]: ",i,j);
+			// scanf("%i",&x[i][j]);
+			x[i][j]=0;   
+		}
+	}
 
-	// randomVal(x,ROW, COL);
-	// randomVal(x,ROW, COL);
+	randomVal(x,ROW, COL);
+	randomVal(x,ROW, COL);
 ////////////////////////////////////
 
 	printMap(x, ROW, COL);
@@ -133,6 +131,7 @@ int playGame(){
 	for(int i = 0; i < ROW; i++){
 		free(x[i]);
 	}
+	
 	free(x);	
 
 	free(goal);
@@ -189,25 +188,25 @@ void coloring(int x){
 			attron(COLOR_PAIR(7));
 		break;
 		case 128:
-			attron(COLOR_PAIR(8));
-		break;
-		case 256:
 			attron(COLOR_PAIR(1));
 		break;
-		case 512:
+		case 256:
 			attron(COLOR_PAIR(2));
 		break;
-		case 1024:
+		case 512:
 			attron(COLOR_PAIR(3));
 		break;
-		case 2048:
+		case 1024:
 			attron(COLOR_PAIR(4));
 		break;
-		case 4096:
+		case 2048:
 			attron(COLOR_PAIR(5));
 		break;
-		case 8192:
+		case 4096:
 			attron(COLOR_PAIR(6));
+		break;
+		case 8192:
+			attron(COLOR_PAIR(7));
 		break;
 		default:
 			attron(COLOR_PAIR(1));
@@ -237,7 +236,7 @@ void up(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[j][i]
 	for(int i = 0; i < col; i++){
 		int stop = 0;
-		for (int j = 1; j < ROW; j++)
+		for (int j = 1; j < row; j++)
 		{			
 			int k = j;
 			while(k != stop){
@@ -260,8 +259,8 @@ void up(int **x, int row, int col, int *score){
 void down(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[j][i]
 	for(int i = 0; i < col ; i++){
-		int stop = ROW - 1;
-		for (int j = ROW - 2; j >= 0; j--)
+		int stop = row - 1;
+		for (int j = row - 2; j >= 0; j--)
 		{
 			int k = j;
 			while(k != stop){
@@ -310,8 +309,8 @@ void left(int **x, int row, int col, int *score){
 void right(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[i][j]
 	for(int i = 0; i < row; i++){
-		int stop = COL -1;
-		for (int j = COL -1; j >= 0; j--)
+		int stop = col -1;
+		for (int j = col -1; j >= 0; j--)
 		{
 			int k = j;
 			while(k != stop){

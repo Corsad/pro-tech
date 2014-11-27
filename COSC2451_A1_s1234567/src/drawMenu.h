@@ -4,6 +4,8 @@
 static void init_screen();
 static void doChoice(int * currentChoice);
 static void drawMenu(int * currentChoice);
+static void doBoardChoice(int currentBoardChoice);
+static void drawBoardMenu();
 static void finish(int sig);
 static void printCredit();
 void defaultColor();
