@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	endwin();
 }
 
-static void doChoice(int * currentChoice){
+void doChoice(int * currentChoice){
 	mvprintw(20,20,"%i\n", currentChoice);
 	switch(*currentChoice){
 		case 1:			
@@ -63,7 +63,7 @@ static void doChoice(int * currentChoice){
 	}
 }
 
-static void drawMenu(int * currentChoice){	
+void drawMenu(int * currentChoice){	
 	char *menuList[] = 	{"1. New Game",
                         "2. High Scores",
                         "3. Credits",
@@ -116,7 +116,7 @@ static void drawMenu(int * currentChoice){
 	free(items);
 }
 
-static void doBoardChoice(int modeChoice, int boardChoice){
+void doBoardChoice(int modeChoice, int boardChoice){
 	mvprintw(20,20,"%i\n", boardChoice);
 	clear();
 	switch(modeChoice) {
@@ -151,7 +151,7 @@ static void doBoardChoice(int modeChoice, int boardChoice){
 	clear();
 }
 
-static void drawBoardMenu(int modeChoice){	
+void drawBoardMenu(int modeChoice){	
 	int boardChoice = 1 ;
 	char *menuList[] = 	{"1.4x4",
                         "2.6x6",
@@ -205,7 +205,7 @@ static void drawBoardMenu(int modeChoice){
 	free(items);	
 }
 
-static void finish(int sig) {
+void finish(int sig) {
     endwin();
 
     /* do your non-curses wrapup here, like freeing the memory allocated */
@@ -214,7 +214,7 @@ static void finish(int sig) {
     exit(sig);
 }
 
-static void init_screen() {
+void init_screen() {
 	(void) signal(SIGINT, finish);
 	(void) initscr(); 
 	(void) nonl();         
@@ -248,7 +248,7 @@ void definePair(){
     init_pair(7, COLOR_CYAN, COLOR_BLACK);
 }
 
-static void printCredit(){
+void printCredit(){
 	mvprintw(0, 0, "DANG KIM KHANH\tS3372771");
 	mvprintw(1, 0, "LE THIEN HUY\tS3425476");
 
