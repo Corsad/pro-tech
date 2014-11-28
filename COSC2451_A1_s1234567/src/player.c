@@ -17,10 +17,3 @@ struct player * createPlayer(char *name, int score, int day, int month, int year
     
     return newPlayer;
 }
-
-void player_free(struct player *player) {
-
-    if (player != NULL) {
-        free(player);
-    }
-}

@@ -163,8 +163,7 @@ void askHighScore(int position, int score, int row, int col){
 		while(((c = getch()) != 'q')){
 		}	
 	} else {
-		mvprintw(position, 0, "You suck, hard. ");
-		mvprintw(position + 2, 0, "Press \'q\' to go back to menu.");
+		mvprintw(position + 1, 0, "Press \'q\' to go back to menu.");
 		int c;
 		while(((c = getch()) != 'q')){
 		}	
