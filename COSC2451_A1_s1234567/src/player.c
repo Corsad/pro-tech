@@ -3,7 +3,7 @@
 #include <string.h>
 #include "player.h"
 
-struct player * createPlayer(char *name, int score, int day, int month, int year) {
+struct player * createPlayer(char *name, int score, int day, int month, int year, int row, int col) {
 
     struct player *newPlayer = malloc(sizeof(struct player));
     
@@ -12,6 +12,8 @@ struct player * createPlayer(char *name, int score, int day, int month, int year
     newPlayer->day = day;
     newPlayer->month = month;
     newPlayer->year = year;    
+    newPlayer->row = row;
+    newPlayer->col = col;
     
     return newPlayer;
 }

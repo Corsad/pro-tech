@@ -29,16 +29,10 @@ int main(int argc, char *argv[])
 static void doChoice(int * currentChoice){
 	mvprintw(20,20,"%i\n", currentChoice);
 	switch(*currentChoice){
-		case 1:			
+		case 1:
+		case 2:			
 			clear();
-			drawBoardMenu(1);
-			clear();
-			*currentChoice = 1;
-			drawMenu(currentChoice);
-		break;
-		case 2:
-			clear();
-			drawBoardMenu(2);
+			drawBoardMenu(*currentChoice);
 			clear();
 			*currentChoice = 1;
 			drawMenu(currentChoice);
@@ -52,13 +46,6 @@ static void doChoice(int * currentChoice){
 		break;
 		case 4:			
 			finish(0);
-		break;
-		case 5:
-			clear();
-			testHighScore();
-			clear();
-			*currentChoice = 1;
-			drawMenu(currentChoice);
 		break;
 	}
 }
@@ -136,13 +123,13 @@ static void doBoardChoice(int modeChoice, int boardChoice){
 		case 2:
 			switch(boardChoice){
 				case 1:		
-					printHighscore();
+					printHighscore(ROW1,ROW1);
 					break;
 				case 2:
-					printHighscore();
+					printHighscore(ROW2,ROW2);
 					break;
 				case 3:	
-					printHighscore();
+					printHighscore(ROW3,ROW3);
 				break;
 			}
 		break;

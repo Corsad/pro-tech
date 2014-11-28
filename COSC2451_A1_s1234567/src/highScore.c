@@ -13,11 +13,11 @@
 
 static int currentLength;
 
-void printHighscore(){
+void printHighscore(int row, int col){
 	clear();
 	struct player *list;
 
-	list = openFile();	
+	list = openFile(row, col);	
 
 	mvprintw(0, 0, "RANK");
 	mvprintw(0, 5, "NAME");
@@ -64,17 +64,17 @@ void writeToFile(struct player *list){
 	if ( file != NULL ){		
 		for (int i = 0; i < currentLength; ++i)
 		{
-			fprintf(file, "%s\t%i\t%i-%i-%i\n", list[i].name, list[i].score,list[i].day,list[i].month,list[i].year);
+			fprintf(file, "%s\t%i\t%i-%i-%i\t%i\t%i\n", list[i].name, list[i].score,list[i].day,list[i].month,list[i].year,list[i].row,list[i].col);
 		}
 	}
 
 	fclose(file);	
 }
 
-struct player * openFile(){
+struct player * openFile(int row, int col){
 	static const char filename[] = "playerScore.txt";
 	char *name = malloc(sizeof(char) * NAMELENGTH);
-	int score, day, month, year;
+	int score, day, month, year, rowFromFile, colFromFile;
 
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 
@@ -82,9 +82,11 @@ struct player * openFile(){
 
 	FILE *file = fopen ( filename, "r" );
 	if ( file != NULL ){		
-		while (fscanf(file, "%s\t%i\t%i-%i-%i", name, &score, &day, &month, &year) != EOF) {
-		  	list[currentLength] = *createPlayer(name, score, day, month, year);
+		while (fscanf(file, "%s\t%i\t%i-%i-%i\t%i\t%i\n", name, &score, &day, &month, &year,&rowFromFile,&colFromFile) != EOF) {
+		  	if(rowFromFile==row&&colFromFile==col) {
+		  	list[currentLength] = *createPlayer(name, score, day, month, year,rowFromFile,colFromFile);
 		  	currentLength++;
+		  }
 		}		
 	}
 
@@ -95,29 +97,29 @@ struct player * openFile(){
 	return list;
 }
 
-void askHighScore(int row, int score){
+void askHighScore(int position, int score, int row, int col){
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
-	list = openFile();
+	list = openFile(row,col);
 	char * name = malloc(sizeof(char) * NAMELENGTH);
 
 	if(currentLength != 10){
 		(void) echo();
 		keypad(stdscr, FALSE);
 		do{
-			mvprintw(row, 0, "Enter Your Name: ");
+			mvprintw(position, 0, "Enter Your Name: ");
 			getstr(name);
 		} while(strlen(name) == 0);
 		
 		keypad(stdscr, TRUE);
 		(void) noecho();
-		mvprintw(row + 2, 0, "Press \'q\' to go back to menu.");
+		mvprintw(position + 2, 0, "Press \'q\' to go back to menu.");
 
 
 
 		time_t t = time(NULL);
     	struct tm tm = *localtime(&t);
     	replaceSpace(name);
-		struct player testPlayer = *createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year  + 1900);
+		struct player testPlayer = *createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year  + 1900,row,col);
 
 		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 		// list = openFile();
@@ -135,19 +137,19 @@ void askHighScore(int row, int score){
 		(void) echo();
 		keypad(stdscr, FALSE);
 		do{
-			mvprintw(row, 0, "Enter Your Name: ");
+			mvprintw(position, 0, "Enter Your Name: ");
 			getstr(name);
 		} while(strlen(name) == 0);
 		keypad(stdscr, TRUE);
 		(void) noecho();
-		mvprintw(row + 2, 0, "Press \'q\' to go back to menu.");
+		mvprintw(position + 2, 0, "Press \'q\' to go back to menu.");
 
 
 		time_t t = time(NULL);
     	struct tm tm = *localtime(&t);
 
     	replaceSpace(name);
-		struct player testPlayer = *createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+		struct player testPlayer = *createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900,row,col);
 
 		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 		// list = openFile();
@@ -161,84 +163,13 @@ void askHighScore(int row, int score){
 		while(((c = getch()) != 'q')){
 		}	
 	} else {
-		mvprintw(row, 0, "You suck, hard. ");
-		mvprintw(row + 2, 0, "Press \'q\' to go back to menu.");
+		mvprintw(position, 0, "You suck, hard. ");
+		mvprintw(position + 2, 0, "Press \'q\' to go back to menu.");
 		int c;
 		while(((c = getch()) != 'q')){
 		}	
 	}
 
-	free(name);
-	free(list);
-}
-
-void testHighScore(){
-	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
-	list = openFile();
-	int *score = malloc(sizeof(int));
-	char * name = malloc(sizeof(char) * NAMELENGTH);
-
-
-	mvprintw(0, 0, "Score: ");
-	(void) echo();
-	scanw("%i",score);
-	if(currentLength != 10){
-		// mvprintw(0, 0, "Score: ");
-		// (void) echo();
-		// scanw("%i",score);
-	  	mvprintw(1, 0, "Enter Your Name: ");
-		getstr(name);
-		(void) noecho();
-		mvprintw(4, 0, "Press \'q\' to go back to menu.");
-
-		time_t t = time(NULL);
-    	struct tm tm = *localtime(&t);
-
-		struct player testPlayer = *createPlayer(name, *score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year  + 1900);
-
-		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
-		// list = openFile();
-
-
-		list[currentLength] = testPlayer;
-		currentLength++;
-
-		writeToFile(list);
-
-		int c;
-		while(((c = getch()) != 'q')){
-		}	
-	} else if(*score > getLowestScore(list)){
-		mvprintw(1, 0, "Enter Your Name: ");
-		getstr(name);
-		(void) noecho();
-		mvprintw(4, 0, "Press \'q\' to go back to menu.");
-
-
-		time_t t = time(NULL);
-    	struct tm tm = *localtime(&t);
-
-		struct player testPlayer = *createPlayer(name, *score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year  + 1900);
-
-		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
-		// list = openFile();
-
-
-		list[9] = testPlayer;
-
-		writeToFile(list);
-
-		int c;
-		while(((c = getch()) != 'q')){
-		}	
-	} else {
-		mvprintw(3, 0, "You suck, hard. ");
-		int c;
-		while(((c = getch()) != 'q')){
-		}	
-	}
-
-	free(score);
 	free(name);
 	free(list);
 }
