@@ -194,14 +194,14 @@ static void drawBoardMenu(int modeChoice){
 		}
 	}	
 
-	doBoardChoice(modeChoice, boardChoice);
+	doBoardChoice(modeChoice,boardChoice);
 
 	unpost_menu(menu);
 	free_menu(menu);
 	for(i = 0; i < menu_choices; ++i)
 	        free_item(items[i]);
 
-	free_item(cur_item);
+	//free_item(cur_item);
 	free(items);	
 }
 
