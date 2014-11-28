@@ -31,14 +31,14 @@ static void doChoice(int * currentChoice){
 	switch(*currentChoice){
 		case 1:			
 			clear();
-			drawBoardMenu();
+			drawBoardMenu(1);
 			clear();
 			*currentChoice = 1;
 			drawMenu(currentChoice);
 		break;
 		case 2:
 			clear();
-			printHighscore();
+			drawBoardMenu(2);
 			clear();
 			*currentChoice = 1;
 			drawMenu(currentChoice);
@@ -116,24 +116,42 @@ static void drawMenu(int * currentChoice){
 	free(items);
 }
 
-static void doBoardChoice(int boardChoice){
+static void doBoardChoice(int modeChoice, int boardChoice){
 	mvprintw(20,20,"%i\n", boardChoice);
 	clear();
-	switch(boardChoice){
-		case 1:		
-			playGame(ROW1,ROW1);
-			break;
+	switch(modeChoice) {
+		case 1:
+			switch(boardChoice){
+				case 1:		
+					playGame(ROW1,ROW1);
+					break;
+				case 2:
+					playGame(ROW2,ROW2);
+					break;
+				case 3:	
+					playGame(ROW3,ROW3);
+				break;
+			}
+		break;
 		case 2:
-			playGame(ROW2,ROW2);
-			break;
-		case 3:	
-			playGame(ROW3,ROW3);
+			switch(boardChoice){
+				case 1:		
+					printHighscore();
+					break;
+				case 2:
+					printHighscore();
+					break;
+				case 3:	
+					printHighscore();
+				break;
+			}
 		break;
 	}
+	
 	clear();
 }
 
-static void drawBoardMenu(){	
+static void drawBoardMenu(int modeChoice){	
 	int boardChoice = 1 ;
 	char *menuList[] = 	{"1.4x4",
                         "2.6x6",
@@ -176,7 +194,7 @@ static void drawBoardMenu(){
 		}
 	}	
 
-	doBoardChoice(boardChoice);
+	doBoardChoice(modeChoice, boardChoice);
 
 	unpost_menu(menu);
 	free_menu(menu);
@@ -184,8 +202,7 @@ static void drawBoardMenu(){
 	        free_item(items[i]);
 
 	free_item(cur_item);
-	free(items);
-	
+	free(items);	
 }
 
 static void finish(int sig) {
