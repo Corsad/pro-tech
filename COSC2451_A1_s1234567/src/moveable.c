@@ -128,3 +128,15 @@ int goalTest(int **x,int row, int col, int *goal) {
 	}
 	return 0;
 }
+
+int goalCal (int row) {
+	switch(row){
+		case 4:
+			return 2048;
+		case 6:
+			return 4096;
+		case 8:
+			return 8092;
+	}
+	return 0;
+}

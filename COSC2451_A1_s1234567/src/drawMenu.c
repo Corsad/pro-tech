@@ -7,7 +7,7 @@
 #include <menu.h>
 
 #include "drawMenu.h"
-#include "Simplify.h"
+#include "board.h"
 #include "highScore.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))

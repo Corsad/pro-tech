@@ -5,8 +5,10 @@
 #include <time.h>
 #include <assert.h>
 #include <math.h>
-#include "Simplify.h"
+
+#include "board.h"
 #include "random.h"
+#include "move.h"
 #include "moveable.h"
 #include "highScore.h"
 #include "pt_utils.h"
@@ -66,7 +68,7 @@ int playGame(int ROW,int COL){
 
 	// simplify(,x,,)
 	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
-
+	
 	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
 	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
 
@@ -230,138 +232,3 @@ void printOver(int row) {
 	mvprintw(CELLHEIGHT + row * CELLHEIGHT + 2, 0, "No more moves! Game over.");
 }
 
-
-void up(int **x, int row, int col, int *score){
-	// x[ROW][COL] ==> x[j][i]
-	for(int i = 0; i < col; i++){
-		int stop = 0;
-		for (int j = 1; j < row; j++)
-		{			
-			int k = j;
-			while(k != stop){
-				if(x[k - 1][i] == x[k][i] && x[k][i] != 0){
-					x[k - 1][i] += x[k][i];
-					*score += x[k - 1][i];
-					x[k][i] = 0;
-					stop = k;
-					break;
-				}  else if (x[k - 1][i] == 0){
-					x[k - 1][i] += x[k][i];
-					x[k][i] = 0;
-				}
-				k--;
-			}
-		}
-	}
-}
-
-void down(int **x, int row, int col, int *score){
-	// x[ROW][COL] ==> x[j][i]
-	for(int i = 0; i < col ; i++){
-		int stop = row - 1;
-		for (int j = row - 2; j >= 0; j--)
-		{
-			int k = j;
-			while(k != stop){
-				if(x[k + 1][i] == x[k][i] && x[k][i] != 0){
-					x[k + 1][i] += x[k][i];
-					*score += x[k + 1][i];
-			 		x[k][i] = 0;
-					stop = k;
-					break;
-				}  else if (x[k + 1][i] == 0){
-					x[k + 1][i] += x[k][i];
-					x[k][i] = 0;
-				}
-				k++;
-			}
-		}
-	}
-}
-
-void left(int **x, int row, int col, int *score){
-	// x[ROW][COL] ==> x[i][j]
-	for(int i = 0; i < row; i++){
-		int stop = 0;
-		for (int j = 1; j < col; j++)
-		{
-			int k = j;
-			while(k != stop){
-				if(x[i][k-1] == x[i][k] && x[i][k] != 0){
-					x[i][k-1] += x[i][k];
-					*score += x[i][k-1];
-					x[i][k] = 0;
-					stop = k;
-					break;
-				} else if (x[i][k-1] == 0){
-					x[i][k-1] += x[i][k];
-					x[i][k] = 0;
-				}
-
-				k--;
-			}
-		}
-	}
-}
-
-
-void right(int **x, int row, int col, int *score){
-	// x[ROW][COL] ==> x[i][j]
-	for(int i = 0; i < row; i++){
-		int stop = col -1;
-		for (int j = col -1; j >= 0; j--)
-		{
-			int k = j;
-			while(k != stop){
-				if(x[i][k+1] == x[i][k]  && x[i][k] != 0){
-					x[i][k+1] += x[i][k];
-					*score += x[i][k+1];
-					x[i][k] = 0;
-					stop = k;
-					break;
-				} else if(x[i][k+1] == 0){
-					x[i][k+1] += x[i][k];
-					x[i][k] = 0;
-				}
-				k++;	
-			}
-		}
-	}
-}
-
-    /* do your non-curses wrapup here, like freeing the memory allocated */
-
-
-void simplify(void (* func)(int **, int, int, int *), int **x, int row, int col, int *score) {
-    (*func)(x, row, col,score);
-}
-
-int goalCal (int row) {
-	switch(row){
-		case 4:
-			return 2048;
-		case 6:
-			return 4096;
-		case 8:
-			return 8092;
-	}
-	return 0;
-}
-
-// void simplify(int **x, int dir, int row, int col)
-// {
-// 	switch(dir){
-// 		case 1:
-// 			up(x, row, col);
-// 			break;
-// 		case 2:
-// 			down(x, row, col);
-// 			break;
-// 		case 3:
-// 			left(x, row, col);
-// 			break;
-// 		case 4:
-// 			right(x, row, col);
-// 			break;
-// 	}
-// }

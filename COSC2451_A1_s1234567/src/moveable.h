@@ -50,4 +50,11 @@ int simplifyTest(int (* func)(int **, int, int), int **x, int row, int col);
   * @param goal the score user need to check
   */
 int goalTest(int **x,int row, int col, int *goal);
+
+
+/** Return goal based on the board size
+  * @param row the amount of row the board has
+  */
+int goalCal (int row);
+
 #endif
