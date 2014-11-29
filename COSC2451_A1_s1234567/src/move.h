@@ -1,5 +1,5 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef MOVE
+#define MOVE
 
 /** Move the board up
   * @param x the double array represent the board

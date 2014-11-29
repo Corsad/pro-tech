@@ -122,8 +122,8 @@ int playGame(int ROW,int COL){
 		}
 
 		if (moveable(x,ROW,COL)==0) {
-			//printOver(ROW);
-			askHighScore(CELLHEIGHT + ROW * CELLHEIGHT + 2,*score,ROW,COL);
+			printOver(ROW);
+			askHighScore(CELLHEIGHT + ROW * CELLHEIGHT + 3,*score,ROW,COL);
 			break;
 		} else if (*goalReached==1) {
 			printGoalReached(ROW,goal);

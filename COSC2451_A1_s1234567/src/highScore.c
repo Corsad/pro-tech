@@ -9,15 +9,16 @@
 #include "pt_utils.h"
 
 #define NAMELENGTH 60
-#define LISTLENGTH 10
+#define TOP 10
+#define LISTLENGTH 30 //depending on available board sizes. We have 3 so 3 top-tens = 30
 
 static int currentLength;
 
 void printHighscore(int row, int col){
 	clear();
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH); //full list of player from file
-	struct player *listByBoard=malloc(sizeof(struct player) * LISTLENGTH); //list of player by board sizes
-	int count = 0;
+	struct player *listByBoard=malloc(sizeof(struct player) * TOP); //list of player by board sizes
+	int count = 0;//Keep track of listByBoard
 	
 	openFile(list);	
 
@@ -106,11 +107,22 @@ void openFile(struct player *list){
 }
 
 void askHighScore(int position, int score, int row, int col){
+
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
+	struct player *listByBoard=malloc(sizeof(struct player) * TOP);
+	int count = 0;
 	openFile(list);
 	char * name = malloc(sizeof(char) * NAMELENGTH);
 
-	if(currentLength != 10){
+	for (int i = 0; i < currentLength; ++i)
+	{
+		if(list[i].row==row&&list[i].col==col){
+			listByBoard[count] = list [i];
+			count++;
+		}
+	}
+
+	if(count != TOP){
 		(void) echo();
 		keypad(stdscr, FALSE);
 		do{
@@ -141,7 +153,7 @@ void askHighScore(int position, int score, int row, int col){
 		int c;
 		while(((c = getch()) != 'q')){
 		}	
-	} else if(score > getLowestScore(list)){
+	} else if(score > getLowestScore(listByBoard)){
 		(void) echo();
 		keypad(stdscr, FALSE);
 		do{
@@ -162,8 +174,15 @@ void askHighScore(int position, int score, int row, int col){
 		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 		// list = openFile();
 
-
-		list[9] = testPlayer;
+		count = 0;
+		for (int i = 0; i < currentLength; ++i)
+		{
+			if(list[i].row==row&&list[i].col==col){
+				count++;
+				if (count==TOP)
+					list[i]=testPlayer;
+			}
+		}
 
 		writeToFile(list);
 
@@ -178,6 +197,7 @@ void askHighScore(int position, int score, int row, int col){
 	}
 
 	free(name);
+	free(listByBoard);
 	free(list);
 }
 
