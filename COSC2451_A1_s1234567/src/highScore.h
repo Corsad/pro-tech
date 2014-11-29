@@ -16,10 +16,8 @@ void orderByScore(struct player *list, int currentLength);
 void printHighscore(int row, int col);
 
 /** Open the high score text file and return the array of struct player according to board sizes
-  * @param row row of the board
-  * @param col col of the board
   */
-struct player * openFile(int row, int col);
+struct player * openFile();
 
 /** Write to the high score text file
   * @param list array of struct player that is going to be writen

@@ -15,26 +15,38 @@ static int currentLength;
 
 void printHighscore(int row, int col){
 	clear();
-	struct player *list;
-
-	list = openFile(row, col);	
+	struct player *list; //full list of player from file
+	struct player *listByBoard=malloc(sizeof(struct player) * LISTLENGTH); //list of player by board sizes
+	int count = 0;
+	
+	list = openFile();	
 
 	mvprintw(0, 0, "RANK");
 	mvprintw(0, 5, "NAME");
 	mvprintw(0, getMaxNameLength(list)+ 6, "SCORE");
 	mvprintw(0, getMaxScoreLength(list)+ getMaxNameLength(list) + 7 , "DATE");
+	
 	for (int i = 0; i < currentLength; ++i)
 	{
-		int maxLength = getMaxNameLength(list)+ 6;
-		if(list[i].name != NULL){
-			mvprintw(i+ 2, 0, "%i", i + 1);
-			mvprintw(i+ 2, 5, "%s", list[i].name);
-			mvprintw(i+ 2, maxLength, "%i", list[i].score);
-			mvprintw(i+ 2, maxLength + getMaxScoreLength(list) + 1, "%i-%i-%i", list[i].day, list[i].month, list[i].year);
+		if(list[i].row==row&&list[i].col==col){
+			listByBoard[count] = list [i];
+			count++;
 		}
 	}
 
-	mvprintw(currentLength + 3, 0, "Press \'q\' to go back to menu.");
+
+	for (int i = 0; i < count; ++i)
+	{
+		int maxLength = getMaxNameLength(listByBoard)+ 6;
+		if(listByBoard[i].name != NULL){
+			mvprintw(i+ 2, 0, "%i", i + 1);
+			mvprintw(i+ 2, 5, "%s", listByBoard[i].name);
+			mvprintw(i+ 2, maxLength, "%i", listByBoard[i].score);
+			mvprintw(i+ 2, maxLength + getMaxScoreLength(listByBoard) + 1, "%i-%i-%i", listByBoard[i].day, listByBoard[i].month, listByBoard[i].year);
+		}
+	}
+
+	mvprintw(count + 3, 0, "Press \'q\' to go back to menu.");
 
 	int c;	
 	while(((c = getch()) != 'q')){
@@ -71,10 +83,10 @@ void writeToFile(struct player *list){
 	fclose(file);	
 }
 
-struct player * openFile(int row, int col){
+struct player * openFile(){
 	static const char filename[] = "playerScore.txt";
 	char *name = malloc(sizeof(char) * NAMELENGTH);
-	int score, day, month, year, rowFromFile, colFromFile;
+	int score, day, month, year, row, col;
 
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 
@@ -82,12 +94,11 @@ struct player * openFile(int row, int col){
 
 	FILE *file = fopen ( filename, "r" );
 	if ( file != NULL ){		
-		while (fscanf(file, "%s\t%i\t%i-%i-%i\t%i\t%i\n", name, &score, &day, &month, &year,&rowFromFile,&colFromFile) != EOF) {
-		  	if(rowFromFile==row&&colFromFile==col) {
-		  	list[currentLength] = *createPlayer(name, score, day, month, year,rowFromFile,colFromFile);
+		while (fscanf(file, "%s\t%i\t%i-%i-%i\t%i\t%i\n", name, &score, &day, &month, &year,&row,&col) != EOF) {
+		  	list[currentLength] = *createPlayer(name, score, day, month, year,row,col);
 		  	currentLength++;
 		  }
-		}		
+				
 	}
 
 	orderByScore(list, currentLength);
@@ -99,7 +110,7 @@ struct player * openFile(int row, int col){
 
 void askHighScore(int position, int score, int row, int col){
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
-	list = openFile(row,col);
+	list = openFile();
 	char * name = malloc(sizeof(char) * NAMELENGTH);
 
 	if(currentLength != 10){
