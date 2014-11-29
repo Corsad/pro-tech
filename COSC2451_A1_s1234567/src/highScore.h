@@ -17,7 +17,7 @@ void printHighscore(int row, int col);
 
 /** Open the high score text file and return the array of struct player according to board sizes
   */
-struct player * openFile();
+void openFile(struct player *list);
 
 /** Write to the high score text file
   * @param list array of struct player that is going to be writen

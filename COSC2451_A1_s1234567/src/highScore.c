@@ -15,11 +15,11 @@ static int currentLength;
 
 void printHighscore(int row, int col){
 	clear();
-	struct player *list; //full list of player from file
+	struct player *list = malloc(sizeof(struct player) * LISTLENGTH); //full list of player from file
 	struct player *listByBoard=malloc(sizeof(struct player) * LISTLENGTH); //list of player by board sizes
 	int count = 0;
 	
-	list = openFile();	
+	openFile(list);	
 
 	mvprintw(0, 0, "RANK");
 	mvprintw(0, 5, "NAME");
@@ -52,6 +52,7 @@ void printHighscore(int row, int col){
 	while(((c = getch()) != 'q')){
 
 	}
+	free(listByBoard);
 	free(list);
 }
 
@@ -83,12 +84,10 @@ void writeToFile(struct player *list){
 	fclose(file);	
 }
 
-struct player * openFile(){
+void openFile(struct player *list){
 	static const char filename[] = "playerScore.txt";
 	char *name = malloc(sizeof(char) * NAMELENGTH);
 	int score, day, month, year, row, col;
-
-	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 
 	currentLength = 0;
 
@@ -98,19 +97,17 @@ struct player * openFile(){
 		  	list[currentLength] = *createPlayer(name, score, day, month, year,row,col);
 		  	currentLength++;
 		  }
-				
 	}
 
 	orderByScore(list, currentLength);
 
 	free(name);
 	fclose(file);	
-	return list;
 }
 
 void askHighScore(int position, int score, int row, int col){
 	struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
-	list = openFile();
+	openFile(list);
 	char * name = malloc(sizeof(char) * NAMELENGTH);
 
 	if(currentLength != 10){
