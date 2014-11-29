@@ -1,7 +1,7 @@
 CC=clang
 LIBS= -lncurses -lm -lmenu
 OBJS = $(SOURCES:.c=.o)
-SOURCES = Simplify.c drawMenu.c moveable.c pt_utils.c highScore.c player.c random.c
+SOURCES = Simplify.c drawMenu.c moveable.c pt_utils.c highScore.c random.c
 HEADERS = Simplify.h drawMenu.h moveable.h pt_utils.h highScore.h player.h random.h
 EXECS = drawMenu
 

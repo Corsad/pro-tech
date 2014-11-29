@@ -94,7 +94,7 @@ void openFile(struct player *list){
 	FILE *file = fopen ( filename, "r" );
 	if ( file != NULL ){		
 		while (fscanf(file, "%s\t%i\t%i-%i-%i\t%i\t%i\n", name, &score, &day, &month, &year,&row,&col) != EOF) {
-		  	list[currentLength] = *createPlayer(name, score, day, month, year,row,col);
+		  	list[currentLength] = createPlayer(name, score, day, month, year,row,col);
 		  	currentLength++;
 		  }
 	}
@@ -127,7 +127,7 @@ void askHighScore(int position, int score, int row, int col){
 		time_t t = time(NULL);
     	struct tm tm = *localtime(&t);
     	replaceSpace(name);
-		struct player testPlayer = *createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year  + 1900,row,col);
+		struct player testPlayer = createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year  + 1900,row,col);
 
 		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 		// list = openFile();
@@ -157,7 +157,7 @@ void askHighScore(int position, int score, int row, int col){
     	struct tm tm = *localtime(&t);
 
     	replaceSpace(name);
-		struct player testPlayer = *createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900,row,col);
+		struct player testPlayer = createPlayer(name, score, tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900,row,col);
 
 		// struct player *list = malloc(sizeof(struct player) * LISTLENGTH);
 		// list = openFile();
@@ -228,4 +228,19 @@ void replaceSpace(char * name){
 			name[i] = '_';
 		}
 	}
+}
+
+struct player createPlayer(char *name, int score, int day, int month, int year, int row, int col) {
+
+    struct player newPlayer;
+    
+    strcpy(newPlayer.name, name);
+    newPlayer.score = score;
+    newPlayer.day = day;
+    newPlayer.month = month;
+    newPlayer.year = year;    
+    newPlayer.row = row;
+    newPlayer.col = col;
+    
+    return newPlayer;
 }
