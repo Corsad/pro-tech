@@ -1,0 +1,170 @@
+\hypertarget{board_8c}{\section{board.\-c File Reference}
+\label{board_8c}\index{board.\-c@{board.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$curses.\-h$>$}\\*
+{\ttfamily \#include $<$signal.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$assert.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}board.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}random.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}move.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}moveable.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}high\-Score.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}pt\-\_\-utils.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}draw\-Menu.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{board_8c_a3da89dd4f9472134d2f9791a8e46833a}{C\-E\-L\-L\-H\-E\-I\-G\-H\-T}~3
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{board_8c_a0a20f290311ae9104eaa25a191e11568}{play\-Game} (int R\-O\-W, int C\-O\-L)
+\item 
+int \hyperlink{board_8c_a61b083d0c2c1f36e6ca3a44e35aa2949}{get\-Max\-Length} (int $\ast$$\ast$x, int row, int col)
+\item 
+void \hyperlink{board_8c_ad9d914e5a95c8479871af03849200eec}{print\-Map} (int $\ast$$\ast$x, int row, int col)
+\item 
+void \hyperlink{board_8c_a6cd0e0c2f47ad20dcdd9b431f2a9b96a}{coloring} (int x)
+\item 
+void \hyperlink{board_8c_aeecab387feb4be2409659e8b6402ed31}{print\-Score} (int $\ast$score, int row)
+\item 
+void \hyperlink{board_8c_a8d0db4e162cd3309a5442387170e7d57}{print\-Goal} (int row, int $\ast$goal)
+\item 
+void \hyperlink{board_8c_a86008d05d36e5e0c8248246eaf4ef7e8}{print\-Goal\-Reached} (int row, int $\ast$goal)
+\item 
+void \hyperlink{board_8c_a3c7c19303ea907e55b484d8654b92e50}{print\-Over} (int row)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{board_8c_a3da89dd4f9472134d2f9791a8e46833a}{\index{board.\-c@{board.\-c}!C\-E\-L\-L\-H\-E\-I\-G\-H\-T@{C\-E\-L\-L\-H\-E\-I\-G\-H\-T}}
+\index{C\-E\-L\-L\-H\-E\-I\-G\-H\-T@{C\-E\-L\-L\-H\-E\-I\-G\-H\-T}!board.c@{board.\-c}}
+\subsubsection[{C\-E\-L\-L\-H\-E\-I\-G\-H\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-E\-L\-L\-H\-E\-I\-G\-H\-T~3}}\label{board_8c_a3da89dd4f9472134d2f9791a8e46833a}
+
+
+\subsection{Function Documentation}
+\hypertarget{board_8c_a6cd0e0c2f47ad20dcdd9b431f2a9b96a}{\index{board.\-c@{board.\-c}!coloring@{coloring}}
+\index{coloring@{coloring}!board.c@{board.\-c}}
+\subsubsection[{coloring}]{\setlength{\rightskip}{0pt plus 5cm}void coloring (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}}\label{board_8c_a6cd0e0c2f47ad20dcdd9b431f2a9b96a}
+Change color based on integer 
+\begin{DoxyParams}{Parameters}
+{\em x} & the integer to be changed \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_a61b083d0c2c1f36e6ca3a44e35aa2949}{\index{board.\-c@{board.\-c}!get\-Max\-Length@{get\-Max\-Length}}
+\index{get\-Max\-Length@{get\-Max\-Length}!board.c@{board.\-c}}
+\subsubsection[{get\-Max\-Length}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Max\-Length (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{board_8c_a61b083d0c2c1f36e6ca3a44e35aa2949}
+Return the amount of char of an integer 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_a0a20f290311ae9104eaa25a191e11568}{\index{board.\-c@{board.\-c}!play\-Game@{play\-Game}}
+\index{play\-Game@{play\-Game}!board.c@{board.\-c}}
+\subsubsection[{play\-Game}]{\setlength{\rightskip}{0pt plus 5cm}int play\-Game (
+\begin{DoxyParamCaption}
+\item[{int}]{R\-O\-W, }
+\item[{int}]{C\-O\-L}
+\end{DoxyParamCaption}
+)}}\label{board_8c_a0a20f290311ae9104eaa25a191e11568}
+Take input from user 
+\begin{DoxyParams}{Parameters}
+{\em R\-O\-W} & the amount of row the board will have \\
+\hline
+{\em C\-O\-L} & the amount of column the board will have \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_a8d0db4e162cd3309a5442387170e7d57}{\index{board.\-c@{board.\-c}!print\-Goal@{print\-Goal}}
+\index{print\-Goal@{print\-Goal}!board.c@{board.\-c}}
+\subsubsection[{print\-Goal}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Goal (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int $\ast$}]{goal}
+\end{DoxyParamCaption}
+)}}\label{board_8c_a8d0db4e162cd3309a5442387170e7d57}
+Print current goal 
+\begin{DoxyParams}{Parameters}
+{\em row} & the goal will be printed in this row \\
+\hline
+{\em goal} & pointer to current goal \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_a86008d05d36e5e0c8248246eaf4ef7e8}{\index{board.\-c@{board.\-c}!print\-Goal\-Reached@{print\-Goal\-Reached}}
+\index{print\-Goal\-Reached@{print\-Goal\-Reached}!board.c@{board.\-c}}
+\subsubsection[{print\-Goal\-Reached}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Goal\-Reached (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int $\ast$}]{goal}
+\end{DoxyParamCaption}
+)}}\label{board_8c_a86008d05d36e5e0c8248246eaf4ef7e8}
+Print user has reached the goal 
+\begin{DoxyParams}{Parameters}
+{\em row} & the announcement will be printed in this row \\
+\hline
+{\em goal} & pointer to current goal \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_ad9d914e5a95c8479871af03849200eec}{\index{board.\-c@{board.\-c}!print\-Map@{print\-Map}}
+\index{print\-Map@{print\-Map}!board.c@{board.\-c}}
+\subsubsection[{print\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Map (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{board_8c_ad9d914e5a95c8479871af03849200eec}
+Print the board using ncurses 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_a3c7c19303ea907e55b484d8654b92e50}{\index{board.\-c@{board.\-c}!print\-Over@{print\-Over}}
+\index{print\-Over@{print\-Over}!board.c@{board.\-c}}
+\subsubsection[{print\-Over}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Over (
+\begin{DoxyParamCaption}
+\item[{int}]{row}
+\end{DoxyParamCaption}
+)}}\label{board_8c_a3c7c19303ea907e55b484d8654b92e50}
+Announce game over 
+\begin{DoxyParams}{Parameters}
+{\em row} & the announcement will be printed in this row \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8c_aeecab387feb4be2409659e8b6402ed31}{\index{board.\-c@{board.\-c}!print\-Score@{print\-Score}}
+\index{print\-Score@{print\-Score}!board.c@{board.\-c}}
+\subsubsection[{print\-Score}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Score (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{score, }
+\item[{int}]{row}
+\end{DoxyParamCaption}
+)}}\label{board_8c_aeecab387feb4be2409659e8b6402ed31}
+Print user's score 
+\begin{DoxyParams}{Parameters}
+{\em score} & pointer to user sscore \\
+\hline
+{\em row} & score will be printed in this row \\
+\hline
+\end{DoxyParams}

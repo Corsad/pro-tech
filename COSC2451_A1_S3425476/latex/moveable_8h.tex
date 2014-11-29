@@ -1,0 +1,167 @@
+\hypertarget{moveable_8h}{\section{moveable.\-h File Reference}
+\label{moveable_8h}\index{moveable.\-h@{moveable.\-h}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{moveable_8h_aa6f10d3f75296a6bb1e747b93da9b9d0}{moveable} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{moveable_8h_aaedf2e5f41b827850a6527b1c5854d4e}{up\-Test} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{moveable_8h_af51d4a7a0957b579c7057cb894705db1}{down\-Test} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{moveable_8h_a9ac47a05565fc6c18e00ba8d3c021bc9}{left\-Test} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{moveable_8h_a8cce4a26eaf19f2b0b9ac4804d1c4b4f}{right\-Test} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{moveable_8h_ab086ef2e29f892b55f5044ca3fadee6e}{simplify\-Test} (int($\ast$func)(int $\ast$$\ast$, int, int), int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{moveable_8h_aeeed9f789663df489204b7677753c32d}{goal\-Test} (int $\ast$$\ast$x, int row, int col, int $\ast$goal)
+\item 
+int \hyperlink{moveable_8h_a335a18288087ca9bc8d52b78f6d91ccd}{goal\-Cal} (int row)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{moveable_8h_af51d4a7a0957b579c7057cb894705db1}{\index{moveable.\-h@{moveable.\-h}!down\-Test@{down\-Test}}
+\index{down\-Test@{down\-Test}!moveable.h@{moveable.\-h}}
+\subsubsection[{down\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int down\-Test (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_af51d4a7a0957b579c7057cb894705db1}
+Check if user can press Down 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_a335a18288087ca9bc8d52b78f6d91ccd}{\index{moveable.\-h@{moveable.\-h}!goal\-Cal@{goal\-Cal}}
+\index{goal\-Cal@{goal\-Cal}!moveable.h@{moveable.\-h}}
+\subsubsection[{goal\-Cal}]{\setlength{\rightskip}{0pt plus 5cm}int goal\-Cal (
+\begin{DoxyParamCaption}
+\item[{int}]{row}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_a335a18288087ca9bc8d52b78f6d91ccd}
+Return goal based on the board size 
+\begin{DoxyParams}{Parameters}
+{\em row} & the amount of row the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_aeeed9f789663df489204b7677753c32d}{\index{moveable.\-h@{moveable.\-h}!goal\-Test@{goal\-Test}}
+\index{goal\-Test@{goal\-Test}!moveable.h@{moveable.\-h}}
+\subsubsection[{goal\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int goal\-Test (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int $\ast$}]{goal}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_aeeed9f789663df489204b7677753c32d}
+Check the user has reached the goal 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em goal} & the score user need to check \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_a9ac47a05565fc6c18e00ba8d3c021bc9}{\index{moveable.\-h@{moveable.\-h}!left\-Test@{left\-Test}}
+\index{left\-Test@{left\-Test}!moveable.h@{moveable.\-h}}
+\subsubsection[{left\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int left\-Test (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_a9ac47a05565fc6c18e00ba8d3c021bc9}
+Check if user can press Left 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_aa6f10d3f75296a6bb1e747b93da9b9d0}{\index{moveable.\-h@{moveable.\-h}!moveable@{moveable}}
+\index{moveable@{moveable}!moveable.h@{moveable.\-h}}
+\subsubsection[{moveable}]{\setlength{\rightskip}{0pt plus 5cm}int moveable (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_aa6f10d3f75296a6bb1e747b93da9b9d0}
+Check if the game can still be continued 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_a8cce4a26eaf19f2b0b9ac4804d1c4b4f}{\index{moveable.\-h@{moveable.\-h}!right\-Test@{right\-Test}}
+\index{right\-Test@{right\-Test}!moveable.h@{moveable.\-h}}
+\subsubsection[{right\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int right\-Test (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_a8cce4a26eaf19f2b0b9ac4804d1c4b4f}
+Check if user can press Right 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_ab086ef2e29f892b55f5044ca3fadee6e}{\index{moveable.\-h@{moveable.\-h}!simplify\-Test@{simplify\-Test}}
+\index{simplify\-Test@{simplify\-Test}!moveable.h@{moveable.\-h}}
+\subsubsection[{simplify\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int simplify\-Test (
+\begin{DoxyParamCaption}
+\item[{int($\ast$)(int $\ast$$\ast$, int, int)}]{func, }
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_ab086ef2e29f892b55f5044ca3fadee6e}
+Function pointer for up\-Test, down\-Test, left\-Test, right\-Test 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{moveable_8h_aaedf2e5f41b827850a6527b1c5854d4e}{\index{moveable.\-h@{moveable.\-h}!up\-Test@{up\-Test}}
+\index{up\-Test@{up\-Test}!moveable.h@{moveable.\-h}}
+\subsubsection[{up\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int up\-Test (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{moveable_8h_aaedf2e5f41b827850a6527b1c5854d4e}
+Check if user can press Up 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}

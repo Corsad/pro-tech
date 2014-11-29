@@ -1,0 +1,169 @@
+\hypertarget{draw_menu_8c}{\section{draw\-Menu.\-c File Reference}
+\label{draw_menu_8c}\index{draw\-Menu.\-c@{draw\-Menu.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$curses.\-h$>$}\\*
+{\ttfamily \#include $<$signal.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$assert.\-h$>$}\\*
+{\ttfamily \#include $<$menu.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}draw\-Menu.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}board.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}high\-Score.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{draw_menu_8c_a25f003de16c08a4888b69f619d70f427}{A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E}(a)~(sizeof(a) / sizeof(a\mbox{[}0\mbox{]}))
+\item 
+\#define \hyperlink{draw_menu_8c_a19c3058579f691a6d7a84b90843b94b4}{R\-O\-W1}~4
+\item 
+\#define \hyperlink{draw_menu_8c_a7e621a2fee10ba3a2bd9641e8ef01267}{R\-O\-W2}~6
+\item 
+\#define \hyperlink{draw_menu_8c_a97453a94a7c983fbc183a5a7aec8fd7f}{R\-O\-W3}~8
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{draw_menu_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{draw_menu_8c_a5ee31841b912c0051b3ff6d4b26fa106}{do\-Choice} (int $\ast$current\-Choice)
+\item 
+void \hyperlink{draw_menu_8c_a8d2055044301a33fdb14e92810ba91cf}{draw\-Menu} (int $\ast$current\-Choice)
+\item 
+void \hyperlink{draw_menu_8c_a08d0c42369e69717af8e7dddfad5fc4a}{do\-Board\-Choice} (int mode\-Choice, int board\-Choice)
+\item 
+void \hyperlink{draw_menu_8c_a8171e612dd420dbe5fa9dc680b4678ac}{draw\-Board\-Menu} (int mode\-Choice)
+\item 
+void \hyperlink{draw_menu_8c_a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9}{finish} (int sig)
+\item 
+void \hyperlink{draw_menu_8c_a071199c35946f8bc803698671cefce97}{init\-\_\-screen} ()
+\item 
+void \hyperlink{draw_menu_8c_aee88bdd2f2f04c05fa20ceb75d0ce687}{default\-Color} ()
+\item 
+void \hyperlink{draw_menu_8c_ad9d8b8c5904afb570f72e110a4d85c66}{define\-Pair} ()
+\item 
+void \hyperlink{draw_menu_8c_a46a91836041f550635be9812365c388f}{print\-Credit} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{draw_menu_8c_a25f003de16c08a4888b69f619d70f427}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E@{A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E}}
+\index{A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E@{A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-R\-R\-A\-Y\-\_\-\-S\-I\-Z\-E(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~(sizeof(a) / sizeof(a\mbox{[}0\mbox{]}))}}\label{draw_menu_8c_a25f003de16c08a4888b69f619d70f427}
+\hypertarget{draw_menu_8c_a19c3058579f691a6d7a84b90843b94b4}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!R\-O\-W1@{R\-O\-W1}}
+\index{R\-O\-W1@{R\-O\-W1}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{R\-O\-W1}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-O\-W1~4}}\label{draw_menu_8c_a19c3058579f691a6d7a84b90843b94b4}
+\hypertarget{draw_menu_8c_a7e621a2fee10ba3a2bd9641e8ef01267}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!R\-O\-W2@{R\-O\-W2}}
+\index{R\-O\-W2@{R\-O\-W2}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{R\-O\-W2}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-O\-W2~6}}\label{draw_menu_8c_a7e621a2fee10ba3a2bd9641e8ef01267}
+\hypertarget{draw_menu_8c_a97453a94a7c983fbc183a5a7aec8fd7f}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!R\-O\-W3@{R\-O\-W3}}
+\index{R\-O\-W3@{R\-O\-W3}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{R\-O\-W3}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-O\-W3~8}}\label{draw_menu_8c_a97453a94a7c983fbc183a5a7aec8fd7f}
+
+
+\subsection{Function Documentation}
+\hypertarget{draw_menu_8c_aee88bdd2f2f04c05fa20ceb75d0ce687}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!default\-Color@{default\-Color}}
+\index{default\-Color@{default\-Color}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{default\-Color}]{\setlength{\rightskip}{0pt plus 5cm}void default\-Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_aee88bdd2f2f04c05fa20ceb75d0ce687}
+Reset ncurses color to normal \hypertarget{draw_menu_8c_ad9d8b8c5904afb570f72e110a4d85c66}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!define\-Pair@{define\-Pair}}
+\index{define\-Pair@{define\-Pair}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{define\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}void define\-Pair (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_ad9d8b8c5904afb570f72e110a4d85c66}
+Initialize color pair \hypertarget{draw_menu_8c_a08d0c42369e69717af8e7dddfad5fc4a}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!do\-Board\-Choice@{do\-Board\-Choice}}
+\index{do\-Board\-Choice@{do\-Board\-Choice}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{do\-Board\-Choice}]{\setlength{\rightskip}{0pt plus 5cm}void do\-Board\-Choice (
+\begin{DoxyParamCaption}
+\item[{int}]{mode\-Choice, }
+\item[{int}]{board\-Choice}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a08d0c42369e69717af8e7dddfad5fc4a}
+Select the size for board 
+\begin{DoxyParams}{Parameters}
+{\em mode\-Choice} & play or show high score \\
+\hline
+{\em board\-Choice} & size of the board \\
+\hline
+\end{DoxyParams}
+\hypertarget{draw_menu_8c_a5ee31841b912c0051b3ff6d4b26fa106}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!do\-Choice@{do\-Choice}}
+\index{do\-Choice@{do\-Choice}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{do\-Choice}]{\setlength{\rightskip}{0pt plus 5cm}void do\-Choice (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{current\-Choice}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a5ee31841b912c0051b3ff6d4b26fa106}
+Call method based on user choice from menu 
+\begin{DoxyParams}{Parameters}
+{\em current\-Choice} & pointer to menu current selected item \\
+\hline
+\end{DoxyParams}
+\hypertarget{draw_menu_8c_a8171e612dd420dbe5fa9dc680b4678ac}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!draw\-Board\-Menu@{draw\-Board\-Menu}}
+\index{draw\-Board\-Menu@{draw\-Board\-Menu}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{draw\-Board\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}void draw\-Board\-Menu (
+\begin{DoxyParamCaption}
+\item[{int}]{mode\-Choice}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a8171e612dd420dbe5fa9dc680b4678ac}
+Draw the board size menu using ncurses 
+\begin{DoxyParams}{Parameters}
+{\em mode\-Choice} & play or show high score \\
+\hline
+\end{DoxyParams}
+\hypertarget{draw_menu_8c_a8d2055044301a33fdb14e92810ba91cf}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!draw\-Menu@{draw\-Menu}}
+\index{draw\-Menu@{draw\-Menu}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{draw\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}void draw\-Menu (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{current\-Choice}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a8d2055044301a33fdb14e92810ba91cf}
+Draw the main menu using ncurses 
+\begin{DoxyParams}{Parameters}
+{\em current\-Choice} & menu current selected item \\
+\hline
+\end{DoxyParams}
+\hypertarget{draw_menu_8c_a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!finish@{finish}}
+\index{finish@{finish}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{finish}]{\setlength{\rightskip}{0pt plus 5cm}void finish (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9}
+Turn off ncurses 
+\begin{DoxyParams}{Parameters}
+{\em sig} & signal to end game \\
+\hline
+\end{DoxyParams}
+\hypertarget{draw_menu_8c_a071199c35946f8bc803698671cefce97}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!init\-\_\-screen@{init\-\_\-screen}}
+\index{init\-\_\-screen@{init\-\_\-screen}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{init\-\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}void init\-\_\-screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a071199c35946f8bc803698671cefce97}
+Initialize ncurses \hypertarget{draw_menu_8c_a0ddf1224851353fc92bfbff6f499fa97}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!main@{main}}
+\index{main@{main}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a0ddf1224851353fc92bfbff6f499fa97}
+\hypertarget{draw_menu_8c_a46a91836041f550635be9812365c388f}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!print\-Credit@{print\-Credit}}
+\index{print\-Credit@{print\-Credit}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{print\-Credit}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Credit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a46a91836041f550635be9812365c388f}
+Print info about the owner of the game 

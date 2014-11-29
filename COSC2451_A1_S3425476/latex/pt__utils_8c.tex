@@ -1,0 +1,112 @@
+\hypertarget{pt__utils_8c}{\section{pt\-\_\-utils.\-c File Reference}
+\label{pt__utils_8c}\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}pt\-\_\-utils.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pt__utils_8c_a9edc5cd850038e0d9e836f438e4abc4b}{pt\-\_\-rand} (int nbits)
+\item 
+int $\ast$ \hyperlink{pt__utils_8c_a7e730ca0fc6f437e81f2eb00dbafc842}{gen\-\_\-rand\-\_\-int\-\_\-array} (int length, int nbits)
+\item 
+void \hyperlink{pt__utils_8c_a59a4de8653912d2a90e81e014c93e952}{copy\-\_\-int\-\_\-array} (int src\mbox{[}$\,$\mbox{]}, int dst\mbox{[}$\,$\mbox{]}, int length)
+\item 
+int $\ast$ \hyperlink{pt__utils_8c_a98753d222753945644c1e16dba552925}{clone\-\_\-int\-\_\-array} (int a\mbox{[}$\,$\mbox{]}, int length)
+\item 
+void \hyperlink{pt__utils_8c_a4c99cb406708dff0e82a874bc70a2cd5}{print\-\_\-int\-\_\-array} (int a\mbox{[}$\,$\mbox{]}, int length)
+\item 
+int \hyperlink{pt__utils_8c_acf8688b76c57a062ab94131094f4070d}{get\-Int\-Length} (int x)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{pt__utils_8c_a98753d222753945644c1e16dba552925}{\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}!clone\-\_\-int\-\_\-array@{clone\-\_\-int\-\_\-array}}
+\index{clone\-\_\-int\-\_\-array@{clone\-\_\-int\-\_\-array}!pt_utils.c@{pt\-\_\-utils.\-c}}
+\subsubsection[{clone\-\_\-int\-\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ clone\-\_\-int\-\_\-array (
+\begin{DoxyParamCaption}
+\item[{int}]{a\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{pt__utils_8c_a98753d222753945644c1e16dba552925}
+Clone an array. The cloned array will be allocated on the heap. 
+\begin{DoxyParams}{Parameters}
+{\em a} & the array to clone \\
+\hline
+{\em length} & the length of the array \\
+\hline
+\end{DoxyParams}
+\hypertarget{pt__utils_8c_a59a4de8653912d2a90e81e014c93e952}{\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}!copy\-\_\-int\-\_\-array@{copy\-\_\-int\-\_\-array}}
+\index{copy\-\_\-int\-\_\-array@{copy\-\_\-int\-\_\-array}!pt_utils.c@{pt\-\_\-utils.\-c}}
+\subsubsection[{copy\-\_\-int\-\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void copy\-\_\-int\-\_\-array (
+\begin{DoxyParamCaption}
+\item[{int}]{src\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{dst\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{pt__utils_8c_a59a4de8653912d2a90e81e014c93e952}
+Copy the source array into the destination. Assumes there is enough space in the destination to hold everything. 
+\begin{DoxyParams}{Parameters}
+{\em src} & the source array \\
+\hline
+{\em dst} & the destination array \\
+\hline
+{\em length} & the number of elements to copy \\
+\hline
+\end{DoxyParams}
+\hypertarget{pt__utils_8c_a7e730ca0fc6f437e81f2eb00dbafc842}{\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}!gen\-\_\-rand\-\_\-int\-\_\-array@{gen\-\_\-rand\-\_\-int\-\_\-array}}
+\index{gen\-\_\-rand\-\_\-int\-\_\-array@{gen\-\_\-rand\-\_\-int\-\_\-array}!pt_utils.c@{pt\-\_\-utils.\-c}}
+\subsubsection[{gen\-\_\-rand\-\_\-int\-\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ gen\-\_\-rand\-\_\-int\-\_\-array (
+\begin{DoxyParamCaption}
+\item[{int}]{length, }
+\item[{int}]{nbits}
+\end{DoxyParamCaption}
+)}}\label{pt__utils_8c_a7e730ca0fc6f437e81f2eb00dbafc842}
+Generate an array containing random int. The array will be allocated on the heap. 
+\begin{DoxyParams}{Parameters}
+{\em length} & the length of the array \\
+\hline
+{\em nbits} & the number of bits to pass to pt\-\_\-rand \\
+\hline
+\end{DoxyParams}
+\hypertarget{pt__utils_8c_acf8688b76c57a062ab94131094f4070d}{\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}!get\-Int\-Length@{get\-Int\-Length}}
+\index{get\-Int\-Length@{get\-Int\-Length}!pt_utils.c@{pt\-\_\-utils.\-c}}
+\subsubsection[{get\-Int\-Length}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Int\-Length (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}}\label{pt__utils_8c_acf8688b76c57a062ab94131094f4070d}
+Return the amount of char of an integer 
+\begin{DoxyParams}{Parameters}
+{\em x} & the integer that need to be check \\
+\hline
+\end{DoxyParams}
+\hypertarget{pt__utils_8c_a4c99cb406708dff0e82a874bc70a2cd5}{\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}!print\-\_\-int\-\_\-array@{print\-\_\-int\-\_\-array}}
+\index{print\-\_\-int\-\_\-array@{print\-\_\-int\-\_\-array}!pt_utils.c@{pt\-\_\-utils.\-c}}
+\subsubsection[{print\-\_\-int\-\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-int\-\_\-array (
+\begin{DoxyParamCaption}
+\item[{int}]{a\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{pt__utils_8c_a4c99cb406708dff0e82a874bc70a2cd5}
+Print an array of int. 
+\begin{DoxyParams}{Parameters}
+{\em a} & the array to print \\
+\hline
+{\em length} & the length of the array \\
+\hline
+\end{DoxyParams}
+\hypertarget{pt__utils_8c_a9edc5cd850038e0d9e836f438e4abc4b}{\index{pt\-\_\-utils.\-c@{pt\-\_\-utils.\-c}!pt\-\_\-rand@{pt\-\_\-rand}}
+\index{pt\-\_\-rand@{pt\-\_\-rand}!pt_utils.c@{pt\-\_\-utils.\-c}}
+\subsubsection[{pt\-\_\-rand}]{\setlength{\rightskip}{0pt plus 5cm}int pt\-\_\-rand (
+\begin{DoxyParamCaption}
+\item[{int}]{nbits}
+\end{DoxyParamCaption}
+)}}\label{pt__utils_8c_a9edc5cd850038e0d9e836f438e4abc4b}
+Generate a random int between 0 and 2$^\wedge$(nbits-\/1) 
+\begin{DoxyParams}{Parameters}
+{\em nbits} & the number of bits to use \\
+\hline
+\end{DoxyParams}
