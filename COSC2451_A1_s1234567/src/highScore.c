@@ -72,7 +72,7 @@ void orderByScore(struct player *list, int currentLength){
 }
 
 void writeToFile(struct player *list){
-	FILE *file = fopen ( "playerScore.txt", "w+" );
+	FILE *file = fopen ( "./src/playerScore.txt", "w+" );
 	orderByScore(list, currentLength);
 
 	if ( file != NULL ){		
@@ -86,7 +86,7 @@ void writeToFile(struct player *list){
 }
 
 void openFile(struct player *list){
-	static const char filename[] = "playerScore.txt";
+	static const char filename[] = "./src/playerScore.txt";
 	char *name = malloc(sizeof(char) * NAMELENGTH);
 	int score, day, month, year, row, col;
 

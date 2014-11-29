@@ -16,7 +16,6 @@ MiscTabCloseButtons=TRUE
 MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
-FontName=Monospace 28
 ColorPalette2=#ffffffffffff
 ColorPalette3=#ffffffff5555
 ColorPalette5=#55555555ffff
