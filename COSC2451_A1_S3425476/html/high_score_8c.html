@@ -121,8 +121,8 @@ Functions</h2></td></tr>
 <tr class="separator:acc9496be69272469c7b0bfdd9ba00eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f1bafac87ea9dd83da142bd13a00bfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="high_score_8c.html#a7f1bafac87ea9dd83da142bd13a00bfa">askHighScore</a> (int position, int score, int row, int col)</td></tr>
 <tr class="separator:a7f1bafac87ea9dd83da142bd13a00bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a65d7c419cde2b770aea8c0c1bbfa93"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="high_score_8c.html#a4a65d7c419cde2b770aea8c0c1bbfa93">getLowestScore</a> (struct <a class="el" href="structplayer.html">player</a> *list)</td></tr>
-<tr class="separator:a4a65d7c419cde2b770aea8c0c1bbfa93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00643976c27f4a66af7e6d53fcfeded9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="high_score_8c.html#a00643976c27f4a66af7e6d53fcfeded9">getLowestScore</a> (struct <a class="el" href="structplayer.html">player</a> *list, int length)</td></tr>
+<tr class="separator:a00643976c27f4a66af7e6d53fcfeded9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ac3b9caef798abe45f9ceb16ff87f1b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="high_score_8c.html#a0ac3b9caef798abe45f9ceb16ff87f1b">getMaxNameLength</a> (struct <a class="el" href="structplayer.html">player</a> *list)</td></tr>
 <tr class="separator:a0ac3b9caef798abe45f9ceb16ff87f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72b75a010d19880a6ad19edeb2316d51"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="high_score_8c.html#a72b75a010d19880a6ad19edeb2316d51">getMaxScoreLength</a> (struct <a class="el" href="structplayer.html">player</a> *list)</td></tr>
@@ -274,7 +274,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4a65d7c419cde2b770aea8c0c1bbfa93"></a>
+<a class="anchor" id="a00643976c27f4a66af7e6d53fcfeded9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -282,8 +282,18 @@ Functions</h2></td></tr>
           <td class="memname">int getLowestScore </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structplayer.html">player</a> *&#160;</td>
-          <td class="paramname"><em>list</em></td><td>)</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -291,6 +301,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>array of struct player </td></tr>
+    <tr><td class="paramname">length</td><td>actual length of the list to check </td></tr>
   </table>
   </dd>
 </dl>
@@ -477,7 +488,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 30 2014 12:05:44 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 30 2014 14:39:53 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

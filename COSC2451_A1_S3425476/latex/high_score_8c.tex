@@ -31,7 +31,7 @@ void \hyperlink{high_score_8c_acc9496be69272469c7b0bfdd9ba00eb0}{open\-File} (st
 \item 
 void \hyperlink{high_score_8c_a7f1bafac87ea9dd83da142bd13a00bfa}{ask\-High\-Score} (int position, int score, int row, int col)
 \item 
-int \hyperlink{high_score_8c_a4a65d7c419cde2b770aea8c0c1bbfa93}{get\-Lowest\-Score} (struct \hyperlink{structplayer}{player} $\ast$list)
+int \hyperlink{high_score_8c_a00643976c27f4a66af7e6d53fcfeded9}{get\-Lowest\-Score} (struct \hyperlink{structplayer}{player} $\ast$list, int length)
 \item 
 int \hyperlink{high_score_8c_a0ac3b9caef798abe45f9ceb16ff87f1b}{get\-Max\-Name\-Length} (struct \hyperlink{structplayer}{player} $\ast$list)
 \item 
@@ -92,16 +92,19 @@ Ask user for high score, depend on the score it may not asked at all
 \item[{int}]{col}
 \end{DoxyParamCaption}
 )}}\label{high_score_8c_aebb9bc63438af9964ed175e75fc646d1}
-\hypertarget{high_score_8c_a4a65d7c419cde2b770aea8c0c1bbfa93}{\index{high\-Score.\-c@{high\-Score.\-c}!get\-Lowest\-Score@{get\-Lowest\-Score}}
+\hypertarget{high_score_8c_a00643976c27f4a66af7e6d53fcfeded9}{\index{high\-Score.\-c@{high\-Score.\-c}!get\-Lowest\-Score@{get\-Lowest\-Score}}
 \index{get\-Lowest\-Score@{get\-Lowest\-Score}!highScore.c@{high\-Score.\-c}}
 \subsubsection[{get\-Lowest\-Score}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Lowest\-Score (
 \begin{DoxyParamCaption}
-\item[{struct {\bf player} $\ast$}]{list}
+\item[{struct {\bf player} $\ast$}]{list, }
+\item[{int}]{length}
 \end{DoxyParamCaption}
-)}}\label{high_score_8c_a4a65d7c419cde2b770aea8c0c1bbfa93}
+)}}\label{high_score_8c_a00643976c27f4a66af7e6d53fcfeded9}
 Return the lowest score from the list 
 \begin{DoxyParams}{Parameters}
 {\em list} & array of struct player \\
+\hline
+{\em length} & actual length of the list to check \\
 \hline
 \end{DoxyParams}
 \hypertarget{high_score_8c_a0ac3b9caef798abe45f9ceb16ff87f1b}{\index{high\-Score.\-c@{high\-Score.\-c}!get\-Max\-Name\-Length@{get\-Max\-Name\-Length}}
