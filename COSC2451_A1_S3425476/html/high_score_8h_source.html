@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>2048: highScore.h Source File</title>
+<title>2048: src/highScore.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,6 +78,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">highScore.h</div>  </div>
@@ -101,25 +105,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> <a class="code" href="high_score_8c.html#a0ac3b9caef798abe45f9ceb16ff87f1b">getMaxNameLength</a>(<span class="keyword">struct</span> <a class="code" href="structplayer.html">player</a>* list);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="high_score_8c.html#a7f1bafac87ea9dd83da142bd13a00bfa">askHighScore</a>(<span class="keywordtype">int</span> position, <span class="keywordtype">int</span> score, <span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> <a class="code" href="high_score_8c.html#a72b75a010d19880a6ad19edeb2316d51">getMaxScoreLength</a>(<span class="keyword">struct</span> <a class="code" href="structplayer.html">player</a>* list);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> <a class="code" href="high_score_8c.html#a4903edbc04a0c0aa639ef3861b4ade35">replaceSpace</a>(<span class="keywordtype">char</span> * name);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/* create new player based on struct player</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> * @param name name of the player</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @param score score the player has</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * @param day day the player make new high score</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * @param month month the player make new high score</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * @param year year the player make new high score</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * @param row row number of the board the player make new high score</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * @param col column number of the board the player make new high score</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">struct </span><a class="code" href="structplayer.html">player</a> <a class="code" href="high_score_8c.html#aebb9bc63438af9964ed175e75fc646d1">createPlayer</a>(char *<a class="code" href="structplayer.html#ade40c7dcb824cf7ccf1d12f56df289e7">name</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#aef160b7437d94056f1dc59646cd5b87d">score</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#a4c11afc03fc3ee49bab660def6558f2a">day</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#aedb06abe5aff12fa3e7e0e71a374edfb">month</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#abeac221e38b7b9ce7df8722c842bf671">year</a>,<span class="keywordtype">int</span> <a class="code" href="structplayer.html#af1d3cff2e4538e23400e260bae3dadad">row</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#afb52e720f5f0c483db5861f9e42e924e">col</a>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="high_score_8c.html#a7f1bafac87ea9dd83da142bd13a00bfa">askHighScore</a>(<span class="keywordtype">int</span> position, <span class="keywordtype">int</span> score, <span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> <a class="code" href="high_score_8c.html#a72b75a010d19880a6ad19edeb2316d51">getMaxScoreLength</a>(<span class="keyword">struct</span> <a class="code" href="structplayer.html">player</a>* list);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="high_score_8c.html#a4903edbc04a0c0aa639ef3861b4ade35">replaceSpace</a>(<span class="keywordtype">char</span> * name);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/* create new player based on struct player</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @param name name of the player</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * @param score score the player has</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * @param day day the player make new high score</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * @param month month the player make new high score</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * @param year year the player make new high score</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * @param row row number of the board the player make new high score</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * @param col column number of the board the player make new high score</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">struct </span><a class="code" href="structplayer.html">player</a> <a class="code" href="high_score_8c.html#aebb9bc63438af9964ed175e75fc646d1">createPlayer</a>(char *<a class="code" href="structplayer.html#ade40c7dcb824cf7ccf1d12f56df289e7">name</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#aef160b7437d94056f1dc59646cd5b87d">score</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#a4c11afc03fc3ee49bab660def6558f2a">day</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#aedb06abe5aff12fa3e7e0e71a374edfb">month</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#abeac221e38b7b9ce7df8722c842bf671">year</a>,<span class="keywordtype">int</span> <a class="code" href="structplayer.html#af1d3cff2e4538e23400e260bae3dadad">row</a>, <span class="keywordtype">int</span> <a class="code" href="structplayer.html#afb52e720f5f0c483db5861f9e42e924e">col</a>);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="high_score_8c_html_aebb9bc63438af9964ed175e75fc646d1"><div class="ttname"><a href="high_score_8c.html#aebb9bc63438af9964ed175e75fc646d1">createPlayer</a></div><div class="ttdeci">struct player createPlayer(char *name, int score, int day, int month, int year, int row, int col)</div><div class="ttdef"><b>Definition:</b> highScore.c:253</div></div>
 <div class="ttc" id="structplayer_html_aedb06abe5aff12fa3e7e0e71a374edfb"><div class="ttname"><a href="structplayer.html#aedb06abe5aff12fa3e7e0e71a374edfb">player::month</a></div><div class="ttdeci">int month</div><div class="ttdef"><b>Definition:</b> player.h:9</div></div>
 <div class="ttc" id="high_score_8c_html_a4ef5d352129f8b9f1eb84239ae298d87"><div class="ttname"><a href="high_score_8c.html#a4ef5d352129f8b9f1eb84239ae298d87">printHighscore</a></div><div class="ttdeci">void printHighscore(int row, int col)</div><div class="ttdef"><b>Definition:</b> highScore.c:17</div></div>
@@ -142,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 30 2014 00:22:34 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 30 2014 12:05:44 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -35,7 +35,8 @@ int getLowestScore(struct player *list);
 int getMaxNameLength(struct player* list);
 
 /** Ask user for high score, depend on the score it may not asked at all
-  * @param row the question will be printed on this row
+
+  * @param position the question will be printed on this row
   * @param score user score
   * @param row row of the board user got high score
   * @param col col of the board user got high score

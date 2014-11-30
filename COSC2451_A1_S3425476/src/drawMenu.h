@@ -42,4 +42,11 @@ void defaultColor();
 /** Initialize color pair
   */
 void definePair();
+
+/** Check if user really want to quit the game
+  * @param currentChoice menu current selected item
+  * @param c user previous input
+  */
+void printQuit(int * currentChoice, char c);
+
 #endif

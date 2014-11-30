@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>2048: drawMenu.c File Reference</title>
+<title>2048: src/drawMenu.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,6 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -94,6 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;time.h&gt;</code><br/>
 <code>#include &lt;assert.h&gt;</code><br/>
 <code>#include &lt;menu.h&gt;</code><br/>
+<code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="draw_menu_8h_source.html">drawMenu.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="board_8h_source.html">board.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="high_score_8h_source.html">highScore.h</a>&quot;</code><br/>
@@ -131,6 +136,8 @@ Functions</h2></td></tr>
 <tr class="separator:ad9d8b8c5904afb570f72e110a4d85c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a91836041f550635be9812365c388f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a46a91836041f550635be9812365c388f">printCredit</a> ()</td></tr>
 <tr class="separator:a46a91836041f550635be9812365c388f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a887a537b17f6cc2cd3e9ef627d071071"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a887a537b17f6cc2cd3e9ef627d071071">printQuit</a> (int *currentChoice, char i)</td></tr>
+<tr class="separator:a887a537b17f6cc2cd3e9ef627d071071"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a25f003de16c08a4888b69f619d70f427"></a>
@@ -402,10 +409,44 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a887a537b17f6cc2cd3e9ef627d071071"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printQuit </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>currentChoice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if user really want to quit the game </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">currentChoice</td><td>menu current selected item </td></tr>
+    <tr><td class="paramname">c</td><td>user previous input </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 30 2014 00:22:34 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 30 2014 12:05:44 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

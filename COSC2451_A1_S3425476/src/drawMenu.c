@@ -5,6 +5,7 @@
 #include <time.h>
 #include <assert.h>
 #include <menu.h>
+#include <unistd.h>
 
 #include "drawMenu.h"
 #include "board.h"
@@ -44,7 +45,9 @@ void doChoice(int * currentChoice){
 			*currentChoice = 1;
 			drawMenu(currentChoice);
 		break;
-		case 4:			
+		case 4:	
+			clear();
+			printQuit(currentChoice, ' ');	
 			finish(0);
 		break;
 	}
@@ -243,5 +246,24 @@ void printCredit(){
 
 	int c;
 	while(((c = getch()) != 'q')){		
+	}
+}
+
+void printQuit(int * currentChoice, char i){
+	mvprintw(0, 0, "Are you sure you want to quit? ");
+	mvprintw(0, 31, "%c", i);
+	int c = getch();
+	
+	if(c == 'y'){
+		mvprintw(0, 31, "%c", c);
+		mvprintw(1, 0, "Thanks for playing\n");
+		refresh();
+		sleep(1);
+	} else if (c == 'n'){
+		clear();
+		*currentChoice = 1;
+		drawMenu(currentChoice);
+	} else {
+		printQuit(currentChoice, c);
 	}
 }

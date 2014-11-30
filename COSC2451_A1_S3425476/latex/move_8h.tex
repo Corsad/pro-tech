@@ -1,5 +1,5 @@
-\hypertarget{move_8h}{\section{move.\-h File Reference}
-\label{move_8h}\index{move.\-h@{move.\-h}}
+\hypertarget{move_8h}{\section{src/move.h File Reference}
+\label{move_8h}\index{src/move.\-h@{src/move.\-h}}
 }
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -35,6 +35,8 @@ Move the board down
 \hline
 {\em col} & the amount of column the board has \\
 \hline
+{\em score} & user current score \\
+\hline
 \end{DoxyParams}
 \hypertarget{move_8h_a3d16014d6be94bbc68f22b3d0650385a}{\index{move.\-h@{move.\-h}!left@{left}}
 \index{left@{left}!move.h@{move.\-h}}
@@ -53,6 +55,8 @@ Move the board left
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em score} & user current score \\
 \hline
 \end{DoxyParams}
 \hypertarget{move_8h_a454e2f2f0a699cfc213b2b44d177192a}{\index{move.\-h@{move.\-h}!right@{right}}
@@ -73,6 +77,8 @@ Move the board right
 \hline
 {\em col} & the amount of column the board has \\
 \hline
+{\em score} & user current score \\
+\hline
 \end{DoxyParams}
 \hypertarget{move_8h_ad75f31a08eac23a1ec5d1b183038d9e3}{\index{move.\-h@{move.\-h}!simplify@{simplify}}
 \index{simplify@{simplify}!move.h@{move.\-h}}
@@ -87,11 +93,15 @@ Move the board right
 )}}\label{move_8h_ad75f31a08eac23a1ec5d1b183038d9e3}
 Function pointer for up, down, left, right methods 
 \begin{DoxyParams}{Parameters}
+{\em func} & pointer to function needed \\
+\hline
 {\em x} & the double array represent the board \\
 \hline
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em score} & user current score \\
 \hline
 \end{DoxyParams}
 \hypertarget{move_8h_a1e5e55669d0d3b7517c18430ba092a45}{\index{move.\-h@{move.\-h}!up@{up}}
@@ -111,5 +121,7 @@ Move the board up
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em score} & user current score \\
 \hline
 \end{DoxyParams}

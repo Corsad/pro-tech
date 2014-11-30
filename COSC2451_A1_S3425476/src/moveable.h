@@ -37,6 +37,7 @@ int leftTest(int **x, int row, int col);
 int rightTest(int **x, int row, int col);
 
 /** Function pointer for upTest, downTest, leftTest, rightTest
+  * @param func function pointer to function needed
   * @param x the double array represent the board
   * @param row the amount of row the board has
   * @param col the amount of column the board has 

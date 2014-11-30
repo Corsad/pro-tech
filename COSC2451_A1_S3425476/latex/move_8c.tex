@@ -1,5 +1,5 @@
-\hypertarget{move_8c}{\section{move.\-c File Reference}
-\label{move_8c}\index{move.\-c@{move.\-c}}
+\hypertarget{move_8c}{\section{src/move.c File Reference}
+\label{move_8c}\index{src/move.\-c@{src/move.\-c}}
 }
 {\ttfamily \#include $<$stdio.\-h$>$}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
@@ -40,6 +40,8 @@ Move the board down
 \hline
 {\em col} & the amount of column the board has \\
 \hline
+{\em score} & user current score \\
+\hline
 \end{DoxyParams}
 \hypertarget{move_8c_a3d16014d6be94bbc68f22b3d0650385a}{\index{move.\-c@{move.\-c}!left@{left}}
 \index{left@{left}!move.c@{move.\-c}}
@@ -58,6 +60,8 @@ Move the board left
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em score} & user current score \\
 \hline
 \end{DoxyParams}
 \hypertarget{move_8c_a454e2f2f0a699cfc213b2b44d177192a}{\index{move.\-c@{move.\-c}!right@{right}}
@@ -78,6 +82,8 @@ Move the board right
 \hline
 {\em col} & the amount of column the board has \\
 \hline
+{\em score} & user current score \\
+\hline
 \end{DoxyParams}
 \hypertarget{move_8c_ad75f31a08eac23a1ec5d1b183038d9e3}{\index{move.\-c@{move.\-c}!simplify@{simplify}}
 \index{simplify@{simplify}!move.c@{move.\-c}}
@@ -92,11 +98,15 @@ Move the board right
 )}}\label{move_8c_ad75f31a08eac23a1ec5d1b183038d9e3}
 Function pointer for up, down, left, right methods 
 \begin{DoxyParams}{Parameters}
+{\em func} & pointer to function needed \\
+\hline
 {\em x} & the double array represent the board \\
 \hline
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em score} & user current score \\
 \hline
 \end{DoxyParams}
 \hypertarget{move_8c_a1e5e55669d0d3b7517c18430ba092a45}{\index{move.\-c@{move.\-c}!up@{up}}
@@ -116,5 +126,7 @@ Move the board up
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em score} & user current score \\
 \hline
 \end{DoxyParams}

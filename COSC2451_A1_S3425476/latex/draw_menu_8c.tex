@@ -1,5 +1,5 @@
-\hypertarget{draw_menu_8c}{\section{draw\-Menu.\-c File Reference}
-\label{draw_menu_8c}\index{draw\-Menu.\-c@{draw\-Menu.\-c}}
+\hypertarget{draw_menu_8c}{\section{src/draw\-Menu.c File Reference}
+\label{draw_menu_8c}\index{src/draw\-Menu.\-c@{src/draw\-Menu.\-c}}
 }
 {\ttfamily \#include $<$stdio.\-h$>$}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
@@ -8,6 +8,7 @@
 {\ttfamily \#include $<$time.\-h$>$}\\*
 {\ttfamily \#include $<$assert.\-h$>$}\\*
 {\ttfamily \#include $<$menu.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}draw\-Menu.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}board.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}high\-Score.\-h\char`\"{}}\\*
@@ -44,6 +45,8 @@ void \hyperlink{draw_menu_8c_aee88bdd2f2f04c05fa20ceb75d0ce687}{default\-Color} 
 void \hyperlink{draw_menu_8c_ad9d8b8c5904afb570f72e110a4d85c66}{define\-Pair} ()
 \item 
 void \hyperlink{draw_menu_8c_a46a91836041f550635be9812365c388f}{print\-Credit} ()
+\item 
+void \hyperlink{draw_menu_8c_a887a537b17f6cc2cd3e9ef627d071071}{print\-Quit} (int $\ast$current\-Choice, char i)
 \end{DoxyCompactItemize}
 
 
@@ -166,4 +169,18 @@ Initialize ncurses \hypertarget{draw_menu_8c_a0ddf1224851353fc92bfbff6f499fa97}{
 {}
 \end{DoxyParamCaption}
 )}}\label{draw_menu_8c_a46a91836041f550635be9812365c388f}
-Print info about the owner of the game 
+Print info about the owner of the game \hypertarget{draw_menu_8c_a887a537b17f6cc2cd3e9ef627d071071}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!print\-Quit@{print\-Quit}}
+\index{print\-Quit@{print\-Quit}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{print\-Quit}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Quit (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{current\-Choice, }
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a887a537b17f6cc2cd3e9ef627d071071}
+Check if user really want to quit the game 
+\begin{DoxyParams}{Parameters}
+{\em current\-Choice} & menu current selected item \\
+\hline
+{\em c} & user previous input \\
+\hline
+\end{DoxyParams}
