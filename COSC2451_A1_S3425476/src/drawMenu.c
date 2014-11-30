@@ -92,10 +92,26 @@ void drawMenu(int * currentChoice){
                         *currentChoice -= 1;
                 }
 				break;
+			case 'n':
+			case 'N':
+				*currentChoice=1;
+				goto JUMP;
+			case 'h':
+			case 'H':
+				*currentChoice=2;
+				goto JUMP;
+			case 'c':
+			case 'C':
+				*currentChoice=3;
+				goto JUMP;
+			case 'e':
+			case 'E':
+				*currentChoice=4;
+				goto JUMP;
 		}
 	}	
 	
-	doChoice(currentChoice);
+JUMP:	doChoice(currentChoice);
 
 	unpost_menu(menu);
 	free_menu(menu);
