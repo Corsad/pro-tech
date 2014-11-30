@@ -153,7 +153,7 @@ void askHighScore(int position, int score, int row, int col){
 		int c;
 		while(((c = getch()) != 'q')){
 		}	
-	} else if(score > getLowestScore(listByBoard)){
+	} else if(score > getLowestScore(listByBoard,count)){
 		(void) echo();
 		keypad(stdscr, FALSE);
 		do{
@@ -201,9 +201,9 @@ void askHighScore(int position, int score, int row, int col){
 	free(list);
 }
 
-int getLowestScore(struct player *list){
+int getLowestScore(struct player *list, int length){
 	int temp = list[0].score;
-	for (int i = 1; i < currentLength; ++i)
+	for (int i = 1; i < length; ++i)
 	{
 		if(temp > list[i].score){
 			temp = list[i].score;

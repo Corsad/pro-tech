@@ -26,8 +26,9 @@ void writeToFile(struct player *list);
 
 /** Return the lowest score from the list
   * @param list array of struct player
+  * @length actual length of the list to check
   */
-int getLowestScore(struct player *list);
+int getLowestScore(struct player *list,int legth);
 
 /** Return the amount of character from the longest name
   * @param list array of struct player
