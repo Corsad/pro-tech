@@ -18,7 +18,7 @@ int moveable(int **x, int row, int col){
 
 	int temp = 0;
 	for(int i = 0; i < 4; i++){
-		if(simplifyTest(funcs[i], x , row, col) == 1){
+		if(simplifyTest(funcs[i], clone , row, col) == 1){
 			temp = 1;
 			break;
 		}
