@@ -54,4 +54,5 @@ void printGoalReached(int row, int *goal);
   */
 void coloring(int x);
 
+int playGameAI(int ROW,int COL);
 #endif

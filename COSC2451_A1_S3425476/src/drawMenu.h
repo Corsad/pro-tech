@@ -49,4 +49,5 @@ void definePair();
   */
 void printQuit(int * currentChoice, char c);
 
+void PlayerSelectionMenu();
 #endif

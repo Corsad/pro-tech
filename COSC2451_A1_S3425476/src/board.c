@@ -13,6 +13,7 @@
 #include "highScore.h"
 #include "pt_utils.h"
 #include "drawMenu.h"
+#include "khanhAI.h"
 
 #define CELLHEIGHT 3
 
@@ -116,7 +117,7 @@ int playGame(int ROW,int COL){
 			printGoal(ROW,goal);
 			break;
 		}
-
+		printBestMove(x, ROW, COL);
 		if (goalTest(x,ROW,COL,goal)==1 && *goalReached==0) {
 			*goalReached = 1;
 		}
@@ -143,6 +144,106 @@ int playGame(int ROW,int COL){
 	free(goalReached);
 
 	return 0;
+}
+
+int playGameAI(int ROW,int COL){
+	clear();
+
+	int *score = malloc(sizeof(int));
+
+	*score = 0;
+
+	int *goal = malloc(sizeof(int));
+
+	*goal = goalCal(ROW);
+
+	int *goalReached = malloc(sizeof(int));
+
+	*goalReached = 0;
+
+	int **x = malloc(sizeof(int *) * ROW);
+
+	for(int i = 0; i < ROW; i++){
+		x[i] = malloc(sizeof(int) *COL);
+	}
+
+////////////////////////////////////
+	// //There are 2 map: map.txt and map2.txt
+	// FILE *f = fopen("map4.txt", "r");
+	// for(int i = 0; i < ROW; i++){
+	// 	for(int j = 0; j < COL;j++){
+	// 		// printf("x[%i][%i]: ",i,j);
+	// 		// scanf("%i",&x[i][j]);
+	// 		fscanf (f, "%i", &x[i][j]);   
+	// 	}
+	// }
+	// fclose (f);     
+////////////////////////////////////
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL;j++){
+			// printf("x[%i][%i]: ",i,j);
+			// scanf("%i",&x[i][j]);
+			x[i][j]=0;   
+		}
+	}
+
+	randomVal(x,ROW, COL);
+	randomVal(x,ROW, COL);
+////////////////////////////////////
+
+	printMap(x, ROW, COL);
+	printScore(score,ROW);
+	printGoal(ROW,goal);
+	int c;
+
+	// simplify(,x,,)
+	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
+	
+	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
+	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
+	mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 2, 0, "Press q to go back to menu");
+
+
+	while(c  != 'q' ){
+		timeout(200);
+		c = getch();
+		int temp = getHighestScore(x, ROW, COL);
+		clear();
+		if(moveable(x,ROW,COL)==1){
+			simplify(funcs[temp], x , ROW, COL,score);
+			randomVal(x,ROW, COL);
+		}		
+		
+		printMap(x, ROW, COL);
+		printScore(score,ROW);
+		printGoal(ROW,goal);
+		mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 2, 0, "Press q to go back to menu");
+		//printBestMove(x, ROW, COL);
+		if (goalTest(x,ROW,COL,goal)==1 && *goalReached==0) {
+			*goalReached = 1;
+		}
+
+		if(moveable(x,ROW,COL)==0){
+			timeout(-1);
+		}
+	}
+
+
+	for(int i = 0; i < ROW; i++){
+		free(x[i]);
+	}
+
+	free(x);	
+
+	free(goal);
+
+	free(score);
+
+	free(goalReached);
+
+	timeout(-1);
+	return 0;
+
 }
 
 int getMaxLength(int **x, int row, int col){

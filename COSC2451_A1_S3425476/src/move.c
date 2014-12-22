@@ -4,6 +4,7 @@
 
 #include "pt_utils.h"
 #include "move.h"
+#include "math.h"
 
 void up(int **x, int row, int col, int *score){
 	// x[ROW][COL] ==> x[j][i]
@@ -15,7 +16,7 @@ void up(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[k - 1][i] == x[k][i] && x[k][i] != 0){
 					x[k - 1][i] += x[k][i];
-					*score += x[k - 1][i];
+					*score += log2(x[k - 1][i]);
 					x[k][i] = 0;
 					stop = k;
 					break;
@@ -39,7 +40,7 @@ void down(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[k + 1][i] == x[k][i] && x[k][i] != 0){
 					x[k + 1][i] += x[k][i];
-					*score += x[k + 1][i];
+					*score += log2(x[k + 1][i]);
 			 		x[k][i] = 0;
 					stop = k;
 					break;
@@ -63,7 +64,7 @@ void left(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[i][k-1] == x[i][k] && x[i][k] != 0){
 					x[i][k-1] += x[i][k];
-					*score += x[i][k-1];
+					*score += log2(x[i][k-1]);
 					x[i][k] = 0;
 					stop = k;
 					break;
@@ -89,7 +90,7 @@ void right(int **x, int row, int col, int *score){
 			while(k != stop){
 				if(x[i][k+1] == x[i][k]  && x[i][k] != 0){
 					x[i][k+1] += x[i][k];
-					*score += x[i][k+1];
+					*score += log2(x[i][k+1]);
 					x[i][k] = 0;
 					stop = k;
 					break;

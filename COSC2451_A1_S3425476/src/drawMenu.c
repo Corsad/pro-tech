@@ -17,6 +17,7 @@
 #define ROW2	6
 #define ROW3	8
 
+int playerMode = 1;
 
 int main(int argc, char *argv[])
 {
@@ -31,7 +32,16 @@ void doChoice(int * currentChoice){
 	mvprintw(20,20,"%i\n", currentChoice);
 	switch(*currentChoice){
 		case 1:
-		case 2:			
+			clear();
+			if(playerMode == 1){
+				drawBoardMenu(*currentChoice);
+			}	else {
+				playGameAI(ROW1,ROW1);
+			}
+			clear();
+			*currentChoice = 1;
+			drawMenu(currentChoice);
+		case 2:		
 			clear();
 			drawBoardMenu(*currentChoice);
 			clear();
@@ -45,7 +55,13 @@ void doChoice(int * currentChoice){
 			*currentChoice = 1;
 			drawMenu(currentChoice);
 		break;
-		case 4:	
+		case 4:
+			clear();
+			PlayerSelectionMenu();
+			clear();
+			*currentChoice = 1;
+			drawMenu(currentChoice);
+		case 5:	
 			clear();
 			printQuit(currentChoice, ' ');	
 			finish(0);
@@ -57,7 +73,8 @@ void drawMenu(int * currentChoice){
 	char *menuList[] = 	{"1. New Game",
                         "2. High Scores",
                         "3. Credits",
-                        "4. Exit"
+                        "4. Player Mode Selection",
+                        "5. Exit"
                     	};
 
 	ITEM **items;
@@ -104,9 +121,13 @@ void drawMenu(int * currentChoice){
 			case 'C':
 				*currentChoice=3;
 				goto JUMP;
+			case 'p':
+			case 'P':
+				*currentChoice=4;
+				goto JUMP;
 			case 'e':
 			case 'E':
-				*currentChoice=4;
+				*currentChoice=5;
 				goto JUMP;
 		}
 	}	
@@ -123,7 +144,6 @@ JUMP:	doChoice(currentChoice);
 }
 
 void doBoardChoice(int modeChoice, int boardChoice){
-	mvprintw(20,20,"%i\n", boardChoice);
 	clear();
 	switch(modeChoice) {
 		case 1:
@@ -198,9 +218,82 @@ void drawBoardMenu(int modeChoice){
                 }
 				break;
 		}
-	}	
+	}		
 
 	doBoardChoice(modeChoice,boardChoice);
+
+	unpost_menu(menu);
+	free_menu(menu);
+	for(i = 0; i < menu_choices; ++i)
+	        free_item(items[i]);
+
+	//free_item(cur_item);
+	free(items);	
+
+}
+
+void PlayerSelectionMenu(){	
+	int boardChoice = 1 ;
+	char *menuList[] = 	{"1. 1 Player",
+						"2. AI",
+                        "3. 2 Player",
+                        "4. 1 Player vs AI",
+                        "5. AI vs AI",
+                        "6. Back to menu"
+                    	};
+
+	ITEM **items;
+	int c;				
+	MENU *menu;
+	int menu_choices, i;
+	ITEM *cur_item;
+	menu_choices = ARRAY_SIZE(menuList);
+	items = (ITEM **)calloc(menu_choices + 1, sizeof(ITEM *));
+
+	for(i = 0; i < menu_choices; ++i)
+	        items[i] = new_item(" ", menuList[i]);
+	
+
+	items[menu_choices] = (ITEM *)NULL;
+
+	menu = new_menu((ITEM **)items);
+	post_menu(menu);
+	refresh();
+
+	while(((c = getch()) != 13))
+	{   switch(c)
+	    {	case KEY_DOWN:
+		        menu_driver(menu, REQ_DOWN_ITEM);
+		        if(boardChoice <= menu_choices){
+                        boardChoice += 1;
+                }
+				break;
+			case KEY_UP:
+				menu_driver(menu, REQ_UP_ITEM);
+				if(boardChoice > 1){
+                        boardChoice -= 1;
+                }
+				break;
+		}
+	}	
+
+	switch(boardChoice){
+		case 1:
+			playerMode = 1;
+			break;
+		case 2:
+			playerMode = 2;
+			break;
+		case 3:
+			playerMode = 3;
+			break;
+		case 4:
+			playerMode = 4;
+			break;
+		case 5:
+			playerMode = 5;
+			break;
+	}
 
 	unpost_menu(menu);
 	free_menu(menu);
