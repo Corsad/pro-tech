@@ -137,7 +137,7 @@ int recursiveRun(int **x, int row, int col, int testNo){
 	if(testNo != MAX_RECURSIVE){
 		int score;
 		int probability;
-		int *test = malloc(sizeof(int) * 4);
+		int temp;
 		// Find empty space
 
 		int empty = countEmpty(x, row, col);
@@ -168,10 +168,10 @@ int recursiveRun(int **x, int row, int col, int testNo){
 					}			
 
 					if(j == 0){
-						score *= 0.9;
+						temp *= 0.9;
 						probability += 0.9;
 					} else {
-						score *= 0.1;
+						temp *= 0.1;
 						probability += 0.1;
 					}
 					// Free Array
@@ -189,7 +189,7 @@ int recursiveRun(int **x, int row, int col, int testNo){
 		}
 
 		if(probability != 0){
-			return score/probability;
+			return temp/probability;
 		} else {
 			return 0;
 		}
