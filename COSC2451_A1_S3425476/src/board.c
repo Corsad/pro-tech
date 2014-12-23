@@ -167,37 +167,20 @@ int playGameAI(int ROW,int COL){
 		x[i] = malloc(sizeof(int) *COL);
 	}
 
-////////////////////////////////////
-	// //There are 2 map: map.txt and map2.txt
-	// FILE *f = fopen("map4.txt", "r");
-	// for(int i = 0; i < ROW; i++){
-	// 	for(int j = 0; j < COL;j++){
-	// 		// printf("x[%i][%i]: ",i,j);
-	// 		// scanf("%i",&x[i][j]);
-	// 		fscanf (f, "%i", &x[i][j]);   
-	// 	}
-	// }
-	// fclose (f);     
-////////////////////////////////////
 	for(int i = 0; i < ROW; i++){
 		for(int j = 0; j < COL;j++){
-			// printf("x[%i][%i]: ",i,j);
-			// scanf("%i",&x[i][j]);
 			x[i][j]=0;   
 		}
 	}
 
 	randomVal(x,ROW, COL);
 	randomVal(x,ROW, COL);
-////////////////////////////////////
 
 	printMap(x, ROW, COL);
 	printScore(score,ROW);
 	printGoal(ROW,goal);
 	int c;
 
-	// simplify(,x,,)
-	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
 	
 	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
 	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
@@ -205,6 +188,7 @@ int playGameAI(int ROW,int COL){
 
 
 	while(c  != 'q' ){
+		// Speed
 		timeout(200);
 		c = getch();
 		int temp = getHighestScore(x, ROW, COL);
@@ -218,7 +202,6 @@ int playGameAI(int ROW,int COL){
 		printScore(score,ROW);
 		printGoal(ROW,goal);
 		mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 2, 0, "Press q to go back to menu");
-		//printBestMove(x, ROW, COL);
 		if (goalTest(x,ROW,COL,goal)==1 && *goalReached==0) {
 			*goalReached = 1;
 		}
