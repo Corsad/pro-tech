@@ -10,6 +10,7 @@
 #include "drawMenu.h"
 #include "board.h"
 #include "highScore.h"
+#include "khanhAI.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
@@ -18,6 +19,8 @@
 #define ROW3	8
 
 int playerMode = 1;
+int AISelected[2];
+int (* AIFuncs[2])(int **, int, int) = {&getHighestScore};
 
 int main(int argc, char *argv[])
 {
@@ -33,10 +36,19 @@ void doChoice(int * currentChoice){
 	switch(*currentChoice){
 		case 1:
 			clear();
-			if(playerMode == 1){
-				drawBoardMenu(*currentChoice);
-			}	else {
-				playGameAI(ROW1,ROW1);
+			switch(playerMode){
+				case 1:
+					drawBoardMenu(*currentChoice);
+					break;
+				case 2:
+					playGameAI(ROW1,ROW1, AIFuncs[AISelected[0]]);
+					break;
+				case 3:
+					playGame2Player(ROW1,ROW1);
+					break;
+				case 4:
+					break;
+					
 			}
 			clear();
 			*currentChoice = 1;
@@ -283,17 +295,113 @@ void PlayerSelectionMenu(){
 			break;
 		case 2:
 			playerMode = 2;
+			selectAI(1);
 			break;
 		case 3:
 			playerMode = 3;
 			break;
 		case 4:
 			playerMode = 4;
+			selectAI(1);
 			break;
 		case 5:
 			playerMode = 5;
+			selectAI(2);
 			break;
 	}
+
+	unpost_menu(menu);
+	free_menu(menu);
+	for(i = 0; i < menu_choices; ++i)
+	        free_item(items[i]);
+
+	//free_item(cur_item);
+	free(items);	
+}
+
+void selectAI(int amountOfPlayer){
+	clear();
+	int boardChoice = 1 ;
+	char *menuList[amountOfPlayer + 1];
+	switch(amountOfPlayer){
+		case 1:
+			menuList[0] = "1. Khanh AI";
+			menuList[1] = "2. Huy AI";            
+		break;
+		case 2:
+			menuList[0] = "1. Khanh AI vs Khanh AI";
+			menuList[1] = "2. Khanh AI vs Huy AI";
+			menuList[2] = "3. Huy AI vs Huy AI";            
+		break;
+	}
+	
+
+	ITEM **items;
+	int c;				
+	MENU *menu;
+	int menu_choices, i;
+	ITEM *cur_item;
+	menu_choices = ARRAY_SIZE(menuList);
+	items = (ITEM **)calloc(menu_choices + 1, sizeof(ITEM *));
+
+	for(i = 0; i < menu_choices; ++i)
+	        items[i] = new_item(" ", menuList[i]);
+	
+
+	items[menu_choices] = (ITEM *)NULL;
+
+	menu = new_menu((ITEM **)items);
+	post_menu(menu);
+	refresh();
+
+	while(((c = getch()) != 13))
+	{   switch(c)
+	    {	case KEY_DOWN:
+		        menu_driver(menu, REQ_DOWN_ITEM);
+		        if(boardChoice <= menu_choices){
+                        boardChoice += 1;
+                }
+				break;
+			case KEY_UP:
+				menu_driver(menu, REQ_UP_ITEM);
+				if(boardChoice > 1){
+                        boardChoice -= 1;
+                }
+				break;
+		}
+	}	
+	switch(amountOfPlayer){
+		case 1:
+			switch(boardChoice){
+				case 1:
+					AISelected[0] = 0;
+
+					break;
+				case 2:
+					AISelected[0] = 1;
+					;
+					break;
+			}
+		break;
+		case 2:
+			switch(boardChoice){
+				case 1:
+					AISelected[0] = 0;
+					AISelected[1] = 0;
+					break;
+				case 2:
+					AISelected[0] = 0;
+					AISelected[1] = 1;
+					;
+					break;
+				case 3:
+					AISelected[1] = 1;
+					AISelected[1] = 1;
+					break;
+			}
+		break;
+	}
+	
 
 	unpost_menu(menu);
 	free_menu(menu);

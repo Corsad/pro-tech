@@ -50,4 +50,6 @@ void definePair();
 void printQuit(int * currentChoice, char c);
 
 void PlayerSelectionMenu();
+
+void selectAI(int amountOfPlayer);
 #endif
