@@ -54,6 +54,8 @@ void printGoalReached(int row, int *goal);
   */
 void coloring(int x);
 
-int playGameAI(int ROW,int COL, int (* funcs)(int **, int, int));
+int playGameAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
 int playGame2Player(int ROW,int COL);
+int playGamePlayerVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
+int playGameAIVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int),int (* AIFuncs2)(int **, int, int));
 #endif

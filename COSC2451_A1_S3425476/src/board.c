@@ -199,17 +199,19 @@ int playGame2Player(int ROW,int COL){
 
 ////////////////////////////////////
 
+	// Move Arrow map to the right
+	location = DISTANCE_BETWEEN_BOARD;
+
 	printMap(x, ROW, COL, location);
 	printScore(score,ROW, location);
+	location = 0;
 
 	sleep(1);
 	randomVal(x2,ROW, COL);
 	randomVal(x2,ROW, COL);
 
-	location = DISTANCE_BETWEEN_BOARD;
 	printMap(x2, ROW, COL, location);
 	printScore(score2,ROW, location);
-	location = 0;
 	int c;
 
 	// simplify(,x,,)
@@ -280,15 +282,15 @@ int playGame2Player(int ROW,int COL){
 				break;
 		}
 
+		location = DISTANCE_BETWEEN_BOARD;
 		printMap(x, ROW, COL, location);
 		printScore(score,ROW, location);
+		location = 0;
 
 		///// Player 2 print/////
-		location = DISTANCE_BETWEEN_BOARD;
 		printMap(x2, ROW, COL, location);
 		printScore(score2,ROW, location);
 
-		location = 0;
 
 
 		if (moveable(x,ROW,COL)==0 && moveable(x2,ROW,COL)==0) {
@@ -315,6 +317,293 @@ int playGame2Player(int ROW,int COL){
 	free(score);
 	free(score2);
 
+	return 0;
+}
+
+int playGamePlayerVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int)){
+	clear();
+
+	int *score = malloc(sizeof(int));
+
+	*score = 0;
+
+	int **x = malloc(sizeof(int *) * ROW);
+
+	for(int i = 0; i < ROW; i++){
+		x[i] = malloc(sizeof(int) *COL);
+	}
+
+
+	//////// Player 2 ////////
+
+	int *score2 = malloc(sizeof(int));
+
+	*score2 = 0;
+
+	int **x2 = malloc(sizeof(int *) * ROW);
+
+	for(int i = 0; i < ROW; i++){
+		x2[i] = malloc(sizeof(int) *COL);
+	}
+////////////////////////////////////
+	// //There are 2 map: map.txt and map2.txt
+	// FILE *f = fopen("map4.txt", "r");
+	// for(int i = 0; i < ROW; i++){
+	// 	for(int j = 0; j < COL;j++){
+	// 		// printf("x[%i][%i]: ",i,j);
+	// 		// scanf("%i",&x[i][j]);
+	// 		fscanf (f, "%i", &x[i][j]);   
+	// 	}
+	// }
+	// fclose (f);     
+////////////////////////////////////
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL;j++){
+			// printf("x[%i][%i]: ",i,j);
+			// scanf("%i",&x[i][j]);
+			x[i][j]=0;   
+			x2[i][j]=0;   
+		}
+	}
+
+	randomVal(x,ROW, COL);
+	randomVal(x,ROW, COL);
+
+////////////////////////////////////
+
+	// Move Arrow map to the right
+	location = DISTANCE_BETWEEN_BOARD;
+
+	printMap(x, ROW, COL, location);
+	printScore(score,ROW, location);
+	location = 0;
+
+	sleep(1);
+	randomVal(x2,ROW, COL);
+	randomVal(x2,ROW, COL);
+
+	printMap(x2, ROW, COL, location);
+	printScore(score2,ROW, location);
+	int c;
+
+	// simplify(,x,,)
+	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
+	
+	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
+	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
+
+	timeout(200);
+	while(((c = getch()) != 'q')){
+		switch(c){
+			case KEY_UP:
+			clear();
+			if (simplifyTest(tests[0],x,ROW, COL)==1) {
+				simplify(funcs[0], x , ROW, COL,score);
+				randomVal(x,ROW, COL);
+				c = 'a';
+			}			
+			break;
+			case KEY_DOWN:
+			clear();
+			if (simplifyTest(tests[1],x,ROW, COL)==1) {
+				simplify(funcs[1], x , ROW, COL,score);
+				randomVal(x,ROW, COL);	
+				c = 'a';
+			}
+			break;
+			case KEY_LEFT:
+			clear();
+			if (simplifyTest(tests[2],x,ROW, COL)==1) {
+				simplify(funcs[2], x , ROW, COL,score);
+				randomVal(x,ROW, COL);	
+				c = 'a';
+			}
+			break;
+			case KEY_RIGHT:
+			clear();
+			if (simplifyTest(tests[3],x,ROW, COL)==1) {
+				simplify(funcs[3], x , ROW, COL,score);
+				randomVal(x,ROW, COL);	
+				c = 'a';
+			}
+			break;
+		}
+
+		int temp = AIFuncs(x2, ROW, COL);
+			if(moveable(x2,ROW,COL)==1){
+				simplify(funcs[temp], x2 , ROW, COL,score2);
+				randomVal(x2,ROW, COL);
+			}		
+			
+			if(moveable(x2,ROW,COL)==0){
+			timeout(-1);
+		}
+
+		location = DISTANCE_BETWEEN_BOARD;
+		printMap(x, ROW, COL, location);
+		printScore(score,ROW, location);
+		location = 0;
+
+		///// Player 2 print/////
+		printMap(x2, ROW, COL, location);
+		printScore(score2,ROW, location);
+
+
+
+		if (moveable(x,ROW,COL)==0 && moveable(x2,ROW,COL)==0) {
+			if(score > score2){
+				// Need location
+				mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 1, 0, "Player 1 win.");
+			} else if (score < score2){
+				mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 1, 0, "Player 2 win.");
+			} else {
+				mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 1, 0, "Draw.");
+			}
+			mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 2, 0, "Press q to go back to menu.");
+		}
+	}
+
+	for(int i = 0; i < ROW; i++){
+		free(x[i]);
+		free(x2[i]);
+	}
+
+	free(x);	
+	free(x2);	
+
+	free(score);
+	free(score2);
+	timeout(-1);
+	return 0;
+}
+
+int playGameAIVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int), int (* AIFuncs2)(int **, int, int)){
+	clear();
+
+	int *score = malloc(sizeof(int));
+
+	*score = 0;
+
+	int **x = malloc(sizeof(int *) * ROW);
+
+	for(int i = 0; i < ROW; i++){
+		x[i] = malloc(sizeof(int) *COL);
+	}
+
+
+	//////// Player 2 ////////
+
+	int *score2 = malloc(sizeof(int));
+
+	*score2 = 0;
+
+	int **x2 = malloc(sizeof(int *) * ROW);
+
+	for(int i = 0; i < ROW; i++){
+		x2[i] = malloc(sizeof(int) *COL);
+	}
+////////////////////////////////////
+	// //There are 2 map: map.txt and map2.txt
+	// FILE *f = fopen("map4.txt", "r");
+	// for(int i = 0; i < ROW; i++){
+	// 	for(int j = 0; j < COL;j++){
+	// 		// printf("x[%i][%i]: ",i,j);
+	// 		// scanf("%i",&x[i][j]);
+	// 		fscanf (f, "%i", &x[i][j]);   
+	// 	}
+	// }
+	// fclose (f);     
+////////////////////////////////////
+	for(int i = 0; i < ROW; i++){
+		for(int j = 0; j < COL;j++){
+			// printf("x[%i][%i]: ",i,j);
+			// scanf("%i",&x[i][j]);
+			x[i][j]=0;   
+			x2[i][j]=0;   
+		}
+	}
+
+	randomVal(x,ROW, COL);
+	randomVal(x,ROW, COL);
+
+////////////////////////////////////
+
+	// Move Arrow map to the right
+	location = DISTANCE_BETWEEN_BOARD;
+
+	printMap(x, ROW, COL, location);
+	printScore(score,ROW, location);
+	location = 0;
+
+	sleep(1);
+	randomVal(x2,ROW, COL);
+	randomVal(x2,ROW, COL);
+
+	printMap(x2, ROW, COL, location);
+	printScore(score2,ROW, location);
+	int c;
+
+	// simplify(,x,,)
+	// x: 1 -> Up; 2 -> Down; 3 -> Left; 4 -> Right;
+	
+	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
+	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
+
+	timeout(200);
+	while(((c = getch()) != 'q')){
+		clear();
+		int temp = AIFuncs(x, ROW, COL);
+		if(moveable(x,ROW,COL)==1){
+			simplify(funcs[temp], x , ROW, COL,score);
+			randomVal(x,ROW, COL);
+		}		
+
+		temp = AIFuncs2(x2, ROW, COL);	
+
+		if(moveable(x2,ROW,COL)==1){
+			simplify(funcs[temp], x2 , ROW, COL,score2);
+			randomVal(x2,ROW, COL);
+		}	
+
+		if(moveable(x,ROW,COL)==0 && moveable(x2,ROW,COL)==0){
+		timeout(-1);
+		}	
+
+		location = DISTANCE_BETWEEN_BOARD;
+		printMap(x, ROW, COL, location);
+		printScore(score,ROW, location);
+		location = 0;
+
+		///// Player 2 print/////
+		printMap(x2, ROW, COL, location);
+		printScore(score2,ROW, location);
+
+
+
+		if (moveable(x,ROW,COL)==0 && moveable(x2,ROW,COL)==0) {
+			if(score > score2){
+				// Need location
+				mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 1, 0, "AI 1 win.");
+			} else if (score < score2){
+				mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 1, 0, "AI 2 win.");
+			} else {
+				mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 1, 0, "Draw.");
+			}
+		}
+		mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 2, 0, "Press q to go back to menu.");
+	}
+
+	for(int i = 0; i < ROW; i++){
+		free(x[i]);
+		free(x2[i]);
+	}
+
+	free(x);	
+	free(x2);	
+
+	free(score);
+	free(score2);
+	timeout(-1);
 	return 0;
 }
 
@@ -358,10 +647,10 @@ int playGameAI(int ROW,int COL, int (* AIFuncs)(int **, int, int)){
 	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
 	mvprintw(CELLHEIGHT + ROW * CELLHEIGHT + 2, 0, "Press q to go back to menu");
 
-
+	timeout(200);
 	while(c  != 'q' ){
 		// Speed
-		timeout(200);
+		
 		c = getch();
 		int temp = AIFuncs(x, ROW, COL);
 		clear();
@@ -383,6 +672,7 @@ int playGameAI(int ROW,int COL, int (* AIFuncs)(int **, int, int)){
 		}
 	}
 
+	clear();
 
 	for(int i = 0; i < ROW; i++){
 		free(x[i]);

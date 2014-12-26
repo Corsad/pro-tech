@@ -47,8 +47,11 @@ void doChoice(int * currentChoice){
 					playGame2Player(ROW1,ROW1);
 					break;
 				case 4:
+					playGamePlayerVsAI(ROW1,ROW1, AIFuncs[AISelected[0]]);
 					break;
-					
+				case 5:
+					playGameAIVsAI(ROW1,ROW1, AIFuncs[AISelected[0]], AIFuncs[AISelected[1]]);
+					break;
 			}
 			clear();
 			*currentChoice = 1;
