@@ -52,4 +52,8 @@ void printQuit(int * currentChoice, char c);
 void PlayerSelectionMenu();
 
 void selectAI(int amountOfPlayer);
+
+void playerVsPlayerModeMenu();
+
+void askForTime();
 #endif

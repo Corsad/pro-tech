@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <menu.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "drawMenu.h"
 #include "board.h"
@@ -21,6 +22,9 @@
 int playerMode = 1;
 int AISelected[2];
 int (* AIFuncs[2])(int **, int, int) = {&getHighestScore};
+int playerVsPlayerMode = 0;
+int minutes = 0;
+int seconds = 0;
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +37,8 @@ int main(int argc, char *argv[])
 
 void doChoice(int * currentChoice){
 	mvprintw(20,20,"%i\n", currentChoice);
+
+	int c;
 	switch(*currentChoice){
 		case 1:
 			clear();
@@ -44,7 +50,19 @@ void doChoice(int * currentChoice){
 					playGameAI(ROW1,ROW1, AIFuncs[AISelected[0]]);
 					break;
 				case 3:
-					playGame2Player(ROW1,ROW1);
+					playerVsPlayerModeMenu();
+					clear();
+					if(playerVsPlayerMode == 1){
+						playGame2Player(ROW1,ROW1);
+					} else {
+						clear();
+						askForTime();
+						playGame2PlayerLimited(ROW1, ROW1, minutes, seconds);
+						minutes = 0;
+						seconds = 0;
+
+					}	
+					playerVsPlayerMode = 0;		
 					break;
 				case 4:
 					playGamePlayerVsAI(ROW1,ROW1, AIFuncs[AISelected[0]]);
@@ -322,6 +340,57 @@ void PlayerSelectionMenu(){
 	free(items);	
 }
 
+void playerVsPlayerModeMenu(){	
+	int boardChoice = 1 ;
+	char *menuList[] = 	{"1. Unlimited",
+						"2. Limited",
+                    	};
+
+	ITEM **items;
+	int c;				
+	MENU *menu;
+	int menu_choices, i;
+	ITEM *cur_item;
+	menu_choices = ARRAY_SIZE(menuList);
+	items = (ITEM **)calloc(menu_choices + 1, sizeof(ITEM *));
+
+	for(i = 0; i < menu_choices; ++i)
+	        items[i] = new_item(" ", menuList[i]);
+	
+
+	items[menu_choices] = (ITEM *)NULL;
+
+	menu = new_menu((ITEM **)items);
+	post_menu(menu);
+	refresh();
+
+	while(((c = getch()) != 13))
+	{   switch(c)
+	    {	case KEY_DOWN:
+		        menu_driver(menu, REQ_DOWN_ITEM);
+		        if(boardChoice <= menu_choices){
+                        boardChoice += 1;
+                }
+				break;
+			case KEY_UP:
+				menu_driver(menu, REQ_UP_ITEM);
+				if(boardChoice > 1){
+                        boardChoice -= 1;
+                }
+				break;
+		}
+	}	
+
+	playerVsPlayerMode = boardChoice;
+	unpost_menu(menu);
+	free_menu(menu);
+	for(i = 0; i < menu_choices; ++i)
+	        free_item(items[i]);
+
+	//free_item(cur_item);
+	free(items);	
+}
+
 void selectAI(int amountOfPlayer){
 	clear();
 	int boardChoice = 1 ;
@@ -467,6 +536,30 @@ void printCredit(){
 	int c;
 	while(((c = getch()) != 'q')){		
 	}
+}
+
+void askForTime(){
+	do{
+		char  * temp = malloc(sizeof(char) * 20);
+		(void) echo();
+		keypad(stdscr, FALSE);
+		do{
+			clear();
+			mvprintw(0, 0, "How many minutes you want to play? ");
+			getstr(temp);
+			minutes = atoi(temp);
+		} while(strlen(temp) == 0 || minutes > 60 || minutes < 0);			
+
+		do{
+			mvprintw(1, 0, "How many seconds you want to play? ");
+			getstr(temp);
+			seconds = atoi(temp);
+		} while(strlen(temp) == 0 || seconds > 60|| seconds < 0);
+		
+		free(temp);
+		keypad(stdscr, TRUE);
+		(void) noecho();
+	} while(minutes == 0 && seconds == 0 );	
 }
 
 void printQuit(int * currentChoice, char i){

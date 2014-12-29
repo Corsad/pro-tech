@@ -24,13 +24,13 @@ int getMaxLength(int **x, int row, int col);
   * @param row the amount of row the board has
   * @param col the amount of column the board has 
   */
-void printMap(int **x, int row, int col, int location);
+void printMap(int **x, int row, int col, int playerAmount);
 
 /** Print user's score
   * @param score pointer to user sscore
   * @param row score will be printed in this row
   */
-void printScore(int *score, int row, int location);
+void printScore(int *score, int row, int playerAmount);
 
 /** Announce game over
   * @param row the announcement will be printed in this row
@@ -58,4 +58,5 @@ int playGameAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
 int playGame2Player(int ROW,int COL);
 int playGamePlayerVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
 int playGameAIVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int),int (* AIFuncs2)(int **, int, int));
+int playGame2PlayerLimited(int ROW,int COL, int minutes, int seconds);
 #endif
