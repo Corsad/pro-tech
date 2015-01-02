@@ -77,7 +77,7 @@ int playGame(int ROW,int COL){
 	void (* funcs[4])(int **, int, int,int *) = {&up, &down, &left, &right};
 	int (* tests[4])(int **, int, int) = {&upTest,&downTest,&leftTest,&rightTest};
 
-	while(((c = getch()) != 'q')){
+	while(((c = getch()) != 'q')){		
 		switch(c){
 			case KEY_UP:
 			clear();
@@ -108,7 +108,7 @@ int playGame(int ROW,int COL){
 			}
 			break;
 		}
-
+		printBestMove(x, ROW, COL);
 		printMap(x, ROW, COL, 1);
 		printScore(score,ROW, 1);
 		printGoal(ROW,goal);

@@ -34,18 +34,18 @@ void printBestMove(int **x, int row, int col){
 }
 
 int getHighestScore(int **x, int row, int col){
-		int temp = 0;
+		double temp = 0;
 		int move = 0;
-		int *score = malloc(sizeof(int) * 4);	
+		double *score = malloc(sizeof(double) * 4);	
 		int countEmptyOriginal = countEmpty(x, row, col);
 
-		int curGradient;
-		int curGradientTotal = 0;
-		for(int i = 0; i < 4; i++){
-			curGradientTotal = gradientCheck(x, row, col,i);
-			if(temp < curGradientTotal)
-				curGradient = i;
-		}
+		// int curGradient;
+		// int curGradientTotal = 0;
+		// for(int i = 0; i < 4; i++){
+		// 	curGradientTotal = gradientCheck(x, row, col,i);
+		// 	if(temp < curGradientTotal)
+		// 		curGradient = i;
+		// }
 		
 		temp = 0;
 		for(int i = 0; i < 4; i++){
@@ -59,7 +59,8 @@ int getHighestScore(int **x, int row, int col){
 					copy_int_array(x[k],clone[k], col);
 				}
 
-								///////
+				// MIN MAX
+				///////
 				// simplify(funcs[i], clone , row, col, &score[i]);
 				// score[i] *= 2;
 				// // recursiveRun(clone, row, col, &score[i], 0, countEmptyOriginal);
@@ -76,8 +77,9 @@ int getHighestScore(int **x, int row, int col){
 				// score[i] += surroundCheck(clone, row, col);
 				///////
 
-				///////
 
+				//MIN MAX WITH Gradient
+				///////
 				// simplify(funcs[i], clone , row, col, &score[i]);
 
 				// // int empty = countEmpty(clone, row, col);
@@ -102,9 +104,12 @@ int getHighestScore(int **x, int row, int col){
 				// }
 				///////
 
-				simplify(funcs[i], clone , row, col, &score[i]);
-				score[i] = recursiveRun(clone, row, col, 0);
-			
+
+				//
+				int tempScore;
+				simplify(funcs[i], clone , row, col, &tempScore);
+				score[i] = expectimax(clone, row, col, 2);
+				mvprintw(21 + i,20,"Score:%f", score[i]);
 				//////
 				// Free Array	
 				for(int k = 0; k < row; k++){
@@ -118,9 +123,10 @@ int getHighestScore(int **x, int row, int col){
 		for(int i = 0; i < 4; i++){
 			if(score[i] > temp){
 				move = i;
+				temp = score[i];
 			}
 		}
-
+		
 		if(simplifyTest(funcsTest[move], x , row, col) != 1){
 			for(int i = 0; i < 4; i++){
 				if(simplifyTest(funcsTest[i], x , row, col) == 1){
@@ -133,11 +139,12 @@ int getHighestScore(int **x, int row, int col){
 		return move;
 }
 
-int recursiveRun(int **x, int row, int col, int testNo){
+double expectimax(int **x, int row, int col, int testNo){
 	if(testNo != MAX_RECURSIVE){
-		int score;
-		int probability;
-		int temp;
+		double total = 0;
+		double score = 0;
+		double probability = 0;
+		double temp = 0;
 		// Find empty space
 
 		int empty = countEmpty(x, row, col);
@@ -160,20 +167,14 @@ int recursiveRun(int **x, int row, int col, int testNo){
 					// assign 2 and 4
 					assignVal(clone, row, col, i, j);
 
-					simplify(funcs[k], clone , row, col, &score);							
-					int temp = recursiveRun(clone, row, col, testNo + 1);
+					int tempScore;
+					simplify(funcs[k], clone , row, col, &tempScore);							
+					temp = expectimax(clone, row, col, testNo + 1);
 
 					if (temp > score){
 						score = temp;
 					}			
-
-					if(j == 0){
-						temp *= 0.9;
-						probability += 0.9;
-					} else {
-						temp *= 0.1;
-						probability += 0.1;
-					}
+				
 					// Free Array
 					for(int m = 0; m < row; m++){
  							free(clone[m]);
@@ -181,30 +182,37 @@ int recursiveRun(int **x, int row, int col, int testNo){
 					free(clone);
 				}
 
-
-				
-
-
+				if(j == 0){
+					total += (0.9*score) ;
+					probability += 0.9;
+				} else {
+					total += (0.1*score);
+					probability += 0.1;
+				}
  			}
 		}
 
 		if(probability != 0){
-			return temp/probability;
+			return total/probability;
 		} else {
 			return 0;
 		}
 	} else {
 
 		// Check best total point this direction could have
-		int totalGradient;
+		int total;
+		int bestGradient;
 		for(int i = 0; i < 4; i++){
-			int temp = gradientCheck(x, row, col, i);
-				if(totalGradient < temp){
-					totalGradient = temp;
+			double temp = gradientCheck(x, row, col, i);
+			temp += highestInCorner(x, row, col, i)*5;
+			temp += inOrder(x,row, col, i) * 2;
+			if(total < temp){
+				total = temp;
+				bestGradient = i;
 			}
 		}
 
-		return totalGradient;
+		return total;
 	}
 }
 
@@ -315,108 +323,108 @@ int gradientCheck(int **x, int row, int col, int side){
 	return total;
 }
 
-// int inOrder(int **x, int row, int col){
-// 	int temp = 0;
-// 	int highestX;
-// 	int highestY;
-// 	int total = 0;
-// 	for(int i = 0; i < row; i ++){
-// 		for(int j = 0; j < col; j++){
-// 			if (temp < x[i][j]){
-// 				temp = x[i][j];
-// 				highestX = i;
-// 				highestY = j;
-// 			} 
-// 		}
-// 	}
 
-// 	switch(highestX){
-// 		case 0:
-// 			for(int i = 0; i < row; i ++){
-// 				total += checkRow(x, i, 0, 1);
-// 			}			
-// 			break;
-// 		case 3:
-// 			for(int i = 0; i < row; i ++){
-// 				total += checkRow(x, i, 0, 0);
-// 			}
-// 			break;
-// 	}
+// MONOTONIC
+int inOrder(int **x, int row, int col, int gradient){
+	int total = 0;
 
-// 	switch(highestY){
-// 		case 0:
-// 			for(int i = 0; i < col; i ++){
-// 				total += checkCol(x, 0, i, 1);
-// 			}
-// 			break;
-// 		case 3:
-// 			for(int i = 0; i < col; i ++){
-// 				total += checkCol(x, 0, i, 0);
-// 			}
-// 	}
+	switch(gradient){
+		case 0:
+		case 1:
+			for(int i = 0; i < row; i ++){
+				total += checkRow(x, i, 0, 1);
+			}			
+			break;
+		case 2:
+		case 3:
+			for(int i = 0; i < row; i ++){
+				total += checkRow(x, i, 0, 0);
+			}
+			break;
+	}
 
-// 	return total;
-// }
+	switch(gradient){
+		case 0:
+		case 1:
+			for(int i = 0; i < col; i ++){
+				total += checkCol(x, 0, i, 1);
+			}
+			break;
+		case 2:
+		case 3:
+			for(int i = 0; i < col; i ++){
+				total += checkCol(x, 0, i, 0);
+			}
+	}
 
-// int checkRow(int **x, int curRow, int curCol, int mode){
-// 	switch(curCol){
-// 		case 3:
-// 			return 1;
-// 			break;
-// 		default:
-// 			switch(mode){
-// 				case 0:
-// 					if(x[curRow][curCol] > x[curRow][curCol + 1]){
-// 						if(checkRow(x, curRow, curCol + 1, mode) != 1){
-// 							return 0;
-// 						}
-// 						return 1;
-// 					} 
-// 					break;
-// 				case 1:
-// 					if(x[curRow][curCol] < x[curRow][curCol + 1]){
-// 						if(checkRow(x, curRow, curCol + 1, mode) != 1){
-// 							return 0;
-// 						}
-// 						return 1;
-// 					}
-// 					break;
-// 			}
-// 			break;
-// 	}
+	return total;
+}
 
-// 	return 0;	
-// }
+int checkRow(int **x, int curRow, int curCol, int mode){
+	switch(curCol){
+		case 3:
+			return 1;
+			break;
+		default:
+			// 0 Higher from top to bottom
+			// 1 Higher from bottom to top
+			switch(mode){
 
-// int checkCol(int **x, int curRow, int curCol, int mode){
-// 	switch(curRow){
-// 		case 3:
-// 			return 1;
-// 			break;
-// 		default:
-// 			switch(mode){
-// 				case 0:
-// 					if(x[curRow][curCol] > x[curRow + 1][curCol]){
-// 						if(checkRow(x, curRow + 1, curCol, mode) != 1){
-// 							return 0;
-// 						}
-// 						return 1;
-// 					} 
-// 					break;
-// 				case 1:
-// 					if(x[curRow][curCol] < x[curRow + 1][curCol]){
-// 						if(checkRow(x, curRow + 1, curCol, mode) != 1){
-// 							return 0;
-// 						}
-// 						return 1;
-// 					}
-// 					break;
-// 			}
-// 			break;
-// 	}
+				case 0:
+					if(x[curRow][curCol] >= x[curRow][curCol + 1]){
+						if(checkRow(x, curRow, curCol + 1, mode) != 1){
+							return -1;
+						}
+						return 1;
+					} 
+					break;
 
-// 	return 0;	
-// }
+				case 1:
+					if(x[curRow][curCol] <= x[curRow][curCol + 1]){
+						if(checkRow(x, curRow, curCol + 1, mode) != 1){
+							return -1;
+						}
+						return 1;
+					}
+					break;
+			}
+			break;
+	}
+
+	return -1;	
+}
+
+int checkCol(int **x, int curRow, int curCol, int mode){
+	switch(curRow){
+		case 3:
+			return 1;
+			break;
+		default:
+			// 0 Higher from left to right
+			// 1 Higher from right to left
+			switch(mode){
+				case 0:
+					if(x[curRow][curCol] >= x[curRow + 1][curCol]){
+						if(checkRow(x, curRow + 1, curCol, mode) != 1){
+							return -1;
+						}
+						return 1;
+					} 
+					break;
+				case 1:
+					if(x[curRow][curCol] <= x[curRow + 1][curCol]){
+						if(checkRow(x, curRow + 1, curCol, mode) != 1){
+							return -1;
+						}
+						return 1;
+					}
+					break;
+			}
+			break;
+	}
+
+	return -1;	
+}
 
 // int surroundCheck(int **x, int row, int col){
 // 	// int highest = getHighestOrSecondHighest(x, row, col, 0);
@@ -464,29 +472,29 @@ int highestInCorner(int **x, int row, int col, int gradient){
 			if(x[0][0] == temp){
 				return 1;
 			}
-			return 0;
+			return -1;
 			break;
 		case 1:
 			if(x[3][0] == temp){
 				return 1;
 			}
-			return 0;
+			return -1;
 			break;
 		case 2:
 			if(x[0][3] == temp){
 				return 1;
 			}
-			return 0;
+			return -1;
 			break;
 		case 3:
 			if(x[3][3] == temp){
 				return 1;
 			}
-			return 0;
+			return -1;
 			break;
 	}
 
-	return 0;
+	return -1;
 }
 
 
