@@ -105,7 +105,7 @@ int getHighestScore(int **x, int row, int col){
 				///////
 
 
-				//
+				// EXPECTIMAX + HIGHEST IN CORNER + GRADIENT + MONOTONIC
 				int tempScore;
 				simplify(funcs[i], clone , row, col, &tempScore);
 				score[i] = expectimax(clone, row, col, 2);
@@ -126,7 +126,7 @@ int getHighestScore(int **x, int row, int col){
 				temp = score[i];
 			}
 		}
-		
+
 		if(simplifyTest(funcsTest[move], x , row, col) != 1){
 			for(int i = 0; i < 4; i++){
 				if(simplifyTest(funcsTest[i], x , row, col) == 1){
