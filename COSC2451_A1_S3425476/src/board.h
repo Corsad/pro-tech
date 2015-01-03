@@ -1,7 +1,7 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
-/** Take input from user
+/** Play game 1 person
   * @param ROW the amount of row the board will have
   * @param COL the amount of column the board will have
   */
@@ -54,9 +54,39 @@ void printGoalReached(int row, int *goal);
   */
 void coloring(int x);
 
+/** Play game 1 AI
+  * @param ROW the amount of row the board will have
+  * @param COL the amount of column the board will have
+  */
 int playGameAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
+
+/** Play game 2 players without limit time
+  * @param ROW the amount of row the board will have
+  * @param COL the amount of column the board will have
+  */
 int playGame2Player(int ROW,int COL);
+
+/** Play game 1 AI vs 1 Player
+  * @param ROW the amount of row the board will have
+  * @param COL the amount of column the board will have
+  * @param AIFuncs get move from AI's function
+  */
 int playGamePlayerVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
+
+/** Play game 2 AI
+  * @param ROW the amount of row the board will have
+  * @param COL the amount of column the board will have
+  * @param AIFuncs get move from AI's function
+  * @param AIFuncs2 get move from AI's function
+  */
 int playGameAIVsAI(int ROW,int COL, int (* AIFuncs)(int **, int, int),int (* AIFuncs2)(int **, int, int));
+
+/** Play game 2 Players with limit time
+  * @param ROW the amount of row the board will have
+  * @param COL the amount of column the board will have
+  * @param minutes time play in minute
+  * @param seconds time play in second
+  */
 int playGame2PlayerLimited(int ROW,int COL, int minutes, int seconds);
+
 #endif

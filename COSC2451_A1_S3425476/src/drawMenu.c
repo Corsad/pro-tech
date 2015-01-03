@@ -21,7 +21,7 @@
 
 int playerMode = 1;
 int AISelected[2];
-int (* AIFuncs[2])(int **, int, int) = {&getHighestScore};
+int (* AIFuncs[2])(int **, int, int) = {&getBestMoveKhanhAI};
 int playerVsPlayerMode = 0;
 int minutes = 0;
 int seconds = 0;

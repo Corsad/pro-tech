@@ -16,7 +16,7 @@ int (* funcsTest[4])(int **, int, int) = {&upTest, &downTest, &leftTest, &rightT
 int bestGradient = 0;
 
 void printBestMove(int **x, int row, int col){
-	int bestMove = getHighestScore(x, row, col);
+	int bestMove = getBestMoveKhanhAI(x, row, col);
 	switch(bestMove){
 		case 0:
 			mvprintw(20,20, "^");
@@ -33,7 +33,7 @@ void printBestMove(int **x, int row, int col){
 	}
 }
 
-int getHighestScore(int **x, int row, int col){
+int getBestMoveKhanhAI(int **x, int row, int col){
 		double temp = 0;
 		int move = 0;
 		double *score = malloc(sizeof(double) * 4);	
@@ -204,8 +204,8 @@ double expectimax(int **x, int row, int col, int testNo){
 		int bestGradient;
 		for(int i = 0; i < 4; i++){
 			double temp = gradientCheck(x, row, col, i);
-			temp += highestInCorner(x, row, col, i)*5;
-			temp += inOrder(x,row, col, i) * 2;
+			temp += highestInCorner(x, row, col, i)*20;
+			temp += inOrder(x,row, col, i) * 10;
 			if(total < temp){
 				total = temp;
 				bestGradient = i;
@@ -279,7 +279,7 @@ int gradientCheck(int **x, int row, int col, int side){
 		case 0:
 			for(int i = 0; i < row; i++){
 				for (int j = 0; j < col; j++){
-					clone[i][j] = 3 - i + j;
+					clone[i][j] = 3 - i - j;
 				}
 			}
 			break;
