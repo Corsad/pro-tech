@@ -108,7 +108,7 @@ int getHighestScore(int **x, int row, int col){
 				// EXPECTIMAX + HIGHEST IN CORNER + GRADIENT + MONOTONIC
 				int tempScore;
 				simplify(funcs[i], clone , row, col, &tempScore);
-				score[i] = expectimax(clone, row, col, 2);
+				score[i] = expectimax(clone, row, col, MAX_RECURSIVE);
 				mvprintw(21 + i,20,"Score:%f", score[i]);
 				//////
 				// Free Array	

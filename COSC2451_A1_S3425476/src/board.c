@@ -108,7 +108,6 @@ int playGame(int ROW,int COL){
 			}
 			break;
 		}
-		printBestMove(x, ROW, COL);
 		printMap(x, ROW, COL, 1);
 		printScore(score,ROW, 1);
 		printGoal(ROW,goal);
