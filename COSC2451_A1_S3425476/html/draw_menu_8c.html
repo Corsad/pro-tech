@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">2048
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
   </td>
  </tr>
@@ -86,7 +86,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">drawMenu.c File Reference</div>  </div>
 </div><!--header-->
@@ -99,9 +100,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;assert.h&gt;</code><br/>
 <code>#include &lt;menu.h&gt;</code><br/>
 <code>#include &lt;unistd.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="draw_menu_8h_source.html">drawMenu.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="board_8h_source.html">board.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="high_score_8h_source.html">highScore.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="khanh_a_i_8h_source.html">khanhAI.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="huy_a_i_8h_source.html">huyAI.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -126,6 +130,12 @@ Functions</h2></td></tr>
 <tr class="separator:a08d0c42369e69717af8e7dddfad5fc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8171e612dd420dbe5fa9dc680b4678ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a8171e612dd420dbe5fa9dc680b4678ac">drawBoardMenu</a> (int modeChoice)</td></tr>
 <tr class="separator:a8171e612dd420dbe5fa9dc680b4678ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b98f59d106c17af8ac9c1c969bbbb5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a1b98f59d106c17af8ac9c1c969bbbb5d">PlayerSelectionMenu</a> ()</td></tr>
+<tr class="separator:a1b98f59d106c17af8ac9c1c969bbbb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ff252396cc3ef1c334427e0784992da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a7ff252396cc3ef1c334427e0784992da">playerVsPlayerModeMenu</a> ()</td></tr>
+<tr class="separator:a7ff252396cc3ef1c334427e0784992da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea7a04acc28b44498fb2161f2784b7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#afea7a04acc28b44498fb2161f2784b7f">selectAI</a> (int amountOfPlayer)</td></tr>
+<tr class="separator:afea7a04acc28b44498fb2161f2784b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9">finish</a> (int sig)</td></tr>
 <tr class="separator:a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a071199c35946f8bc803698671cefce97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a071199c35946f8bc803698671cefce97">init_screen</a> ()</td></tr>
@@ -136,8 +146,25 @@ Functions</h2></td></tr>
 <tr class="separator:ad9d8b8c5904afb570f72e110a4d85c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a91836041f550635be9812365c388f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a46a91836041f550635be9812365c388f">printCredit</a> ()</td></tr>
 <tr class="separator:a46a91836041f550635be9812365c388f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a714f3e516c9c062af761d2dfddb17469"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a714f3e516c9c062af761d2dfddb17469">askForTime</a> ()</td></tr>
+<tr class="separator:a714f3e516c9c062af761d2dfddb17469"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a887a537b17f6cc2cd3e9ef627d071071"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a887a537b17f6cc2cd3e9ef627d071071">printQuit</a> (int *currentChoice, char i)</td></tr>
 <tr class="separator:a887a537b17f6cc2cd3e9ef627d071071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2c573389b6c2d5ccbb3627a9725dbd67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a2c573389b6c2d5ccbb3627a9725dbd67">playerMode</a> = 1</td></tr>
+<tr class="separator:a2c573389b6c2d5ccbb3627a9725dbd67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0598345126e364956830541e5fb0bdcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a0598345126e364956830541e5fb0bdcc">AISelected</a> [2]</td></tr>
+<tr class="separator:a0598345126e364956830541e5fb0bdcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b3e7a4a72dbc3b23a904172cc08c433"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a6b3e7a4a72dbc3b23a904172cc08c433">AIFuncs</a> [2])(int **, int, int) = {&amp;<a class="el" href="khanh_a_i_8h.html#a3efb010b96aa33b1af102a584874566c">getBestMoveKhanhAI</a>,&amp;<a class="el" href="huy_a_i_8h.html#af22429d4a5e3c800e966dd82421e5008">getBestMoveHuyAI</a>}</td></tr>
+<tr class="separator:a6b3e7a4a72dbc3b23a904172cc08c433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb381175847ec72ac2d41908d6bf455c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#aeb381175847ec72ac2d41908d6bf455c">playerVsPlayerMode</a> = 0</td></tr>
+<tr class="separator:aeb381175847ec72ac2d41908d6bf455c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab693b677bdc9ded12b06daf49778101c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#ab693b677bdc9ded12b06daf49778101c">minutes</a> = 0</td></tr>
+<tr class="separator:ab693b677bdc9ded12b06daf49778101c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bd4f876bdc3afed5acdd936f775d34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_menu_8c.html#a77bd4f876bdc3afed5acdd936f775d34">seconds</a> = 0</td></tr>
+<tr class="separator:a77bd4f876bdc3afed5acdd936f775d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a25f003de16c08a4888b69f619d70f427"></a>
@@ -193,6 +220,21 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a714f3e516c9c062af761d2dfddb17469"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void askForTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="aee88bdd2f2f04c05fa20ceb75d0ce687"></a>
 <div class="memitem">
 <div class="memproto">
@@ -393,6 +435,36 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1b98f59d106c17af8ac9c1c969bbbb5d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerSelectionMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7ff252396cc3ef1c334427e0784992da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void playerVsPlayerModeMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a46a91836041f550635be9812365c388f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -443,10 +515,99 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="afea7a04acc28b44498fb2161f2784b7f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void selectAI </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amountOfPlayer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a6b3e7a4a72dbc3b23a904172cc08c433"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(*  AIFuncs[2])(int **, int, int) = {&amp;<a class="el" href="khanh_a_i_8h.html#a3efb010b96aa33b1af102a584874566c">getBestMoveKhanhAI</a>,&amp;<a class="el" href="huy_a_i_8h.html#af22429d4a5e3c800e966dd82421e5008">getBestMoveHuyAI</a>}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0598345126e364956830541e5fb0bdcc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AISelected[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab693b677bdc9ded12b06daf49778101c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int minutes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2c573389b6c2d5ccbb3627a9725dbd67"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playerMode = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aeb381175847ec72ac2d41908d6bf455c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playerVsPlayerMode = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a77bd4f876bdc3afed5acdd936f775d34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int seconds = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 30 2014 14:39:53 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 4 2015 17:51:52 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

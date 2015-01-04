@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">2048
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
   </td>
  </tr>
@@ -86,12 +86,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">board.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;curses.h&gt;</code><br/>
 <code>#include &lt;signal.h&gt;</code><br/>
@@ -105,30 +107,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="high_score_8h_source.html">highScore.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="pt__utils_8h_source.html">pt_utils.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="draw_menu_8h_source.html">drawMenu.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="khanh_a_i_8h_source.html">khanhAI.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a3da89dd4f9472134d2f9791a8e46833a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a3da89dd4f9472134d2f9791a8e46833a">CELLHEIGHT</a>&#160;&#160;&#160;3</td></tr>
 <tr class="separator:a3da89dd4f9472134d2f9791a8e46833a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17d9a800994ab3a4b48bdcf985f7543"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#ae17d9a800994ab3a4b48bdcf985f7543">DISTANCE_BETWEEN_BOARD</a>&#160;&#160;&#160;40</td></tr>
+<tr class="separator:ae17d9a800994ab3a4b48bdcf985f7543"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0a20f290311ae9104eaa25a191e11568"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a0a20f290311ae9104eaa25a191e11568">playGame</a> (int ROW, int COL)</td></tr>
 <tr class="separator:a0a20f290311ae9104eaa25a191e11568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a3132cae5edd227b3864d4882bf86b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a69a3132cae5edd227b3864d4882bf86b">playGame2Player</a> (int ROW, int COL)</td></tr>
+<tr class="separator:a69a3132cae5edd227b3864d4882bf86b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e87ddaf6b50d2af1da07527a5f192d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a5e87ddaf6b50d2af1da07527a5f192d1">playGame2PlayerLimited</a> (int ROW, int COL, int <a class="el" href="draw_menu_8c.html#ab693b677bdc9ded12b06daf49778101c">minutes</a>, int <a class="el" href="draw_menu_8c.html#a77bd4f876bdc3afed5acdd936f775d34">seconds</a>)</td></tr>
+<tr class="separator:a5e87ddaf6b50d2af1da07527a5f192d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d8437861af4782de8e0ac1013a0bcc3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a8d8437861af4782de8e0ac1013a0bcc3">playGamePlayerVsAI</a> (int ROW, int COL, int(*<a class="el" href="draw_menu_8c.html#a6b3e7a4a72dbc3b23a904172cc08c433">AIFuncs</a>)(int **, int, int))</td></tr>
+<tr class="separator:a8d8437861af4782de8e0ac1013a0bcc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b2fd25094f0345ad6623dfb51fe446"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a99b2fd25094f0345ad6623dfb51fe446">playGameAIVsAI</a> (int ROW, int COL, int(*<a class="el" href="draw_menu_8c.html#a6b3e7a4a72dbc3b23a904172cc08c433">AIFuncs</a>)(int **, int, int), int(*AIFuncs2)(int **, int, int))</td></tr>
+<tr class="separator:a99b2fd25094f0345ad6623dfb51fe446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12d3d3ea38c88bf4e673da1deb76724a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a12d3d3ea38c88bf4e673da1deb76724a">playGameAI</a> (int ROW, int COL, int(*<a class="el" href="draw_menu_8c.html#a6b3e7a4a72dbc3b23a904172cc08c433">AIFuncs</a>)(int **, int, int))</td></tr>
+<tr class="separator:a12d3d3ea38c88bf4e673da1deb76724a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61b083d0c2c1f36e6ca3a44e35aa2949"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a61b083d0c2c1f36e6ca3a44e35aa2949">getMaxLength</a> (int **x, int row, int col)</td></tr>
 <tr class="separator:a61b083d0c2c1f36e6ca3a44e35aa2949"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9d914e5a95c8479871af03849200eec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#ad9d914e5a95c8479871af03849200eec">printMap</a> (int **x, int row, int col)</td></tr>
-<tr class="separator:ad9d914e5a95c8479871af03849200eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7e81e09e8fc4df66569d372fdd39c42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#aa7e81e09e8fc4df66569d372fdd39c42">printMap</a> (int **x, int row, int col, int playerAmount)</td></tr>
+<tr class="separator:aa7e81e09e8fc4df66569d372fdd39c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cd0e0c2f47ad20dcdd9b431f2a9b96a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a6cd0e0c2f47ad20dcdd9b431f2a9b96a">coloring</a> (int x)</td></tr>
 <tr class="separator:a6cd0e0c2f47ad20dcdd9b431f2a9b96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeecab387feb4be2409659e8b6402ed31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#aeecab387feb4be2409659e8b6402ed31">printScore</a> (int *score, int row)</td></tr>
-<tr class="separator:aeecab387feb4be2409659e8b6402ed31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21cc3392f9c20a8dd8fbcddd724a9dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#aa21cc3392f9c20a8dd8fbcddd724a9dd">printScore</a> (int *score, int row, int playerAmount)</td></tr>
+<tr class="separator:aa21cc3392f9c20a8dd8fbcddd724a9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d0db4e162cd3309a5442387170e7d57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a8d0db4e162cd3309a5442387170e7d57">printGoal</a> (int row, int *goal)</td></tr>
 <tr class="separator:a8d0db4e162cd3309a5442387170e7d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86008d05d36e5e0c8248246eaf4ef7e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a86008d05d36e5e0c8248246eaf4ef7e8">printGoalReached</a> (int row, int *goal)</td></tr>
 <tr class="separator:a86008d05d36e5e0c8248246eaf4ef7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c7c19303ea907e55b484d8654b92e50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a3c7c19303ea907e55b484d8654b92e50">printOver</a> (int row)</td></tr>
 <tr class="separator:a3c7c19303ea907e55b484d8654b92e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7bbce2c7450610bda61793f7dd12ceed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="board_8c.html#a7bbce2c7450610bda61793f7dd12ceed">location</a> = 0</td></tr>
+<tr class="separator:a7bbce2c7450610bda61793f7dd12ceed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a3da89dd4f9472134d2f9791a8e46833a"></a>
@@ -137,6 +157,18 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define CELLHEIGHT&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae17d9a800994ab3a4b48bdcf985f7543"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DISTANCE_BETWEEN_BOARD&#160;&#160;&#160;40</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -231,11 +263,223 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Take input from user </p>
+<p>Play game 1 person </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ROW</td><td>the amount of row the board will have </td></tr>
     <tr><td class="paramname">COL</td><td>the amount of column the board will have </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a69a3132cae5edd227b3864d4882bf86b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playGame2Player </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ROW</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>COL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Play game 2 players without limit time </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ROW</td><td>the amount of row the board will have </td></tr>
+    <tr><td class="paramname">COL</td><td>the amount of column the board will have </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5e87ddaf6b50d2af1da07527a5f192d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playGame2PlayerLimited </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ROW</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>COL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minutes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seconds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Play game 2 Players with limit time </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ROW</td><td>the amount of row the board will have </td></tr>
+    <tr><td class="paramname">COL</td><td>the amount of column the board will have </td></tr>
+    <tr><td class="paramname">minutes</td><td>time play in minute </td></tr>
+    <tr><td class="paramname">seconds</td><td>time play in second </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a12d3d3ea38c88bf4e673da1deb76724a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playGameAI </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ROW</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>COL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int **, int, int)&#160;</td>
+          <td class="paramname"><em>AIFuncs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Play game 1 AI </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ROW</td><td>the amount of row the board will have </td></tr>
+    <tr><td class="paramname">COL</td><td>the amount of column the board will have </td></tr>
+    <tr><td class="paramname">AIFuncs</td><td>get move from AI's function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a99b2fd25094f0345ad6623dfb51fe446"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playGameAIVsAI </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ROW</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>COL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int **, int, int)&#160;</td>
+          <td class="paramname"><em>AIFuncs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int **, int, int)&#160;</td>
+          <td class="paramname"><em>AIFuncs2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Play game 2 AI </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ROW</td><td>the amount of row the board will have </td></tr>
+    <tr><td class="paramname">COL</td><td>the amount of column the board will have </td></tr>
+    <tr><td class="paramname">AIFuncs</td><td>get move from AI's function </td></tr>
+    <tr><td class="paramname">AIFuncs2</td><td>get move from AI's function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8d8437861af4782de8e0ac1013a0bcc3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int playGamePlayerVsAI </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ROW</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>COL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int **, int, int)&#160;</td>
+          <td class="paramname"><em>AIFuncs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Play game 1 AI vs 1 Player </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ROW</td><td>the amount of row the board will have </td></tr>
+    <tr><td class="paramname">COL</td><td>the amount of column the board will have </td></tr>
+    <tr><td class="paramname">AIFuncs</td><td>get move from AI's function </td></tr>
   </table>
   </dd>
 </dl>
@@ -310,7 +554,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad9d914e5a95c8479871af03849200eec"></a>
+<a class="anchor" id="aa7e81e09e8fc4df66569d372fdd39c42"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -330,7 +574,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>col</em>&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>playerAmount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -345,6 +595,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">x</td><td>the double array represent the board </td></tr>
     <tr><td class="paramname">row</td><td>the amount of row the board has </td></tr>
     <tr><td class="paramname">col</td><td>the amount of column the board has </td></tr>
+    <tr><td class="paramname">playerAmount</td><td>2 players/AI or 1 player/AI </td></tr>
   </table>
   </dd>
 </dl>
@@ -374,7 +625,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeecab387feb4be2409659e8b6402ed31"></a>
+<a class="anchor" id="aa21cc3392f9c20a8dd8fbcddd724a9dd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -388,7 +639,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>row</em>&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>playerAmount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -402,16 +659,30 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">score</td><td>pointer to user sscore </td></tr>
     <tr><td class="paramname">row</td><td>score will be printed in this row </td></tr>
+    <tr><td class="paramname">playerAmount</td><td>2 players/AI or 1 player/AI </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a7bbce2c7450610bda61793f7dd12ceed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int location = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 30 2014 14:39:53 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 4 2015 17:51:52 for 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

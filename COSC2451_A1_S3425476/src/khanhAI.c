@@ -106,10 +106,10 @@ int getBestMoveKhanhAI(int **x, int row, int col){
 
 
 				// EXPECTIMAX + HIGHEST IN CORNER + GRADIENT + MONOTONIC
+				// Score will be based on the final recursive's score
 				int tempScore;
 				simplify(funcs[i], clone , row, col, &tempScore);
 				score[i] = expectimax(clone, row, col, MAX_RECURSIVE);
-				mvprintw(21 + i,20,"Score:%f", score[i]);
 				//////
 				// Free Array	
 				for(int k = 0; k < row; k++){
@@ -148,7 +148,11 @@ double expectimax(int **x, int row, int col, int testNo){
 		// Find empty space
 
 		int empty = countEmpty(x, row, col);
-		for(int i = 0; i < empty; i++){	
+
+		// Problem with this is when there is no empty then it won't run
+		// If statement should fix it
+		if(empty != 0){
+			for(int i = 0; i < empty; i++){	
 
  			// Assign 2 and 4 for all position
  			for(int j = 0; j < 2; j++){
@@ -168,7 +172,8 @@ double expectimax(int **x, int row, int col, int testNo){
 					assignVal(clone, row, col, i, j);
 
 					int tempScore;
-					simplify(funcs[k], clone , row, col, &tempScore);							
+					simplify(funcs[k], clone , row, col, &tempScore);	
+					// Assign all empty spot and move again						
 					temp = expectimax(clone, row, col, testNo + 1);
 
 					if (temp > score){
@@ -182,6 +187,7 @@ double expectimax(int **x, int row, int col, int testNo){
 					free(clone);
 				}
 
+				// Expectimax
 				if(j == 0){
 					total += (0.9*score) ;
 					probability += 0.9;
@@ -190,8 +196,40 @@ double expectimax(int **x, int row, int col, int testNo){
 					probability += 0.1;
 				}
  			}
-		}
+			}
+		} else {
+			for(int k = 0; k < 4; k++){
+	 				// Clone
+	 				int **clone = malloc(sizeof(int *) * row);
 
+					for(int m = 0; m < row; m++){
+						clone[m] = malloc(sizeof(int) *col);
+						copy_int_array(x[m],clone[m], col);
+					}
+
+					// assign 2 and 4
+
+					int tempScore;
+					simplify(funcs[k], clone , row, col, &tempScore);	
+					// Assign all empty spot and move again						
+					temp = expectimax(clone, row, col, testNo + 1);
+
+					if (temp > score){
+						score = temp;
+					}			
+				
+					// Free Array
+					for(int m = 0; m < row; m++){
+ 							free(clone[m]);
+					}
+					free(clone);
+			}
+
+			total += temp;
+		}
+		
+
+		// probability == 0 equal crash
 		if(probability != 0){
 			return total/probability;
 		} else {
@@ -204,7 +242,10 @@ double expectimax(int **x, int row, int col, int testNo){
 		int bestGradient;
 		for(int i = 0; i < 4; i++){
 			double temp = gradientCheck(x, row, col, i);
+			// add more point if highest in corner
 			temp += highestInCorner(x, row, col, i)*20;
+
+			// add more point if monotonic
 			temp += inOrder(x,row, col, i) * 10;
 			if(total < temp){
 				total = temp;

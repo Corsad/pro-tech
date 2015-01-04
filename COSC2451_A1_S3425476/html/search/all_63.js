@@ -1,6 +1,8 @@
 var searchData=
 [
   ['cellheight',['CELLHEIGHT',['../board_8c.html#a3da89dd4f9472134d2f9791a8e46833a',1,'board.c']]],
+  ['checkcol',['checkCol',['../khanh_a_i_8c.html#a57795dea330a637fb430f3471c885504',1,'checkCol(int **x, int curRow, int curCol, int mode):&#160;khanhAI.c'],['../khanh_a_i_8h.html#a57795dea330a637fb430f3471c885504',1,'checkCol(int **x, int curRow, int curCol, int mode):&#160;khanhAI.c']]],
+  ['checkrow',['checkRow',['../khanh_a_i_8c.html#a4f65ea4c1053a909173919e5581e8eb4',1,'checkRow(int **x, int curRow, int curCol, int mode):&#160;khanhAI.c'],['../khanh_a_i_8h.html#a4f65ea4c1053a909173919e5581e8eb4',1,'checkRow(int **x, int curRow, int curCol, int mode):&#160;khanhAI.c']]],
   ['clone_5fint_5farray',['clone_int_array',['../pt__utils_8c.html#a98753d222753945644c1e16dba552925',1,'clone_int_array(int a[], int length):&#160;pt_utils.c'],['../pt__utils_8h.html#a98753d222753945644c1e16dba552925',1,'clone_int_array(int a[], int length):&#160;pt_utils.c']]],
   ['col',['col',['../structplayer.html#afb52e720f5f0c483db5861f9e42e924e',1,'player']]],
   ['coloring',['coloring',['../board_8c.html#a6cd0e0c2f47ad20dcdd9b431f2a9b96a',1,'coloring(int x):&#160;board.c'],['../board_8h.html#a6cd0e0c2f47ad20dcdd9b431f2a9b96a',1,'coloring(int x):&#160;board.c']]],

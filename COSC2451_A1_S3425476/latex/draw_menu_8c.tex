@@ -9,9 +9,12 @@
 {\ttfamily \#include $<$assert.\-h$>$}\\*
 {\ttfamily \#include $<$menu.\-h$>$}\\*
 {\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}draw\-Menu.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}board.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}high\-Score.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}khanh\-A\-I.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}huy\-A\-I.\-h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,6 +39,12 @@ void \hyperlink{draw_menu_8c_a08d0c42369e69717af8e7dddfad5fc4a}{do\-Board\-Choic
 \item 
 void \hyperlink{draw_menu_8c_a8171e612dd420dbe5fa9dc680b4678ac}{draw\-Board\-Menu} (int mode\-Choice)
 \item 
+void \hyperlink{draw_menu_8c_a1b98f59d106c17af8ac9c1c969bbbb5d}{Player\-Selection\-Menu} ()
+\item 
+void \hyperlink{draw_menu_8c_a7ff252396cc3ef1c334427e0784992da}{player\-Vs\-Player\-Mode\-Menu} ()
+\item 
+void \hyperlink{draw_menu_8c_afea7a04acc28b44498fb2161f2784b7f}{select\-A\-I} (int amount\-Of\-Player)
+\item 
 void \hyperlink{draw_menu_8c_a1f1b5ef9fe1b3a2d37b1bebf9d74e3d9}{finish} (int sig)
 \item 
 void \hyperlink{draw_menu_8c_a071199c35946f8bc803698671cefce97}{init\-\_\-screen} ()
@@ -46,7 +55,24 @@ void \hyperlink{draw_menu_8c_ad9d8b8c5904afb570f72e110a4d85c66}{define\-Pair} ()
 \item 
 void \hyperlink{draw_menu_8c_a46a91836041f550635be9812365c388f}{print\-Credit} ()
 \item 
+void \hyperlink{draw_menu_8c_a714f3e516c9c062af761d2dfddb17469}{ask\-For\-Time} ()
+\item 
 void \hyperlink{draw_menu_8c_a887a537b17f6cc2cd3e9ef627d071071}{print\-Quit} (int $\ast$current\-Choice, char i)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{draw_menu_8c_a2c573389b6c2d5ccbb3627a9725dbd67}{player\-Mode} = 1
+\item 
+int \hyperlink{draw_menu_8c_a0598345126e364956830541e5fb0bdcc}{A\-I\-Selected} \mbox{[}2\mbox{]}
+\item 
+int($\ast$ \hyperlink{draw_menu_8c_a6b3e7a4a72dbc3b23a904172cc08c433}{A\-I\-Funcs} \mbox{[}2\mbox{]})(int $\ast$$\ast$, int, int) = \{\&\hyperlink{khanh_a_i_8h_a3efb010b96aa33b1af102a584874566c}{get\-Best\-Move\-Khanh\-A\-I},\&\hyperlink{huy_a_i_8h_af22429d4a5e3c800e966dd82421e5008}{get\-Best\-Move\-Huy\-A\-I}\}
+\item 
+int \hyperlink{draw_menu_8c_aeb381175847ec72ac2d41908d6bf455c}{player\-Vs\-Player\-Mode} = 0
+\item 
+int \hyperlink{draw_menu_8c_ab693b677bdc9ded12b06daf49778101c}{minutes} = 0
+\item 
+int \hyperlink{draw_menu_8c_a77bd4f876bdc3afed5acdd936f775d34}{seconds} = 0
 \end{DoxyCompactItemize}
 
 
@@ -70,6 +96,13 @@ void \hyperlink{draw_menu_8c_a887a537b17f6cc2cd3e9ef627d071071}{print\-Quit} (in
 
 
 \subsection{Function Documentation}
+\hypertarget{draw_menu_8c_a714f3e516c9c062af761d2dfddb17469}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!ask\-For\-Time@{ask\-For\-Time}}
+\index{ask\-For\-Time@{ask\-For\-Time}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{ask\-For\-Time}]{\setlength{\rightskip}{0pt plus 5cm}void ask\-For\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a714f3e516c9c062af761d2dfddb17469}
 \hypertarget{draw_menu_8c_aee88bdd2f2f04c05fa20ceb75d0ce687}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!default\-Color@{default\-Color}}
 \index{default\-Color@{default\-Color}!drawMenu.c@{draw\-Menu.\-c}}
 \subsubsection[{default\-Color}]{\setlength{\rightskip}{0pt plus 5cm}void default\-Color (
@@ -162,6 +195,20 @@ Initialize ncurses \hypertarget{draw_menu_8c_a0ddf1224851353fc92bfbff6f499fa97}{
 \item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
 )}}\label{draw_menu_8c_a0ddf1224851353fc92bfbff6f499fa97}
+\hypertarget{draw_menu_8c_a1b98f59d106c17af8ac9c1c969bbbb5d}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!Player\-Selection\-Menu@{Player\-Selection\-Menu}}
+\index{Player\-Selection\-Menu@{Player\-Selection\-Menu}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{Player\-Selection\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}void Player\-Selection\-Menu (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a1b98f59d106c17af8ac9c1c969bbbb5d}
+\hypertarget{draw_menu_8c_a7ff252396cc3ef1c334427e0784992da}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!player\-Vs\-Player\-Mode\-Menu@{player\-Vs\-Player\-Mode\-Menu}}
+\index{player\-Vs\-Player\-Mode\-Menu@{player\-Vs\-Player\-Mode\-Menu}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{player\-Vs\-Player\-Mode\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}void player\-Vs\-Player\-Mode\-Menu (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_a7ff252396cc3ef1c334427e0784992da}
 \hypertarget{draw_menu_8c_a46a91836041f550635be9812365c388f}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!print\-Credit@{print\-Credit}}
 \index{print\-Credit@{print\-Credit}!drawMenu.c@{draw\-Menu.\-c}}
 \subsubsection[{print\-Credit}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Credit (
@@ -184,3 +231,31 @@ Check if user really want to quit the game
 {\em c} & user previous input \\
 \hline
 \end{DoxyParams}
+\hypertarget{draw_menu_8c_afea7a04acc28b44498fb2161f2784b7f}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!select\-A\-I@{select\-A\-I}}
+\index{select\-A\-I@{select\-A\-I}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{select\-A\-I}]{\setlength{\rightskip}{0pt plus 5cm}void select\-A\-I (
+\begin{DoxyParamCaption}
+\item[{int}]{amount\-Of\-Player}
+\end{DoxyParamCaption}
+)}}\label{draw_menu_8c_afea7a04acc28b44498fb2161f2784b7f}
+
+
+\subsection{Variable Documentation}
+\hypertarget{draw_menu_8c_a6b3e7a4a72dbc3b23a904172cc08c433}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!A\-I\-Funcs@{A\-I\-Funcs}}
+\index{A\-I\-Funcs@{A\-I\-Funcs}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{A\-I\-Funcs}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  A\-I\-Funcs\mbox{[}2\mbox{]})(int $\ast$$\ast$, int, int) = \{\&{\bf get\-Best\-Move\-Khanh\-A\-I},\&{\bf get\-Best\-Move\-Huy\-A\-I}\}}}\label{draw_menu_8c_a6b3e7a4a72dbc3b23a904172cc08c433}
+\hypertarget{draw_menu_8c_a0598345126e364956830541e5fb0bdcc}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!A\-I\-Selected@{A\-I\-Selected}}
+\index{A\-I\-Selected@{A\-I\-Selected}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{A\-I\-Selected}]{\setlength{\rightskip}{0pt plus 5cm}int A\-I\-Selected\mbox{[}2\mbox{]}}}\label{draw_menu_8c_a0598345126e364956830541e5fb0bdcc}
+\hypertarget{draw_menu_8c_ab693b677bdc9ded12b06daf49778101c}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!minutes@{minutes}}
+\index{minutes@{minutes}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{minutes}]{\setlength{\rightskip}{0pt plus 5cm}int minutes = 0}}\label{draw_menu_8c_ab693b677bdc9ded12b06daf49778101c}
+\hypertarget{draw_menu_8c_a2c573389b6c2d5ccbb3627a9725dbd67}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!player\-Mode@{player\-Mode}}
+\index{player\-Mode@{player\-Mode}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{player\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}int player\-Mode = 1}}\label{draw_menu_8c_a2c573389b6c2d5ccbb3627a9725dbd67}
+\hypertarget{draw_menu_8c_aeb381175847ec72ac2d41908d6bf455c}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!player\-Vs\-Player\-Mode@{player\-Vs\-Player\-Mode}}
+\index{player\-Vs\-Player\-Mode@{player\-Vs\-Player\-Mode}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{player\-Vs\-Player\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}int player\-Vs\-Player\-Mode = 0}}\label{draw_menu_8c_aeb381175847ec72ac2d41908d6bf455c}
+\hypertarget{draw_menu_8c_a77bd4f876bdc3afed5acdd936f775d34}{\index{draw\-Menu.\-c@{draw\-Menu.\-c}!seconds@{seconds}}
+\index{seconds@{seconds}!drawMenu.c@{draw\-Menu.\-c}}
+\subsubsection[{seconds}]{\setlength{\rightskip}{0pt plus 5cm}int seconds = 0}}\label{draw_menu_8c_a77bd4f876bdc3afed5acdd936f775d34}

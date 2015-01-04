@@ -1,0 +1,277 @@
+\hypertarget{khanh_a_i_8c}{\section{src/khanh\-A\-I.c File Reference}
+\label{khanh_a_i_8c}\index{src/khanh\-A\-I.\-c@{src/khanh\-A\-I.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$curses.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}khanh\-A\-I.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}pt\-\_\-utils.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}move.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}moveable.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}random.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}math.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{khanh_a_i_8c_abee4ebec9c9a4588cd9019750767c777}{M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{khanh_a_i_8c_a82e01edad559be635e52bd7530d53c09}{print\-Best\-Move} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{khanh_a_i_8c_a3efb010b96aa33b1af102a584874566c}{get\-Best\-Move\-Khanh\-A\-I} (int $\ast$$\ast$x, int row, int col)
+\item 
+double \hyperlink{khanh_a_i_8c_ac22dc10e0338eb2f0dbc5c5b23dc2972}{expectimax} (int $\ast$$\ast$x, int row, int col, int test\-No)
+\item 
+int \hyperlink{khanh_a_i_8c_a2366c221560e98750cddc62af1a0e1f0}{gradient\-Check} (int $\ast$$\ast$x, int row, int col, int side)
+\item 
+int \hyperlink{khanh_a_i_8c_a9add13f9b2e682b21ea999772455b87f}{in\-Order} (int $\ast$$\ast$x, int row, int col, int gradient)
+\item 
+int \hyperlink{khanh_a_i_8c_a4f65ea4c1053a909173919e5581e8eb4}{check\-Row} (int $\ast$$\ast$x, int cur\-Row, int cur\-Col, int mode)
+\item 
+int \hyperlink{khanh_a_i_8c_a57795dea330a637fb430f3471c885504}{check\-Col} (int $\ast$$\ast$x, int cur\-Row, int cur\-Col, int mode)
+\item 
+int \hyperlink{khanh_a_i_8c_a38570d172fd5696ab2ccfa8ab8e07db5}{highest\-In\-Corner} (int $\ast$$\ast$x, int row, int col, int gradient)
+\item 
+int \hyperlink{khanh_a_i_8c_a23f0c195ca82519c981640d5f1514a94}{get\-Highest\-Or\-Second\-Highest} (int $\ast$$\ast$x, int row, int col, int mode)
+\item 
+int \hyperlink{khanh_a_i_8c_a8396e61009db4aa3839d398048d51517}{assign\-Val} (int $\ast$$\ast$x, int row, int col, int new\-Val\-Location, int val\-Mode)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \hyperlink{khanh_a_i_8c_a1556655c5bcd5ff17292449e5f17441e}{funcs} \mbox{[}4\mbox{]})(int $\ast$$\ast$, int, int, int $\ast$) = \{\&\hyperlink{move_8h_a1e5e55669d0d3b7517c18430ba092a45}{up}, \&\hyperlink{move_8h_a829e5ee192a9eabdae97b7bba0ffbc73}{down}, \&\hyperlink{move_8h_a3d16014d6be94bbc68f22b3d0650385a}{left}, \&\hyperlink{move_8h_a454e2f2f0a699cfc213b2b44d177192a}{right}\}
+\item 
+int($\ast$ \hyperlink{khanh_a_i_8c_a99048ab7d787ee656e180de62bd77d2e}{funcs\-Test} \mbox{[}4\mbox{]})(int $\ast$$\ast$, int, int) = \{\&\hyperlink{moveable_8h_aaedf2e5f41b827850a6527b1c5854d4e}{up\-Test}, \&\hyperlink{moveable_8h_af51d4a7a0957b579c7057cb894705db1}{down\-Test}, \&\hyperlink{moveable_8h_a9ac47a05565fc6c18e00ba8d3c021bc9}{left\-Test}, \&\hyperlink{moveable_8h_a8cce4a26eaf19f2b0b9ac4804d1c4b4f}{right\-Test}\}
+\item 
+int \hyperlink{khanh_a_i_8c_a607734b12abacea0d46bbfa755594850}{best\-Gradient} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{khanh_a_i_8c_abee4ebec9c9a4588cd9019750767c777}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E@{M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E}}
+\index{M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E@{M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E~2}}\label{khanh_a_i_8c_abee4ebec9c9a4588cd9019750767c777}
+
+
+\subsection{Function Documentation}
+\hypertarget{khanh_a_i_8c_a8396e61009db4aa3839d398048d51517}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!assign\-Val@{assign\-Val}}
+\index{assign\-Val@{assign\-Val}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{assign\-Val}]{\setlength{\rightskip}{0pt plus 5cm}int assign\-Val (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{new\-Val\-Location, }
+\item[{int}]{val\-Mode}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a8396e61009db4aa3839d398048d51517}
+Assigning new value for array 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em new\-Val\-Location} & location for new Value based on empty \\
+\hline
+{\em val\-Mode} & Value is 2 or 4 \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a57795dea330a637fb430f3471c885504}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!check\-Col@{check\-Col}}
+\index{check\-Col@{check\-Col}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{check\-Col}]{\setlength{\rightskip}{0pt plus 5cm}int check\-Col (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{cur\-Row, }
+\item[{int}]{cur\-Col, }
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a57795dea330a637fb430f3471c885504}
+Check order for col 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em cur\-Row} & the starting point for row \\
+\hline
+{\em cur\-Col} & the col that need to be checked \\
+\hline
+{\em mode} & check top to bottom or left to right \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a4f65ea4c1053a909173919e5581e8eb4}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!check\-Row@{check\-Row}}
+\index{check\-Row@{check\-Row}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{check\-Row}]{\setlength{\rightskip}{0pt plus 5cm}int check\-Row (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{cur\-Row, }
+\item[{int}]{cur\-Col, }
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a4f65ea4c1053a909173919e5581e8eb4}
+Check order for row 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em cur\-Row} & the row that need to be checked \\
+\hline
+{\em cur\-Col} & the starting point for col \\
+\hline
+{\em mode} & check top to bottom or left to right \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_ac22dc10e0338eb2f0dbc5c5b23dc2972}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!expectimax@{expectimax}}
+\index{expectimax@{expectimax}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{expectimax}]{\setlength{\rightskip}{0pt plus 5cm}double expectimax (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{test\-No}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_ac22dc10e0338eb2f0dbc5c5b23dc2972}
+Calculate score based on expectimax 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em test\-No} & the amount of move the board will play ahead \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a3efb010b96aa33b1af102a584874566c}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!get\-Best\-Move\-Khanh\-A\-I@{get\-Best\-Move\-Khanh\-A\-I}}
+\index{get\-Best\-Move\-Khanh\-A\-I@{get\-Best\-Move\-Khanh\-A\-I}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{get\-Best\-Move\-Khanh\-A\-I}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Best\-Move\-Khanh\-A\-I (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a3efb010b96aa33b1af102a584874566c}
+Calculate best move for A\-I 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a23f0c195ca82519c981640d5f1514a94}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!get\-Highest\-Or\-Second\-Highest@{get\-Highest\-Or\-Second\-Highest}}
+\index{get\-Highest\-Or\-Second\-Highest@{get\-Highest\-Or\-Second\-Highest}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{get\-Highest\-Or\-Second\-Highest}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Highest\-Or\-Second\-Highest (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a23f0c195ca82519c981640d5f1514a94}
+Return the amount of char of an integer 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em mode} & get highest or get second highest \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a2366c221560e98750cddc62af1a0e1f0}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!gradient\-Check@{gradient\-Check}}
+\index{gradient\-Check@{gradient\-Check}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{gradient\-Check}]{\setlength{\rightskip}{0pt plus 5cm}int gradient\-Check (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{side}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a2366c221560e98750cddc62af1a0e1f0}
+Return best gradient for map 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em side} & the side that need to be checked \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a38570d172fd5696ab2ccfa8ab8e07db5}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!highest\-In\-Corner@{highest\-In\-Corner}}
+\index{highest\-In\-Corner@{highest\-In\-Corner}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{highest\-In\-Corner}]{\setlength{\rightskip}{0pt plus 5cm}int highest\-In\-Corner (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{gradient}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a38570d172fd5696ab2ccfa8ab8e07db5}
+Check if highest on board is in corner 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em gradient} & check if highest is in that gradient's corner \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a9add13f9b2e682b21ea999772455b87f}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!in\-Order@{in\-Order}}
+\index{in\-Order@{in\-Order}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{in\-Order}]{\setlength{\rightskip}{0pt plus 5cm}int in\-Order (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{gradient}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a9add13f9b2e682b21ea999772455b87f}
+Check if the board is going from highest to lowest based on gradient 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+{\em gradient} & check monotonic based on gradient \\
+\hline
+\end{DoxyParams}
+\hypertarget{khanh_a_i_8c_a82e01edad559be635e52bd7530d53c09}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!print\-Best\-Move@{print\-Best\-Move}}
+\index{print\-Best\-Move@{print\-Best\-Move}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{print\-Best\-Move}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Best\-Move (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{khanh_a_i_8c_a82e01edad559be635e52bd7530d53c09}
+Print out best move for checking purpose 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{khanh_a_i_8c_a607734b12abacea0d46bbfa755594850}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!best\-Gradient@{best\-Gradient}}
+\index{best\-Gradient@{best\-Gradient}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{best\-Gradient}]{\setlength{\rightskip}{0pt plus 5cm}int best\-Gradient = 0}}\label{khanh_a_i_8c_a607734b12abacea0d46bbfa755594850}
+\hypertarget{khanh_a_i_8c_a1556655c5bcd5ff17292449e5f17441e}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!funcs@{funcs}}
+\index{funcs@{funcs}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{funcs}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$  funcs\mbox{[}4\mbox{]})(int $\ast$$\ast$, int, int, int $\ast$) = \{\&{\bf up}, \&{\bf down}, \&{\bf left}, \&{\bf right}\}}}\label{khanh_a_i_8c_a1556655c5bcd5ff17292449e5f17441e}
+\hypertarget{khanh_a_i_8c_a99048ab7d787ee656e180de62bd77d2e}{\index{khanh\-A\-I.\-c@{khanh\-A\-I.\-c}!funcs\-Test@{funcs\-Test}}
+\index{funcs\-Test@{funcs\-Test}!khanhAI.c@{khanh\-A\-I.\-c}}
+\subsubsection[{funcs\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  funcs\-Test\mbox{[}4\mbox{]})(int $\ast$$\ast$, int, int) = \{\&{\bf up\-Test}, \&{\bf down\-Test}, \&{\bf left\-Test}, \&{\bf right\-Test}\}}}\label{khanh_a_i_8c_a99048ab7d787ee656e180de62bd77d2e}

@@ -10,9 +10,9 @@ int \hyperlink{board_8h_acf8688b76c57a062ab94131094f4070d}{get\-Int\-Length} (in
 \item 
 int \hyperlink{board_8h_a61b083d0c2c1f36e6ca3a44e35aa2949}{get\-Max\-Length} (int $\ast$$\ast$x, int row, int col)
 \item 
-void \hyperlink{board_8h_ad9d914e5a95c8479871af03849200eec}{print\-Map} (int $\ast$$\ast$x, int row, int col)
+void \hyperlink{board_8h_aa7e81e09e8fc4df66569d372fdd39c42}{print\-Map} (int $\ast$$\ast$x, int row, int col, int player\-Amount)
 \item 
-void \hyperlink{board_8h_aeecab387feb4be2409659e8b6402ed31}{print\-Score} (int $\ast$score, int row)
+void \hyperlink{board_8h_aa21cc3392f9c20a8dd8fbcddd724a9dd}{print\-Score} (int $\ast$score, int row, int player\-Amount)
 \item 
 void \hyperlink{board_8h_a3c7c19303ea907e55b484d8654b92e50}{print\-Over} (int row)
 \item 
@@ -21,6 +21,16 @@ void \hyperlink{board_8h_a8d0db4e162cd3309a5442387170e7d57}{print\-Goal} (int ro
 void \hyperlink{board_8h_a86008d05d36e5e0c8248246eaf4ef7e8}{print\-Goal\-Reached} (int row, int $\ast$goal)
 \item 
 void \hyperlink{board_8h_a6cd0e0c2f47ad20dcdd9b431f2a9b96a}{coloring} (int x)
+\item 
+int \hyperlink{board_8h_a12d3d3ea38c88bf4e673da1deb76724a}{play\-Game\-A\-I} (int R\-O\-W, int C\-O\-L, int($\ast$\hyperlink{draw_menu_8c_a6b3e7a4a72dbc3b23a904172cc08c433}{A\-I\-Funcs})(int $\ast$$\ast$, int, int))
+\item 
+int \hyperlink{board_8h_a69a3132cae5edd227b3864d4882bf86b}{play\-Game2\-Player} (int R\-O\-W, int C\-O\-L)
+\item 
+int \hyperlink{board_8h_a8d8437861af4782de8e0ac1013a0bcc3}{play\-Game\-Player\-Vs\-A\-I} (int R\-O\-W, int C\-O\-L, int($\ast$\hyperlink{draw_menu_8c_a6b3e7a4a72dbc3b23a904172cc08c433}{A\-I\-Funcs})(int $\ast$$\ast$, int, int))
+\item 
+int \hyperlink{board_8h_a99b2fd25094f0345ad6623dfb51fe446}{play\-Game\-A\-I\-Vs\-A\-I} (int R\-O\-W, int C\-O\-L, int($\ast$\hyperlink{draw_menu_8c_a6b3e7a4a72dbc3b23a904172cc08c433}{A\-I\-Funcs})(int $\ast$$\ast$, int, int), int($\ast$A\-I\-Funcs2)(int $\ast$$\ast$, int, int))
+\item 
+int \hyperlink{board_8h_a5e87ddaf6b50d2af1da07527a5f192d1}{play\-Game2\-Player\-Limited} (int R\-O\-W, int C\-O\-L, int \hyperlink{draw_menu_8c_ab693b677bdc9ded12b06daf49778101c}{minutes}, int \hyperlink{draw_menu_8c_a77bd4f876bdc3afed5acdd936f775d34}{seconds})
 \end{DoxyCompactItemize}
 
 
@@ -75,11 +85,104 @@ Return the amount of char of an integer
 \item[{int}]{C\-O\-L}
 \end{DoxyParamCaption}
 )}}\label{board_8h_a0a20f290311ae9104eaa25a191e11568}
-Take input from user 
+Play game 1 person 
 \begin{DoxyParams}{Parameters}
 {\em R\-O\-W} & the amount of row the board will have \\
 \hline
 {\em C\-O\-L} & the amount of column the board will have \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8h_a69a3132cae5edd227b3864d4882bf86b}{\index{board.\-h@{board.\-h}!play\-Game2\-Player@{play\-Game2\-Player}}
+\index{play\-Game2\-Player@{play\-Game2\-Player}!board.h@{board.\-h}}
+\subsubsection[{play\-Game2\-Player}]{\setlength{\rightskip}{0pt plus 5cm}int play\-Game2\-Player (
+\begin{DoxyParamCaption}
+\item[{int}]{R\-O\-W, }
+\item[{int}]{C\-O\-L}
+\end{DoxyParamCaption}
+)}}\label{board_8h_a69a3132cae5edd227b3864d4882bf86b}
+Play game 2 players without limit time 
+\begin{DoxyParams}{Parameters}
+{\em R\-O\-W} & the amount of row the board will have \\
+\hline
+{\em C\-O\-L} & the amount of column the board will have \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8h_a5e87ddaf6b50d2af1da07527a5f192d1}{\index{board.\-h@{board.\-h}!play\-Game2\-Player\-Limited@{play\-Game2\-Player\-Limited}}
+\index{play\-Game2\-Player\-Limited@{play\-Game2\-Player\-Limited}!board.h@{board.\-h}}
+\subsubsection[{play\-Game2\-Player\-Limited}]{\setlength{\rightskip}{0pt plus 5cm}int play\-Game2\-Player\-Limited (
+\begin{DoxyParamCaption}
+\item[{int}]{R\-O\-W, }
+\item[{int}]{C\-O\-L, }
+\item[{int}]{minutes, }
+\item[{int}]{seconds}
+\end{DoxyParamCaption}
+)}}\label{board_8h_a5e87ddaf6b50d2af1da07527a5f192d1}
+Play game 2 Players with limit time 
+\begin{DoxyParams}{Parameters}
+{\em R\-O\-W} & the amount of row the board will have \\
+\hline
+{\em C\-O\-L} & the amount of column the board will have \\
+\hline
+{\em minutes} & time play in minute \\
+\hline
+{\em seconds} & time play in second \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8h_a12d3d3ea38c88bf4e673da1deb76724a}{\index{board.\-h@{board.\-h}!play\-Game\-A\-I@{play\-Game\-A\-I}}
+\index{play\-Game\-A\-I@{play\-Game\-A\-I}!board.h@{board.\-h}}
+\subsubsection[{play\-Game\-A\-I}]{\setlength{\rightskip}{0pt plus 5cm}int play\-Game\-A\-I (
+\begin{DoxyParamCaption}
+\item[{int}]{R\-O\-W, }
+\item[{int}]{C\-O\-L, }
+\item[{int($\ast$)(int $\ast$$\ast$, int, int)}]{A\-I\-Funcs}
+\end{DoxyParamCaption}
+)}}\label{board_8h_a12d3d3ea38c88bf4e673da1deb76724a}
+Play game 1 A\-I 
+\begin{DoxyParams}{Parameters}
+{\em R\-O\-W} & the amount of row the board will have \\
+\hline
+{\em C\-O\-L} & the amount of column the board will have \\
+\hline
+{\em A\-I\-Funcs} & get move from A\-I's function \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8h_a99b2fd25094f0345ad6623dfb51fe446}{\index{board.\-h@{board.\-h}!play\-Game\-A\-I\-Vs\-A\-I@{play\-Game\-A\-I\-Vs\-A\-I}}
+\index{play\-Game\-A\-I\-Vs\-A\-I@{play\-Game\-A\-I\-Vs\-A\-I}!board.h@{board.\-h}}
+\subsubsection[{play\-Game\-A\-I\-Vs\-A\-I}]{\setlength{\rightskip}{0pt plus 5cm}int play\-Game\-A\-I\-Vs\-A\-I (
+\begin{DoxyParamCaption}
+\item[{int}]{R\-O\-W, }
+\item[{int}]{C\-O\-L, }
+\item[{int($\ast$)(int $\ast$$\ast$, int, int)}]{A\-I\-Funcs, }
+\item[{int($\ast$)(int $\ast$$\ast$, int, int)}]{A\-I\-Funcs2}
+\end{DoxyParamCaption}
+)}}\label{board_8h_a99b2fd25094f0345ad6623dfb51fe446}
+Play game 2 A\-I 
+\begin{DoxyParams}{Parameters}
+{\em R\-O\-W} & the amount of row the board will have \\
+\hline
+{\em C\-O\-L} & the amount of column the board will have \\
+\hline
+{\em A\-I\-Funcs} & get move from A\-I's function \\
+\hline
+{\em A\-I\-Funcs2} & get move from A\-I's function \\
+\hline
+\end{DoxyParams}
+\hypertarget{board_8h_a8d8437861af4782de8e0ac1013a0bcc3}{\index{board.\-h@{board.\-h}!play\-Game\-Player\-Vs\-A\-I@{play\-Game\-Player\-Vs\-A\-I}}
+\index{play\-Game\-Player\-Vs\-A\-I@{play\-Game\-Player\-Vs\-A\-I}!board.h@{board.\-h}}
+\subsubsection[{play\-Game\-Player\-Vs\-A\-I}]{\setlength{\rightskip}{0pt plus 5cm}int play\-Game\-Player\-Vs\-A\-I (
+\begin{DoxyParamCaption}
+\item[{int}]{R\-O\-W, }
+\item[{int}]{C\-O\-L, }
+\item[{int($\ast$)(int $\ast$$\ast$, int, int)}]{A\-I\-Funcs}
+\end{DoxyParamCaption}
+)}}\label{board_8h_a8d8437861af4782de8e0ac1013a0bcc3}
+Play game 1 A\-I vs 1 Player 
+\begin{DoxyParams}{Parameters}
+{\em R\-O\-W} & the amount of row the board will have \\
+\hline
+{\em C\-O\-L} & the amount of column the board will have \\
+\hline
+{\em A\-I\-Funcs} & get move from A\-I's function \\
 \hline
 \end{DoxyParams}
 \hypertarget{board_8h_a8d0db4e162cd3309a5442387170e7d57}{\index{board.\-h@{board.\-h}!print\-Goal@{print\-Goal}}
@@ -112,15 +215,16 @@ Print user has reached the goal
 {\em goal} & pointer to current goal \\
 \hline
 \end{DoxyParams}
-\hypertarget{board_8h_ad9d914e5a95c8479871af03849200eec}{\index{board.\-h@{board.\-h}!print\-Map@{print\-Map}}
+\hypertarget{board_8h_aa7e81e09e8fc4df66569d372fdd39c42}{\index{board.\-h@{board.\-h}!print\-Map@{print\-Map}}
 \index{print\-Map@{print\-Map}!board.h@{board.\-h}}
 \subsubsection[{print\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Map (
 \begin{DoxyParamCaption}
 \item[{int $\ast$$\ast$}]{x, }
 \item[{int}]{row, }
-\item[{int}]{col}
+\item[{int}]{col, }
+\item[{int}]{player\-Amount}
 \end{DoxyParamCaption}
-)}}\label{board_8h_ad9d914e5a95c8479871af03849200eec}
+)}}\label{board_8h_aa7e81e09e8fc4df66569d372fdd39c42}
 Print the board using ncurses 
 \begin{DoxyParams}{Parameters}
 {\em x} & the double array represent the board \\
@@ -128,6 +232,8 @@ Print the board using ncurses
 {\em row} & the amount of row the board has \\
 \hline
 {\em col} & the amount of column the board has \\
+\hline
+{\em player\-Amount} & 2 players/\-A\-I or 1 player/\-A\-I \\
 \hline
 \end{DoxyParams}
 \hypertarget{board_8h_a3c7c19303ea907e55b484d8654b92e50}{\index{board.\-h@{board.\-h}!print\-Over@{print\-Over}}
@@ -142,18 +248,21 @@ Announce game over
 {\em row} & the announcement will be printed in this row \\
 \hline
 \end{DoxyParams}
-\hypertarget{board_8h_aeecab387feb4be2409659e8b6402ed31}{\index{board.\-h@{board.\-h}!print\-Score@{print\-Score}}
+\hypertarget{board_8h_aa21cc3392f9c20a8dd8fbcddd724a9dd}{\index{board.\-h@{board.\-h}!print\-Score@{print\-Score}}
 \index{print\-Score@{print\-Score}!board.h@{board.\-h}}
 \subsubsection[{print\-Score}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Score (
 \begin{DoxyParamCaption}
 \item[{int $\ast$}]{score, }
-\item[{int}]{row}
+\item[{int}]{row, }
+\item[{int}]{player\-Amount}
 \end{DoxyParamCaption}
-)}}\label{board_8h_aeecab387feb4be2409659e8b6402ed31}
+)}}\label{board_8h_aa21cc3392f9c20a8dd8fbcddd724a9dd}
 Print user's score 
 \begin{DoxyParams}{Parameters}
 {\em score} & pointer to user sscore \\
 \hline
 {\em row} & score will be printed in this row \\
+\hline
+{\em player\-Amount} & 2 players/\-A\-I or 1 player/\-A\-I \\
 \hline
 \end{DoxyParams}

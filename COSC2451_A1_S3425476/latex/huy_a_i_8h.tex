@@ -1,0 +1,49 @@
+\hypertarget{huy_a_i_8h}{\section{src/huy\-A\-I.h File Reference}
+\label{huy_a_i_8h}\index{src/huy\-A\-I.\-h@{src/huy\-A\-I.\-h}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{huy_a_i_8h_af22429d4a5e3c800e966dd82421e5008}{get\-Best\-Move\-Huy\-A\-I} (int $\ast$$\ast$x, int row, int col)
+\item 
+int \hyperlink{huy_a_i_8h_a0a0436b9b6dd98cd8f0ad440ad03a800}{Monotonic\-Test} (int $\ast$$\ast$x, int row, int col)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{huy_a_i_8h_af22429d4a5e3c800e966dd82421e5008}{\index{huy\-A\-I.\-h@{huy\-A\-I.\-h}!get\-Best\-Move\-Huy\-A\-I@{get\-Best\-Move\-Huy\-A\-I}}
+\index{get\-Best\-Move\-Huy\-A\-I@{get\-Best\-Move\-Huy\-A\-I}!huyAI.h@{huy\-A\-I.\-h}}
+\subsubsection[{get\-Best\-Move\-Huy\-A\-I}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Best\-Move\-Huy\-A\-I (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{huy_a_i_8h_af22429d4a5e3c800e966dd82421e5008}
+Calculate best move for Huy A\-I 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
+\hypertarget{huy_a_i_8h_a0a0436b9b6dd98cd8f0ad440ad03a800}{\index{huy\-A\-I.\-h@{huy\-A\-I.\-h}!Monotonic\-Test@{Monotonic\-Test}}
+\index{Monotonic\-Test@{Monotonic\-Test}!huyAI.h@{huy\-A\-I.\-h}}
+\subsubsection[{Monotonic\-Test}]{\setlength{\rightskip}{0pt plus 5cm}int Monotonic\-Test (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{x, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}}\label{huy_a_i_8h_a0a0436b9b6dd98cd8f0ad440ad03a800}
+Test if the board is sorted (ignoring free spaces) in increasing order from left to right and up to down (to force the largest tile into lower right corner) 
+\begin{DoxyParams}{Parameters}
+{\em x} & the double array represent the board \\
+\hline
+{\em row} & the amount of row the board has \\
+\hline
+{\em col} & the amount of column the board has \\
+\hline
+\end{DoxyParams}
