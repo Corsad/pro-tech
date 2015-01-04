@@ -136,7 +136,7 @@ int goalCal (int row) {
 		case 6:
 			return 4096;
 		case 8:
-			return 8092;
+			return 8192;
 	}
 	return 0;
 }

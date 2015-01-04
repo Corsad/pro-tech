@@ -12,6 +12,7 @@
 #include "board.h"
 #include "highScore.h"
 #include "khanhAI.h"
+#include "huyAI.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
@@ -21,7 +22,7 @@
 
 int playerMode = 1;
 int AISelected[2];
-int (* AIFuncs[2])(int **, int, int) = {&getBestMoveKhanhAI};
+int (* AIFuncs[2])(int **, int, int) = {&getBestMoveKhanhAI,&getBestMoveHuyAI};
 int playerVsPlayerMode = 0;
 int minutes = 0;
 int seconds = 0;
