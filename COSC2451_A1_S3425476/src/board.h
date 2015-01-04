@@ -23,12 +23,14 @@ int getMaxLength(int **x, int row, int col);
   * @param x the double array represent the board
   * @param row the amount of row the board has
   * @param col the amount of column the board has 
+  * @param playerAmount 2 players/AI or 1 player/AI
   */
 void printMap(int **x, int row, int col, int playerAmount);
 
 /** Print user's score
   * @param score pointer to user sscore
   * @param row score will be printed in this row
+  * @param playerAmount 2 players/AI or 1 player/AI
   */
 void printScore(int *score, int row, int playerAmount);
 
@@ -57,6 +59,7 @@ void coloring(int x);
 /** Play game 1 AI
   * @param ROW the amount of row the board will have
   * @param COL the amount of column the board will have
+  * @param AIFuncs get move from AI's function
   */
 int playGameAI(int ROW,int COL, int (* AIFuncs)(int **, int, int));
 
